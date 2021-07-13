@@ -804,3 +804,27 @@
 14/07/2021 - 01:16:07, [INFO], A user closed the game.
 14/07/2021 - 01:16:41, [ADMIN], The missions of the level 1 was changed!
 14/07/2021 - 01:16:41, [ADMIN], The users info was reset!
+14/07/2021 - 02:37:27, [INFO], A user wanted to log in.
+14/07/2021 - 02:37:29, [INFO], User MHZ
+14/07/2021 - 02:37:32, [INFO], MHZ entered the game menu.
+14/07/2021 - 02:37:34, [INFO], The user wanted to start the game.
+14/07/2021 - 02:37:35, [INFO], The user entered the level.
+14/07/2021 - 02:37:35, [INFO], The user started the game level 1.
+14/07/2021 - 02:37:35, [INFO], The game level was set!
+14/07/2021 - 02:37:35, [INFO], The game started!
+14/07/2021 - 02:37:41, [INFO], The user entered the turn command!
+14/07/2021 - 02:37:41, [INFO], The time went on!
+14/07/2021 - 02:37:47, [INFO], The user entered the pickup command!
+14/07/2021 - 02:37:47, [INFO], All objects was picked up!
+14/07/2021 - 02:37:56, [INFO], The user entered the work command!
+14/07/2021 - 02:37:56, [INFO], The factory started successfully!
+14/07/2021 - 02:37:59, [INFO], The user entered the turn command!
+14/07/2021 - 02:37:59, [INFO], The time went on!
+14/07/2021 - 02:38:06, [INFO], The user entered the pickup command!
+14/07/2021 - 02:38:06, [ALARM], There was nothing to pickup!
+14/07/2021 - 02:38:11, [INFO], The user entered the pickup command!
+14/07/2021 - 02:38:12, [INFO], The game finished!
+14/07/2021 - 02:38:15, [INFO], The user closed the game!
+14/07/2021 - 02:38:17, [INFO], The user wanted to see his/her information.
+14/07/2021 - 02:38:43, [INFO], The user returned to the game menu.
+14/07/2021 - 02:38:47, [INFO], The user closed the game.

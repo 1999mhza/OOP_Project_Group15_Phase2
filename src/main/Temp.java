@@ -2,7 +2,7 @@ package main;
 
 import view.home.Home;
 
-public class Main {
+public class Temp {
     public static void main(String[] args) {
         new Home().run();
     }

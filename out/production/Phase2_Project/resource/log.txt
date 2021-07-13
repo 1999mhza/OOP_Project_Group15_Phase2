@@ -802,3 +802,5 @@
 14/07/2021 - 01:15:59, [INFO], The user returned to the game menu.
 14/07/2021 - 01:16:06, [INFO], The user logged out.
 14/07/2021 - 01:16:07, [INFO], A user closed the game.
+14/07/2021 - 01:16:41, [ADMIN], The missions of the level 1 was changed!
+14/07/2021 - 01:16:41, [ADMIN], The users info was reset!
