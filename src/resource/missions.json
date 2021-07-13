@@ -1,0 +1,72 @@
+[
+  {
+    "level": 1,
+    "numberOfInitialCoins": 200,
+    "domesticAnimals": {
+      "CHICKEN": 2
+    },
+    "protectiveAnimals": {},
+    "collectorAnimals": {},
+    "factories": [],
+    "wildAnimalsTime": {
+      "LION": [
+        2,
+        6
+      ]
+    },
+    "tasks": {
+      "Egg": 10
+    },
+    "maxPrizeTime": 10,
+    "prize": 50
+  },
+  {
+    "level": 2,
+    "numberOfInitialCoins": 200,
+    "domesticAnimals": {
+      "CHICKEN": 2
+    },
+    "protectiveAnimals": {},
+    "collectorAnimals": {},
+    "factories": [
+      "MILL"
+    ],
+    "wildAnimalsTime": {
+      "LION": [
+        2,
+        6,
+        12
+      ]
+    },
+    "tasks": {
+      "Flour": 10
+    },
+    "maxPrizeTime": 20,
+    "prize": 50
+  },
+  {
+    "level": 3,
+    "numberOfInitialCoins": 200,
+    "domesticAnimals": {
+      "CHICKEN": 2
+    },
+    "protectiveAnimals": {},
+    "collectorAnimals": {},
+    "factories": [
+      "MILL"
+    ],
+    "wildAnimalsTime": {
+      "LION": [
+        2,
+        6,
+        12,
+        18
+      ]
+    },
+    "tasks": {
+      "Bread": 10
+    },
+    "maxPrizeTime": 30,
+    "prize": 50
+  }
+]
