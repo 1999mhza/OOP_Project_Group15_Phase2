@@ -680,3 +680,127 @@
 17/06/2021 - 13:37:35, [INFO], The user wanted to see his/her information.
 17/06/2021 - 13:37:47, [INFO], The user returned to the game menu.
 17/06/2021 - 13:37:52, [INFO], The user closed the game.
+13/07/2021 - 22:56:09, [INFO], A user wanted to log in.
+13/07/2021 - 22:56:11, [ERROR], The user entered a username not existing.
+13/07/2021 - 22:56:15, [INFO], A user wanted to sign up.
+13/07/2021 - 22:56:16, [INFO], User MHZ
+13/07/2021 - 22:56:18, [INFO], MHZ was added to the user list.
+13/07/2021 - 22:56:18, [INFO], MHZ entered the game menu.
+13/07/2021 - 22:56:40, [INFO], The user wanted to see his/her information.
+13/07/2021 - 22:56:46, [INFO], The user returned to the game menu.
+13/07/2021 - 22:56:52, [INFO], The user logged out.
+13/07/2021 - 22:56:55, [INFO], A user wanted to log in.
+13/07/2021 - 22:56:56, [INFO], User MHZ
+13/07/2021 - 22:56:58, [INFO], MHZ entered the game menu.
+13/07/2021 - 22:57:00, [INFO], The user wanted to see his/her information.
+13/07/2021 - 22:57:02, [INFO], The user returned to the game menu.
+13/07/2021 - 22:57:03, [INFO], The user logged out.
+13/07/2021 - 22:57:05, [INFO], A user wanted to deleter account.
+13/07/2021 - 22:57:08, [INFO], User MHZ
+13/07/2021 - 22:57:10, [ERROR], The user entered an incorrect password.
+13/07/2021 - 22:57:13, [INFO], A user wanted to deleter account.
+13/07/2021 - 22:57:14, [INFO], User MHZ
+13/07/2021 - 22:57:15, [INFO], MHZ deleted his/her account.
+13/07/2021 - 22:57:44, [INFO], A user wanted to log in.
+13/07/2021 - 22:57:45, [ERROR], The user entered a username not existing.
+13/07/2021 - 22:57:47, [INFO], A user wanted to sign up.
+13/07/2021 - 22:57:48, [INFO], User MHZ
+13/07/2021 - 22:57:50, [INFO], MHZ was added to the user list.
+13/07/2021 - 22:57:50, [INFO], MHZ entered the game menu.
+13/07/2021 - 22:57:52, [INFO], The user wanted to see his/her information.
+13/07/2021 - 22:57:58, [INFO], The user returned to the game menu.
+13/07/2021 - 22:58:01, [INFO], The user logged out.
+13/07/2021 - 22:58:02, [INFO], A user closed the game.
+14/07/2021 - 00:21:38, [ADMIN], A new level (1) was added to levels!
+14/07/2021 - 00:21:38, [ADMIN], The users info was reset!
+14/07/2021 - 00:23:23, [ADMIN], The missions of the level 1 was changed!
+14/07/2021 - 00:23:23, [ADMIN], The users info was reset!
+14/07/2021 - 00:23:34, [ADMIN], The missions of the level 1 was changed!
+14/07/2021 - 00:23:34, [ADMIN], The users info was reset!
+14/07/2021 - 00:57:13, [ADMIN], A new level (2) was added to levels!
+14/07/2021 - 00:57:14, [ADMIN], The users info was reset!
+14/07/2021 - 00:57:51, [ADMIN], The missions of the level 1 was changed!
+14/07/2021 - 00:57:51, [ADMIN], The users info was reset!
+14/07/2021 - 00:58:25, [INFO], A user wanted to log in.
+14/07/2021 - 00:58:26, [ERROR], The user entered a username not existing.
+14/07/2021 - 00:58:28, [INFO], A user wanted to log in.
+14/07/2021 - 00:58:29, [INFO], User MHZ
+14/07/2021 - 00:58:31, [INFO], MHZ entered the game menu.
+14/07/2021 - 00:58:33, [INFO], The user wanted to see his/her information.
+14/07/2021 - 00:58:35, [INFO], The user returned to the game menu.
+14/07/2021 - 00:58:37, [INFO], The user wanted to start the game.
+14/07/2021 - 00:58:38, [INFO], The user entered the level.
+14/07/2021 - 00:58:38, [ERROR], The user entered a invalid level.
+14/07/2021 - 00:58:40, [INFO], The user wanted to start the game.
+14/07/2021 - 00:58:41, [INFO], The user entered the level.
+14/07/2021 - 00:58:41, [ERROR], The user entered a locked level.
+14/07/2021 - 00:58:43, [INFO], The user wanted to start the game.
+14/07/2021 - 00:58:43, [INFO], The user entered the level.
+14/07/2021 - 00:58:43, [INFO], The user started the game level 1.
+14/07/2021 - 00:58:43, [ERROR], The user entered a invalid level.
+14/07/2021 - 00:59:20, [INFO], A user wanted to log in.
+14/07/2021 - 00:59:22, [INFO], User MHZ
+14/07/2021 - 00:59:23, [INFO], MHZ entered the game menu.
+14/07/2021 - 00:59:24, [INFO], The user wanted to start the game.
+14/07/2021 - 00:59:25, [INFO], The user entered the level.
+14/07/2021 - 00:59:25, [INFO], The user started the game level 1.
+14/07/2021 - 00:59:25, [INFO], The game level was set!
+14/07/2021 - 00:59:25, [INFO], The game started!
+14/07/2021 - 00:59:44, [ERROR], User entered an illegal commands!
+14/07/2021 - 00:59:47, [INFO], The user entered the turn command!
+14/07/2021 - 00:59:47, [INFO], The time went on!
+14/07/2021 - 01:00:11, [INFO], The user closed the game!
+14/07/2021 - 01:00:13, [INFO], The user closed the game.
+14/07/2021 - 01:11:36, [ADMIN], The missions of the level 1 was changed!
+14/07/2021 - 01:11:36, [ADMIN], The users info was reset!
+14/07/2021 - 01:11:57, [INFO], A user wanted to log in.
+14/07/2021 - 01:12:00, [INFO], User MHZ
+14/07/2021 - 01:12:01, [INFO], MHZ entered the game menu.
+14/07/2021 - 01:12:02, [INFO], The user wanted to start the game.
+14/07/2021 - 01:12:03, [INFO], The user entered the level.
+14/07/2021 - 01:12:03, [INFO], The user started the game level 1.
+14/07/2021 - 01:12:03, [INFO], The game level was set!
+14/07/2021 - 01:12:03, [INFO], The game started!
+14/07/2021 - 01:12:17, [INFO], The user entered the build command!
+14/07/2021 - 01:12:17, [ALARM], The factory existed!
+14/07/2021 - 01:12:24, [INFO], The user entered the turn command!
+14/07/2021 - 01:12:24, [INFO], The time went on!
+14/07/2021 - 01:12:31, [INFO], The user entered the pickup command!
+14/07/2021 - 01:12:32, [INFO], All objects was picked up!
+14/07/2021 - 01:12:38, [INFO], The user entered the work command!
+14/07/2021 - 01:12:38, [INFO], The factory started successfully!
+14/07/2021 - 01:12:44, [INFO], The user entered the inquiry command!
+14/07/2021 - 01:12:56, [INFO], The user entered the turn command!
+14/07/2021 - 01:12:56, [INFO], The time went on!
+14/07/2021 - 01:13:02, [INFO], The user entered the turn command!
+14/07/2021 - 01:13:02, [INFO], The time went on!
+14/07/2021 - 01:13:22, [INFO], The user entered the turn command!
+14/07/2021 - 01:13:22, [INFO], The time went on!
+14/07/2021 - 01:13:27, [INFO], The user entered the pickup command!
+14/07/2021 - 01:13:27, [INFO], The game finished!
+14/07/2021 - 01:14:37, [INFO], The user closed the game!
+14/07/2021 - 01:14:45, [INFO], A user wanted to log in.
+14/07/2021 - 01:14:48, [INFO], User MHZ
+14/07/2021 - 01:14:49, [INFO], MHZ entered the game menu.
+14/07/2021 - 01:14:57, [INFO], The user wanted to start the game.
+14/07/2021 - 01:14:59, [INFO], The user entered the level.
+14/07/2021 - 01:14:59, [INFO], The user started the game level 1.
+14/07/2021 - 01:14:59, [INFO], The game level was set!
+14/07/2021 - 01:14:59, [INFO], The game started!
+14/07/2021 - 01:15:04, [INFO], The user entered the turn command!
+14/07/2021 - 01:15:04, [INFO], The time went on!
+14/07/2021 - 01:15:09, [INFO], The user entered the pickup command!
+14/07/2021 - 01:15:09, [INFO], All objects was picked up!
+14/07/2021 - 01:15:15, [INFO], The user entered the work command!
+14/07/2021 - 01:15:15, [INFO], The factory started successfully!
+14/07/2021 - 01:15:21, [INFO], The user entered the turn command!
+14/07/2021 - 01:15:21, [INFO], The time went on!
+14/07/2021 - 01:15:34, [INFO], The user entered the pickup command!
+14/07/2021 - 01:15:34, [INFO], The game finished!
+14/07/2021 - 01:15:53, [INFO], The user closed the game!
+14/07/2021 - 01:15:55, [INFO], The user wanted to see his/her information.
+14/07/2021 - 01:15:59, [INFO], The user returned to the game menu.
+14/07/2021 - 01:16:06, [INFO], The user logged out.
+14/07/2021 - 01:16:07, [INFO], A user closed the game.
+14/07/2021 - 01:16:41, [ADMIN], The missions of the level 1 was changed!
+14/07/2021 - 01:16:41, [ADMIN], The users info was reset!

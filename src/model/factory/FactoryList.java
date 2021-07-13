@@ -8,7 +8,8 @@ public enum FactoryList {
     MILL("model.factory.Mill", "Mill", "^(?i)\\s*mill\\s*$", 150),
     MILK_PACKER("model.factory.MilkPacker", "MilkPacker", "^(?i)\\s*milk\\s*packer\\s*$", 400),
     SEWING_MACHINE("model.factory.SewingMachine", "SewingMachine", "^(?i)\\s*sewing\\s*machine\\s*$", 400),
-    LOOM("model.factory.Loom", "Loom", "^(?i)\\s*loom\\s*$", 250);
+    LOOM("model.factory.Loom", "Loom", "^(?i)\\s*loom\\s*$", 250),
+    INCUBATOR("model.factory.Incubator", "Incubator", "^(?i)\\s*incubator\\s*$", 350);
 
     private final String packageName;
     private final String className;

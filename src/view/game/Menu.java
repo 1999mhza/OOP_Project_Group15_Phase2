@@ -2,18 +2,17 @@ package view.game;
 
 import controller.GameManager;
 import controller.Logger;
-import model.User;
 import view.AbstractMenu;
 
 public class Menu extends AbstractMenu {
 
     private final GameManager gameManager;
-    private final User user;
+    private final String username;
 
-    public Menu(User user) {
+    public Menu(String username) {
         super();
-        this.user = user;
-        this.gameManager = new GameManager(user);
+        this.username = username;
+        this.gameManager = new GameManager(username);
     }
 
     @Override
@@ -69,7 +68,7 @@ public class Menu extends AbstractMenu {
                     } else if (nextMenuNum == 3) {
                         System.out.println();
                         Logger.log("info", "The user wanted to see his/her information.");
-                        new Information(user).run();
+                        new Information(username).run();
                         break;
 
 

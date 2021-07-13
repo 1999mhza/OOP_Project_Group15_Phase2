@@ -1,7 +1,6 @@
 package controller;
 
 import model.Game;
-import model.User;
 import model.animal.Animal;
 import model.animal.collector.Collector;
 import model.animal.collector.CollectorList;
@@ -23,11 +22,11 @@ import java.util.Map;
 
 public class GameManager {
 
-    private final User user;
+    private final String username;
     private Game game;
 
-    public GameManager(User user) {
-        this.user = user;
+    public GameManager(String username) {
+        this.username = username;
     }
 
     public boolean checkInvalidLevel(int level) {
@@ -35,22 +34,22 @@ public class GameManager {
     }
 
     public boolean checkLockedLevel(int level) {
-        return level > user.getLastUnlockedLevel();
+        return UserManager.getInstance().checkUserLevel(username, level);
     }
 
     public void setGame(int level) {
-        Game.initiateGame(MissionManager.getInstance().getMission(level), user);
+        Game.initiateGame(level, username);
         this.game = Game.getInstance();
     }
 
     public ResultType finish() {
         ResultType result = ResultType.FINISH;
         StringBuilder sb = new StringBuilder();
-        sb.append("You completed the level ").append(game.getMission().getLevel()).append("!\n");
+        sb.append("You completed the level ").append(game.getLevel()).append("!\n");
         sb.append("Time = ").append(game.getTime()).append("\n");
-        if (game.getTime() <= game.getMission().getMaxPrizeTime()) {
-            sb.append("Coin = ").append(game.getCoin() - game.getMission().getPrize()).append("\n");
-            sb.append("Prize for finishing in time: ").append(game.getMission().getPrize()).append(" Coins\n");
+        if (game.getTime() <= MissionManager.getInstance().getMaxPrizeTime(game.getLevel())) {
+            sb.append("Coin = ").append(game.getCoin() - MissionManager.getInstance().getPrize(game.getLevel())).append("\n");
+            sb.append("Prize for finishing in time: ").append(MissionManager.getInstance().getPrize(game.getLevel())).append(" Coins\n");
         } else {
             sb.append("Coin = ").append(game.getCoin()).append("\n");
             sb.append("Prize for finishing in time: 0 Coins\n");

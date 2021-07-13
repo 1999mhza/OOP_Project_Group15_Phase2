@@ -1,23 +1,22 @@
 package view.game;
 
-import controller.GameManager;
 import controller.Logger;
-import model.User;
+import controller.UserManager;
 import view.AbstractMenu;
 
 public class Information extends AbstractMenu {
 
-    private final User user;
+    private final String username;
 
-    public Information(User user) {
+    public Information(String username) {
         super();
-        this.user = user;
+        this.username = username;
     }
 
     @Override
     public void run() {
         System.out.println("Information:");
-        System.out.println(user.toString());
+        System.out.println(UserManager.getInstance().getUserInformation(username));
         System.out.println("1. Back");
 
         while (true) {

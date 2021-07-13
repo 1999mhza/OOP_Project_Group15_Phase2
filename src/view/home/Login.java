@@ -35,6 +35,6 @@ public class Login extends AbstractMenu {
 
         System.out.println();
         Logger.log("info", username + " entered the game menu.");
-        new Menu(userManager.findUser(username)).run();
+        new Menu(username).run();
     }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import controller.MissionManager;
 import controller.UserManager;
 import model.animal.collector.Collector;
 import model.animal.collector.CollectorList;
@@ -23,14 +24,14 @@ public class Game {
         return gameInstance;
     }
 
-    public static void initiateGame(Mission mission, User user) {
-        gameInstance = new Game(mission, user);
+    public static void initiateGame(int level, String username) {
+        gameInstance = new Game(level, username);
     }
 
     public static final int SIZE = 6;
 
-    private final Mission mission;
-    private final User user;
+    private final int level;
+    private final String username;
 
     private final HashMap<String, Integer[]> tasks;
     private boolean isFinished;
@@ -51,19 +52,19 @@ public class Game {
     private final HashSet<Protective> protectiveAnimals;
     private final HashSet<Collector> collectorAnimals;
 
-    private Game(Mission mission, User user) {
-        this.mission = mission;
-        this.user = user;
+    private Game(int level, String username) {
+        this.level = level;
+        this.username = username;
 
         tasks = new HashMap<>();
-        HashMap<String, Integer> missionTasks = mission.getTasks();
+        HashMap<String, Integer> missionTasks = MissionManager.getInstance().getTasks(level);
         for (String s : missionTasks.keySet()) {
             tasks.put(s, new Integer[]{missionTasks.get(s), 0});
         }
         isFinished = false;
 
         time = 0;
-        coin = mission.getNumberOfInitialCoins();
+        coin = MissionManager.getInstance().getNumberOfInitialCoins(level);
         updateTask("Coin", true);
 
         warehouse = new Warehouse();
@@ -75,7 +76,7 @@ public class Game {
             Arrays.fill(ints, 0);
 
         factories = new HashSet<>();
-        for (FactoryList name : mission.getFactories()) {
+        for (FactoryList name : MissionManager.getInstance().getFactories(level)) {
             try {
                 factories.add((Factory) Class.forName(name.getPackageName()).newInstance());
             } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ignored) {
@@ -83,10 +84,10 @@ public class Game {
         }
 
         domesticAnimals = new HashSet<>();
-        for (DomesticList name : mission.getDomesticAnimals().keySet()) {
-            for (int i = 0; i < mission.getDomesticAnimals().get(name); i++) {
+        for (Map.Entry<DomesticList, Integer> entry : MissionManager.getInstance().getDomesticAnimals(level).entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
                 try {
-                    Domestic animal = (Domestic) Class.forName(name.getPackageName()).newInstance();
+                    Domestic animal = (Domestic) Class.forName(entry.getKey().getPackageName()).newInstance();
                     domesticAnimals.add(animal);
                     updateTask(animal.getClass().getSimpleName(), true);
                 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ignored) {
@@ -95,10 +96,10 @@ public class Game {
         }
 
         protectiveAnimals = new HashSet<>();
-        for (ProtectiveList name : mission.getProtectiveAnimals().keySet()) {
-            for (int i = 0; i < mission.getProtectiveAnimals().get(name); i++) {
+        for (Map.Entry<ProtectiveList, Integer> entry : MissionManager.getInstance().getProtectiveAnimals(level).entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
                 try {
-                    Protective animal = (Protective) Class.forName(name.getPackageName()).newInstance();
+                    Protective animal = (Protective) Class.forName(entry.getKey().getPackageName()).newInstance();
                     protectiveAnimals.add(animal);
                     updateTask(animal.getClass().getSimpleName(), true);
                 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ignored) {
@@ -107,10 +108,10 @@ public class Game {
         }
 
         collectorAnimals = new HashSet<>();
-        for (CollectorList name : mission.getCollectorAnimals().keySet()) {
-            for (int i = 0; i < mission.getCollectorAnimals().get(name); i++) {
+        for (Map.Entry<CollectorList, Integer> entry : MissionManager.getInstance().getCollectorAnimals(level).entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
                 try {
-                    Collector animal = (Collector) Class.forName(name.getPackageName()).newInstance();
+                    Collector animal = (Collector) Class.forName(entry.getKey().getPackageName()).newInstance();
                     collectorAnimals.add(animal);
                     updateTask(animal.getClass().getSimpleName(), true);
                 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ignored) {
@@ -125,11 +126,11 @@ public class Game {
     }
 
     public void loadWilds() {
-        for (WildList name : mission.getWildAnimalsTime().keySet()) {
-            for (int i = 0; i < mission.getWildAnimalsTime().get(name).length; i++) {
-                if (mission.getWildAnimalsTime().get(name)[i] == time) {
+        for (Map.Entry<WildList, Integer[]> entry : MissionManager.getInstance().getWildAnimalsTime(level).entrySet()) {
+            for (int i = 0; i < entry.getValue().length; i++) {
+                if (entry.getValue()[i] == time) {
                     try {
-                        wildAnimals.add((Wild) Class.forName(name.getPackageName()).newInstance());
+                        wildAnimals.add((Wild) Class.forName(entry.getKey().getPackageName()).newInstance());
                     } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ignored) {
                     }
                 }
@@ -166,11 +167,11 @@ public class Game {
         }
         isFinished = true;
         boolean rewarded = false;
-        if (time <= mission.getMaxPrizeTime()) {
-            coin += mission.getPrize();
+        if (time <= MissionManager.getInstance().getMaxPrizeTime(level)) {
+            coin += MissionManager.getInstance().getPrize(level);
             rewarded = true;
         }
-        UserManager.getInstance().updateUser(user, mission.getLevel(), coin, rewarded);
+        UserManager.getInstance().updateUser(username, level, coin, rewarded);
         return true;
     }
 
@@ -178,8 +179,8 @@ public class Game {
         return isFinished;
     }
 
-    public Mission getMission() {
-        return mission;
+    public int getLevel() {
+        return level;
     }
 
     public void plant(int i, int j) {
