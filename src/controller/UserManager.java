@@ -111,6 +111,19 @@ public class UserManager {
         return null;
     }
 
+    public HashMap<Integer, Integer> getMissionInformation(String username) {
+        try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select collectedCoins, missionInfo from users where username = '" + username + "'");
+            if (resultSet.next()) {
+                return new GsonBuilder().create().fromJson(resultSet.getString("missionInfo"), new TypeToken<HashMap<Integer, Integer>>() {
+                }.getType());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void addUser(String username, String password) {
         try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
             MessageDigest md = MessageDigest.getInstance("SHA-256");

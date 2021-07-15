@@ -10,7 +10,7 @@ public abstract class Logger {
 
     public static void log(String type, String event) {
         try {
-            File file = new File("src\\resource\\log.txt");
+            File file = new File("src/../log.txt");
             if (!file.exists()) file.createNewFile();
 
             FileWriter fileWriter = new FileWriter(file, true);

@@ -243,6 +243,11 @@ public class MissionManager {
             return;
         }
 
+        if (level > 21) {
+            System.out.println("The max level is 21!");
+            return;
+        }
+
         if (numberOfInitialCoins < 0) {
             System.out.println("The number of initial coins is invalid!");
             return;
