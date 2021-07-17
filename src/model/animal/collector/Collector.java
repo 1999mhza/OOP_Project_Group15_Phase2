@@ -12,38 +12,28 @@ import java.util.HashSet;
 public abstract class Collector extends Animal {
 
     public Collector(int price) {
-        super(price, Integer.MAX_VALUE, Integer.MAX_VALUE, 1);
+        super(price, Integer.MAX_VALUE, Integer.MAX_VALUE, 1.0);
     }
 
     public void move() {
-        preI = i;
-        preJ = j;
-        boolean horizontal = false;
-        boolean vertical = false;
-        int distance = Integer.MAX_VALUE;
-
-        ArrayList<Good> list1 = new ArrayList<>(Game.getInstance().getGoods());
-        ArrayList<Good> list2 = new ArrayList<>();
-
-        for (int k = Game.getInstance().getGoods().size(); k > 0; k--) {
-            list2.add(list1.remove(rand.nextInt(k)));
-        }
-
         int capacity = Game.getInstance().getWarehouse().getCapacity();
-        for (Good good : list2) {
-            int ii = good.getI();
-            int jj = good.getJ();
-            int dis = Math.abs(ii - i) + Math.abs(jj - j);
 
-            if (capacity >= good.getSpace() && dis < distance) {
-                distance = dis;
-                vertical = Math.abs(ii - i) > Math.abs(jj - j);
-                horizontal = (ii - i) + (jj - j) > 0;
+        if (capacity != 0 && !Game.getInstance().getGoods().isEmpty()) {
+            System.out.println("OK");
+            double distance = -1;
+
+            for (Good good : Game.getInstance().getGoods()) {
+                double dis = Math.abs(good.getI() - getI()) + Math.abs(good.getJ() - getJ());
+
+                if (capacity >= good.getSpace() && (distance == -1 || dis < distance)) {
+                    distance = dis;
+                    if (good.getJ() - getJ() == 0) angle = good.getI() - getI() > 0 ? 90 : -90;
+                    else angle = Math.atan((good.getI() - getI()) / (good.getJ() - getJ())) + (good.getJ() - getJ() > 0 ? 0 : Math.PI);
+                }
             }
         }
 
-        if (distance == Integer.MAX_VALUE) super.move(rand.nextBoolean(), rand.nextBoolean());
-        else if (distance != 0) super.move(vertical, horizontal);
+        super.move();
     }
 
     public void work() {

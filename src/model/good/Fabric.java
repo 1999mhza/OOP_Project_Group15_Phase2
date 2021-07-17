@@ -3,6 +3,6 @@ package model.good;
 public class Fabric extends Good{
 
     public Fabric() {
-        super(2, 5, 50);
+        super(3, 5, 70);
     }
 }

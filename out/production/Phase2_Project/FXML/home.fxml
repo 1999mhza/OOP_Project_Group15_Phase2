@@ -5,34 +5,58 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.HomeController">
-   <children>
-      <StackPane fx:id="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox alignment="CENTER" fillWidth="false" spacing="5.0" style="-fx-background-radius: 10;">
-               <children>
-                  <Label fx:id="l1" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-background-image: url(file:src/resource/labelBack.png); -fx-border-width: 0;" text="Username" />
-                  <TextField fx:id="username" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" style="-fx-background-radius: 10; -fx-background-image: url(file:src/resource/textBack.png); -fx-text-inner-color: navajowhite; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10; -fx-font-size: 20; -fx-font-weight: bold;">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin></TextField>
-                  <Label fx:id="l2" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-background-image: url(file:src/resource/labelBack.png);" text="Password" />
-                  <PasswordField fx:id="password" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" style="-fx-background-radius: 10; -fx-background-image: url(file:src/resource/textBack.png); -fx-text-inner-color: navajowhite; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10; -fx-font-size: 20; -fx-font-weight: bold;">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin></PasswordField>
-                  <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-background-image: url(file:src/resource/labelBack.png);" />
-                  <Button fx:id="login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: lawngreen; -fx-border-color: darkgreen; -fx-border-width: 5; -fx-border-radius: 25;" text="LOG IN" />
-                  <Button fx:id="signup" alignment="CENTER" contentDisplay="CENTER" layoutX="310.0" layoutY="285.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25;" text="SIGN UP" />
-                  <Button fx:id="delete" alignment="CENTER" contentDisplay="CENTER" layoutX="310.0" layoutY="496.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: yellow; -fx-border-color: darkgoldenrod; -fx-border-width: 5; -fx-border-radius: 25;" text="DELETE" />
-                  <Button fx:id="exit" alignment="CENTER" contentDisplay="CENTER" layoutX="310.0" layoutY="312.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 25;" text="EXIT" />
-               </children>
-            </VBox>
-         </children>
-      </StackPane>
-   </children>
+<AnchorPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.HomeController">
+   <ImageView fx:id="image" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../resource/back.png" />
+   </ImageView>
+   <VBox fx:id="vbox" alignment="CENTER" fillWidth="false" layoutX="150.0" layoutY="50.0" prefHeight="500.0" prefWidth="500.0" spacing="5.0" style="-fx-background-radius: 10;">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 22; -fx-font-weight: bold;" text="Username">
+         <graphic>
+            <ImageView fitHeight="70.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../resource/labelBack.png" />
+            </ImageView>
+         </graphic>
+      </Label>
+      <TextField fx:id="username" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" style="-fx-background-radius: 10; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10; -fx-font-size: 20; -fx-font-weight: bold;">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </TextField>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 22; -fx-font-weight: bold;" text="Password">
+         <graphic>
+            <ImageView fitHeight="70.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../resource/labelBack.png" />
+            </ImageView>
+         </graphic>
+      </Label>
+      <PasswordField fx:id="password" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" style="-fx-background-radius: 10; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10; -fx-font-size: 20; -fx-font-weight: bold;">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </PasswordField>
+      <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 18; -fx-font-weight: bold;" visible="false">
+         <graphic>
+            <ImageView fitHeight="70.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../resource/labelBack.png" />
+            </ImageView>
+         </graphic>
+         <VBox.margin>
+            <Insets bottom="50.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="10.0">
+         <Button fx:id="login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: lawngreen; -fx-border-color: darkgreen; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="LOG IN" />
+         <Button fx:id="signup" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="SIGN UP" />
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="10.0">
+         <Button fx:id="delete" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: yellow; -fx-border-color: darkgoldenrod; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="DELETE" />
+         <Button fx:id="exit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="EXIT" />
+      </HBox>
+   </VBox>
 </AnchorPane>

@@ -2,7 +2,6 @@ package controller;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import model.*;
 import model.animal.collector.CollectorList;
 import model.animal.domestic.DomesticList;
 import model.animal.protective.ProtectiveList;
@@ -213,12 +212,12 @@ public class MissionManager {
 
         numberOfInitialCoins = 100;
 
-        domesticAnimals.put("Chicken", 1);
-        //domesticAnimals.put("Buffalo", 2);
+        domesticAnimals.put("Chicken", 2);
+        //domesticAnimals.put("Sheep", 3);
 
-        //protectiveAnimals.put("Hound", 2);
+        //protectiveAnimals.put("Dog", 2);
 
-        //collectorAnimals.put("Cat", 5);
+        //collectorAnimals.put("Cat", 3);
 
         factoriesSet.add("Incubator");
         //factoriesSet.add("MilkPacker");
@@ -237,6 +236,11 @@ public class MissionManager {
         maxPrizeTime = 30;
         prize = 50;
         // -----------------------------------------------
+
+        if (tasksMap.size() > 4) {
+            System.out.println("The number of tasks is high!");
+            return;
+        }
 
         if (level < 0 || level > MissionManager.getInstance().getNumberOfLevels() + 1) {
             System.out.println("The level is invalid!");
@@ -323,12 +327,6 @@ public class MissionManager {
                 tasks.put(GoodList.getGood(task).getClassName(), tasksMap.get(task));
             } else if (DomesticList.getDomestic(task) != null) {
                 tasks.put(DomesticList.getDomestic(task).getClassName(), tasksMap.get(task));
-            } else if (ProtectiveList.getProtective(task) != null) {
-                tasks.put(ProtectiveList.getProtective(task).getClassName(), tasksMap.get(task));
-            } else if (CollectorList.getCollector(task) != null) {
-                tasks.put(CollectorList.getCollector(task).getClassName(), tasksMap.get(task));
-            } else if (WildList.getWild(task) != null) {
-                tasks.put(WildList.getWild(task).getClassName(), tasksMap.get(task));
             } else if (task.equalsIgnoreCase("Coin")) {
                 tasks.put("Coin", tasksMap.get(task));
             } else {

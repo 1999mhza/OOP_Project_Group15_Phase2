@@ -1,44 +1,87 @@
 package model.animal;
 
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import model.Game;
+import model.good.Good;
 
+import java.io.File;
 import java.util.Random;
 
 public abstract class Animal {
     protected Random rand;
-    protected int i, j;
-    protected int preI, preJ;
     protected int price;
     protected int space;
-    protected int lifetime;
-    protected int step;
+    protected double lifetime;
+    protected double speed;
+    protected double deafultSpeed;
+    protected double angle;
 
-    public Animal(int price, int lifetime, int space, int step) {
+    protected ImageView imageView;
+    protected AnimalAnimation animalAnimation;
+    protected Image[] images;
+    protected Rectangle2D[][] cells;
+
+    public Animal(int price, double lifetime, int space, double speed) {
         this.rand = new Random();
-        this.i = rand.nextInt(Game.SIZE);
-        this.j = rand.nextInt(Game.SIZE);
-        this.preI = -1;
-        this.preJ = -1;
         this.price = price;
         this.lifetime = lifetime;
         this.space = space;
-        this.step = step;
+        this.speed = speed;
+        this.deafultSpeed = speed;
+        this.angle = rand.nextDouble() * 360.0;
     }
 
-    public int getI() {
-        return i;
+    public abstract void setAnimation();
+
+    public void setAnimation(Image[] images, Rectangle2D[][] cells) {
+        imageView = new ImageView();
+        this.cells = cells;
+        this.images = images;
+
+        createImage(0);
+
+        animalAnimation = new AnimalAnimation(this);
+        Game.getInstance().getRoot().getChildren().add(imageView);
     }
 
-    public int getJ() {
-        return j;
+    public double getSpeed() {
+        return speed;
     }
 
-    public int getPreI() {
-        return preI;
+    public double getAngle() {
+        return angle;
     }
 
-    public int getPreJ() {
-        return preJ;
+    public void setAngle(double first, double last) {
+        this.angle = first + (last - first) * rand.nextDouble();
+    }
+
+    public void pause() {
+        animalAnimation.pause();
+    }
+
+    public void play() {
+        animalAnimation.play();
+    }
+
+    public double getWidth() {
+        return cells[((int) ((angle + 360.0 + 22.5) / 45.0)) % 8][0].getWidth();
+    }
+
+    public double getHeight() {
+        return cells[((int) ((angle + 360.0 + 22.5) / 45.0)) % 8][0].getHeight();
+    }
+
+    public double getI() {
+        return imageView.getLayoutY() + cells[((int) ((angle + 360.0 + 22.5) / 45.0)) % 8][0].getHeight() / 2;
+    }
+
+    public double getJ() {
+        return imageView.getLayoutX() + cells[((int) ((angle + 360.0 + 22.5) / 45.0)) % 8][0].getWidth() / 2;
     }
 
     public int getPrice() {
@@ -51,46 +94,78 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " [" + (i + 1) + " " + (j + 1) + "]";
+        return this.getClass().getSimpleName() + " [" + getI() + " " + getJ() + "]";
     }
 
-    public void move(boolean vertical, boolean horizontal) {
-        if (vertical) {
-            if (i < step) {
-                i += step;
-            } else if (i >= Game.SIZE - step) {
-                i -= step;
-            } else {
-                i += (horizontal ? step : -step);
-            }
-        } else {
-            if (j < step) {
-                j += step;
-            } else if (j >= Game.SIZE - step) {
-                j -= step;
-            } else {
-                j += (horizontal ? step : -step);
-            }
-        }
+    public void move() {
+        imageView.setLayoutX(imageView.getLayoutX() + speed * Math.cos(Math.toRadians(angle)));
+        imageView.setLayoutY(imageView.getLayoutY() + speed * Math.sin(Math.toRadians(angle)));
     }
+
+    public abstract void work();
 
     public boolean encounter(Animal that) {
-        if (this.i != this.preI && this.j != this.preJ) return false;
-        if (that.j != that.preJ && that.i != that.preI) return false;
-        if (this.i == this.preI && that.j == that.preJ && this.j != this.preJ && that.i != that.preI) return false;
-        if (this.i != this.preI && that.j != that.preJ && this.j == this.preJ && that.i == that.preI) return false;
+        return Math.sqrt(Math.pow(this.getI() - that.getI(), 2) + Math.pow(this.getJ() - that.getJ(), 2)) < 10;
+    }
 
-        if (this.i == this.preI && this.i == that.i) {
-            if ((this.j >= that.j && this.preJ <= that.j && this.j <= that.preJ) || (that.j >= this.j && that.preJ <= this.j && that.j <= this.preJ)) return true;
-            if ((this.j <= that.j && this.preJ <= that.j && this.j >= that.preJ && this.preJ >= that.preJ) || (that.j <= this.j && that.preJ <= this.j && that.j >= this.preJ && that.preJ >= this.preJ)) return true;
-            if ((this.j <= that.preJ && this.preJ <= that.preJ && this.j >= that.j && this.preJ >= that.j) || (that.j <= this.preJ && that.preJ <= this.preJ && that.j >= this.j && that.preJ >= this.j)) return true;
+    public boolean encounter(Good that) {
+        return Math.sqrt(Math.pow(this.getI() - that.getI(), 2) + Math.pow(this.getJ() - that.getJ(), 2)) < 10;
+    }
+
+    public void createImage(int num) {
+
+        if (num >= 24) num = 23;
+        if (num < 0) num = 0;
+        int direction = ((int) ((angle + 360.0 + 22.5) / 45.0)) % 8;
+
+        imageView.setImage(images[direction]);
+        imageView.setViewport(cells[direction][num]);
+
+        imageView.setLayoutX(rand.nextDouble() * (Game.getInstance().getWidth() - cells[direction][num].getWidth()));
+        imageView.setLayoutY(rand.nextDouble() * (Game.getInstance().getHeight() - cells[direction][num].getHeight()));
+    }
+
+    public void update(double v) {
+        int num = (int) (v * 23.05);
+        if (num >= 24) num = 23;
+        if (num < 0) num = 0;
+        int direction = ((int) ((angle + 360.0 + 22.5) / 45.0)) % 8;
+
+        if (imageView.getLayoutX() + cells[direction][num].getWidth() >= Game.getInstance().getWidth()) {
+            if (imageView.getLayoutY() < cells[direction][num].getHeight()) {
+                if (angle < 90 || angle > 180) setAngle(90, 180);
+            } else if (imageView.getLayoutY() + 2 * cells[direction][num].getHeight() < Game.getInstance().getHeight()) {
+                if (angle < 180 || angle > 270) setAngle(180, 270);
+            } else {
+                if (angle < 90 || angle > 270) setAngle(90, 270);
+            }
+        } else if (imageView.getLayoutX() <= 0) {
+            if (imageView.getLayoutY() < cells[direction][num].getHeight()) {
+                if (angle < 0 || angle > 90) setAngle(0, 90);
+            } else if (imageView.getLayoutY() + 2 * cells[direction][num].getHeight() < Game.getInstance().getHeight()) {
+                if (angle > 0) setAngle(-90, 0);
+            } else {
+                if (angle > 90) setAngle(-90, 90);
+            }
+        } else if (imageView.getLayoutY() + cells[direction][num].getHeight() >= Game.getInstance().getHeight()) {
+            if (imageView.getLayoutX() < cells[direction][num].getWidth()) {
+                if (angle > 0) setAngle(-90, 0);
+            } else if (imageView.getLayoutX() + 2 * cells[direction][num].getWidth() < Game.getInstance().getWidth()) {
+                if (angle < 180 || angle > 270) setAngle(180, 270);
+            } else {
+                setAngle(180, 360);
+            }
+        } else if (imageView.getLayoutY() <= 0) {
+            if (imageView.getLayoutX() < cells[direction][num].getWidth()) {
+                if (angle < 0 || angle > 90) setAngle(0, 90);
+            } else if (imageView.getLayoutX() + 2 * cells[direction][num].getWidth() < Game.getInstance().getWidth()) {
+                if (angle < 90 || angle > 180) setAngle(90, 180);
+            } else {
+                if (angle < 0 || angle > 180) setAngle(0, 180);
+            }
         }
 
-        if (this.j == this.preJ && this.j == that.j) {
-            if ((this.i >= that.i && this.preI <= that.i && this.i <= that.preI) || (that.i >= this.i && that.preI <= this.i && that.i <= this.preI)) return true;
-            if ((this.i <= that.i && this.preI <= that.i && this.i >= that.preI && this.preI >= that.preI) || (that.i <= this.i && that.preI <= this.i && that.i >= this.preI && that.preI >= this.preI)) return true;
-            if ((this.i <= that.preI && this.preI <= that.preI && this.i >= that.i && this.preI >= that.i) || (that.i <= this.preI && that.preI <= this.preI && that.i >= this.i && that.preI >= this.i)) return true;
-        }
-        return false;
+        imageView.setImage(images[direction]);
+        imageView.setViewport(cells[direction][num]);
     }
 }

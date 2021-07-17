@@ -1,26 +1,114 @@
 package model;
 
+import controller.Logger;
 import controller.ResultType;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import model.animal.AnimalAnimation;
+import model.factory.Factory;
+
+import java.io.File;
 
 public class Well {
     private int level;
     private int finalLevel;
-    private int bucketCapacity;
-    private int water;
-    private int fillTime;
-    private int fillRemainingTime;
+    private double bucketCapacity;
+    private double water;
+    private double fillTime;
+    private double fillRemainingTime;
     private int fillPrice;
     private int upgradePrice;
+    private boolean isWorking;
+
+    protected ImageView imageView;
+    protected WellAnimation wellAnimation;
+    protected Rectangle2D[] cells;
+    protected ProgressBar progressBar;
 
     public Well() {
-        finalLevel = 3;
+        finalLevel = 4;
         level = 1;
         bucketCapacity = 5;
         water = bucketCapacity;
-        fillTime = 3;
+        fillTime = 4;
         fillRemainingTime = 0;
         fillPrice = 20;
         upgradePrice = 300;
+        isWorking = false;
+
+        Image image = new Image(new File("src/resource/Well/" + level + ".png").toURI().toString());
+        imageView = new ImageView(image);
+        progressBar = new ProgressBar();
+
+        wellAnimation = new WellAnimation(this);
+        wellAnimation.setOnFinished(event -> {
+            isWorking = false;
+            imageView.setViewport(cells[0]);
+        });
+
+        cells = new Rectangle2D[16];
+        double cellWidth = image.getWidth() / 4;
+        double cellHeight = image.getHeight() / 4;
+
+        for (int j = 0; j < 4; j++) {
+            for (int k = 0; k < 4; k++) {
+                cells[j * 4 + k] = new Rectangle2D(k * cellWidth, j * cellHeight, cellWidth, cellHeight);
+            }
+        }
+
+        createImage(0);
+    }
+
+    public void createImage(int num) {
+
+        Game game = Game.getInstance();
+        game.getParent().getChildren().add(imageView);
+        game.getParent().getChildren().add(progressBar);
+
+        imageView.setLayoutX(game.getScale() * (480 - game.getOldX()) + game.getNewX() - cells[0].getWidth());
+        imageView.setLayoutY(game.getScale() * (160 - game.getOldY()) + game.getNewY() - cells[0].getHeight());
+
+        imageView.setOnMouseClicked(mouseEvent -> {
+            if (water > 0) {
+                game.setResult("Not Empty!");
+                return;
+            }
+            if (isWorking()) {
+                game.setResult("Well Is Working!");
+                return;
+            }
+            if (fillPrice > Game.getInstance().getCoin()) {
+                game.setResult("Not Enough Coin!");
+                return;
+            }
+            Game.getInstance().decreaseCoin(fillPrice);
+            wellAnimation.play();
+        });
+
+        progressBar.setLayoutX(game.getScale() * (480 - game.getOldX()) + game.getNewX() - cells[0].getWidth() - 20);
+        progressBar.setLayoutY(game.getScale() * (160 - game.getOldY()) + game.getNewY() - 50);
+
+        progressBar.setRotate(270);
+
+        progressBar.setPrefWidth(50);
+        progressBar.setPrefHeight(10);
+
+        progressBar.setProgress(water / bucketCapacity);
+
+        if (num >= 15) num = 15;
+        if (num < 0) num = 0;
+        imageView.setViewport(cells[num]);
+    }
+
+    public void play() {
+        if (isWorking) wellAnimation.play();
+    }
+
+    public void pause() {
+        if (isWorking) wellAnimation.pause();
     }
 
     public void upgrade() {
@@ -28,6 +116,12 @@ public class Well {
         bucketCapacity += 1;
         fillPrice -= 2;
         upgradePrice *= 1.2;
+    }
+
+    public void update(double v) {
+        water = v * bucketCapacity;
+        progressBar.setProgress(v);
+        imageView.setViewport(cells[((int) (v * 63.1)) % 16]);
     }
 
     public ResultType work() {
@@ -39,8 +133,13 @@ public class Well {
         return ResultType.SUCCESS;
     }
 
+    public double getFillTime() {
+        return fillTime;
+    }
+
     public void decreaseWater() {
-        water--;
+        water = Math.max(0, water - 1);
+        progressBar.setProgress(water / bucketCapacity);
     }
 
     public boolean checkFinalLevel() {
@@ -51,7 +150,7 @@ public class Well {
         return upgradePrice;
     }
 
-    public int getWater() {
+    public double getWater() {
         return water;
     }
 

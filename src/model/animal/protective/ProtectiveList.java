@@ -3,7 +3,7 @@ package model.animal.protective;
 import java.util.regex.Pattern;
 
 public enum ProtectiveList {
-    HOUND("model.animal.protective.Hound", "Hound", "^(?i)\\s*hound\\s*$", 100);
+    DOG("model.animal.protective.Dog", "Dog", "^(?i)\\s*dog\\s*$", 100);
 
     private final String packageName;
     private final String className;

@@ -3,13 +3,13 @@ package model.factory;
 import java.util.regex.Pattern;
 
 public enum FactoryList {
-    BAKERY("model.factory.Bakery", "Bakery", "^(?i)\\s*bakery\\s*$", 250),
-    ICE_CREAM_MAKER("model.factory.IceCreamMaker", "IceCreamMaker", "^(?i)\\s*ice\\s*cream\\s*maker\\s*$", 550),
     MILL("model.factory.Mill", "Mill", "^(?i)\\s*mill\\s*$", 150),
-    MILK_PACKER("model.factory.MilkPacker", "MilkPacker", "^(?i)\\s*milk\\s*packer\\s*$", 400),
-    SEWING_MACHINE("model.factory.SewingMachine", "SewingMachine", "^(?i)\\s*sewing\\s*machine\\s*$", 400),
-    LOOM("model.factory.Loom", "Loom", "^(?i)\\s*loom\\s*$", 250),
-    INCUBATOR("model.factory.Incubator", "Incubator", "^(?i)\\s*incubator\\s*$", 350);
+    COOKIE_BAKERY("model.factory.CookieBakery", "CookieBakery", "^(?i)\\s*cookie\\s*bakery\\s*$", 250),
+    CAKE_BAKERY("model.factory.CakeBakery", "CakeBakery", "^(?i)\\s*cake\\s*bakery\\s*$", 350),
+    SPINNERY("model.factory.Spinnery", "Spinnery", "^(?i)\\s*spinnery\\s*$", 250),
+    WEAVING_FACTORY("model.factory.WeavingFactory", "WeavingFactory", "^(?i)\\s*weaving\\s*factory\\s*$", 350),
+    SEWING_FACTORY("model.factory.SewingFactory", "SewingFactory", "^(?i)\\s*sewing\\s*factory\\s*$", 450),
+    INCUBATOR("model.factory.Incubator", "Incubator", "^(?i)\\s*incubator\\s*$", 450);
 
     private final String packageName;
     private final String className;

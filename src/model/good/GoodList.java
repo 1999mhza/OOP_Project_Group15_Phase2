@@ -3,15 +3,14 @@ package model.good;
 import java.util.regex.Pattern;
 
 public enum GoodList {
-    BREAD("model.good.Bread", "Bread", "^(?i)\\s*bread\\s*$"),
+    CAKE("model.good.Cake", "Cake", "^(?i)\\s*cake\\s*$"),
     EGG("model.good.Egg", "Egg", "^(?i)\\s*egg\\s*$"),
     FABRIC("model.good.Fabric", "Fabric", "^(?i)\\s*fabric\\s*$"),
-    FEATHER("model.good.Feather", "Feather", "^(?i)\\s*feather\\s*$"),
+    WOOL("model.good.Wool", "Wool", "^(?i)\\s*wool\\s*$"),
     FLOUR("model.good.Flour", "Flour", "^(?i)\\s*flour\\s*$"),
-    ICE_CREAM("model.good.IceCream", "IceCream", "^(?i)\\s*ice\\s*cream\\s*$"),
-    MILK("model.good.Milk", "Milk", "^(?i)\\s*milk\\s*$"),
-    PACKET_MILK("model.good.PacketMilk", "PacketMilk", "^(?i)\\s*packet\\s*milk\\s*$"),
-    SHIRT("model.good.Shirt", "Shirt", "^(?i)\\s*shirt\\s*$");
+    FIBER("model.good.Fiber", "Fiber", "^(?i)\\s*fiber\\s*$"),
+    COOKIE("model.good.Cookie", "Cookie", "^(?i)\\s*cookie\\s*$"),
+    DRESS("model.good.Dress", "Dress", "^(?i)\\s*dress\\s*$");
 
     private final String packageName;
     private final String className;

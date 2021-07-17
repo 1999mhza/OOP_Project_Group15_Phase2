@@ -15,11 +15,11 @@ public class Start extends AbstractMenu {
     public Start(GameManager gameManager, int level) {
         super();
         this.gameManager = gameManager;
-        this.gameManager.setGame(level);
+        //this.gameManager.setGame(level);
         Logger.log("info", "The game level was set!");
         Logger.log("info", "The game started!");
         System.out.println("Game started!");
-        System.out.println(gameManager.inquiry());
+        //System.out.println(gameManager.inquiry());
         System.out.println();
     }
 
@@ -290,7 +290,7 @@ public class Start extends AbstractMenu {
 
     private void inquiry() {
         Logger.log("info", "The user entered the inquiry command!");
-        System.out.println(gameManager.inquiry());
+        //System.out.println(gameManager.inquiry());
     }
 
     private void turn(Matcher matcher) {

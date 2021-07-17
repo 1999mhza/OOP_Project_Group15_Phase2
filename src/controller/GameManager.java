@@ -1,5 +1,9 @@
 package controller;
 
+import javafx.scene.Group;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import model.Game;
 import model.animal.Animal;
 import model.animal.collector.Collector;
@@ -15,10 +19,7 @@ import model.factory.FactoryList;
 import model.good.Good;
 import model.good.GoodList;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class GameManager {
 
@@ -37,9 +38,22 @@ public class GameManager {
         return UserManager.getInstance().checkUserLevel(username, level);
     }
 
-    public void setGame(int level) {
-        Game.initiateGame(level, username);
-        this.game = Game.getInstance();
+    public void setGame(int level, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews) {
+        Game.initiateGame(level, username, width, height, root, parent, scale, oldX, oldY, newX, newY, result, coin, time, labels, labels1, imageViews);
+        game = Game.getInstance();
+        game.initiate();
+    }
+
+    public HashMap<String, Integer[]> getTasks() {
+        return game.getTasks();
+    }
+
+    public int getPrize() {
+        return MissionManager.getInstance().getPrize(game.getLevel());
+    }
+
+    public int getMaxPrizeTime() {
+        return MissionManager.getInstance().getMaxPrizeTime(game.getLevel());
     }
 
     public ResultType finish() {
@@ -68,13 +82,13 @@ public class GameManager {
         return game.getWell().work();
     }
 
-    public ResultType plant(int i, int j) {
-        if (i <= 0 || j <= 0 || i > Game.SIZE || j > Game.SIZE) {
+    public ResultType plant(double i, double j) {
+        if (i <= 0 || j <= 0 || i > game.getHeight() || j > game.getWidth()) {
             return ResultType.INVALID_NUMBER;
         }
         if (game.getWell().getWater() <= 0) return ResultType.NOT_ENOUGH;
         game.getWell().decreaseWater();
-        game.plant(i - 1, j - 1);
+        game.plant(i, j);
         return ResultType.SUCCESS;
     }
 
@@ -330,72 +344,72 @@ public class GameManager {
         return !game.getTruck().isEmpty() && !game.getTruck().isWorking();
     }
 
-    public String inquiry() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n").append("Time = ").append(game.getTime()).append("\n");
-        sb.append("\n").append("Coin = ").append(game.getCoin()).append("\n");
-        sb.append("\n").append("Grass:\n");
-        int[][] grass = game.getGrass();
-        for (int i = 0; i < Game.SIZE; i++) {
-            sb.append("\t");
-            for (int j = 0; j < Game.SIZE; j++) {
-                sb.append(String.format("%3d", grass[i][j]));
-            }
-            sb.append("\n");
-        }
-
-        sb.append(game.getWell().toString());
-
-        if (!game.getDomesticAnimals().isEmpty()) {
-            sb.append("\n").append("Domestics:\n");
-            for (Animal animal : game.getDomesticAnimals()) {
-                sb.append("\t").append(animal.toString()).append("\n");
-            }
-        }
-        if (!game.getWildAnimals().isEmpty()) {
-            sb.append("\n").append("Wilds:\n");
-            for (Animal animal : game.getWildAnimals()) {
-                sb.append("\t").append(animal.toString()).append("\n");
-            }
-        }
-        if (!game.getProtectiveAnimals().isEmpty()) {
-            sb.append("\n").append("Protectives:\n");
-            for (Animal animal : game.getProtectiveAnimals()) {
-                sb.append("\t").append(animal.toString()).append("\n");
-            }
-        }
-        if (!game.getCollectorAnimals().isEmpty()) {
-            sb.append("\n").append("Collectors:\n");
-            for (Animal animal : game.getCollectorAnimals()) {
-                sb.append("\t").append(animal.toString()).append("\n");
-            }
-        }
-        if (!game.getGoods().isEmpty()) {
-            sb.append("\n").append("Goods:\n");
-            for (Good good : game.getGoods()) {
-                sb.append("\t").append(good.toString()).append("\n");
-            }
-        }
-        if (!game.getFactories().isEmpty()) {
-            sb.append("\n").append("Factories:\n");
-            for (Factory factory : game.getFactories()) {
-                sb.append("\t").append(factory.toString()).append("\n");
-            }
-        }
-        sb.append("\n").append("Tasks:\n");
-        for (Map.Entry<String, Integer[]> task : game.getTasks().entrySet()) {
-            sb.append("\t").append((task.getValue()[0].equals(task.getValue()[1]) ? "+ " : "- ")).append(task.getKey()).append(": ").append(task.getValue()[1]).append("/").append(task.getValue()[0]).append("\n");
-        }
-
-        if (!game.getWarehouse().isEmpty())
-            sb.append(game.getWarehouse().toString());
-
-        if (game.getTruck().isInTruck() || game.getTruck().isCheckShow())
-            sb.append(game.getTruck().toString());
-
-        sb.delete(sb.length() - 1, sb.length());
-        return sb.toString();
-    }
+//    public String inquiry() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("\n").append("Time = ").append(game.getTime()).append("\n");
+//        sb.append("\n").append("Coin = ").append(game.getCoin()).append("\n");
+//        sb.append("\n").append("Grass:\n");
+//        int[][] grass = game.getGrass();
+//        for (int i = 0; i < Game.SIZE; i++) {
+//            sb.append("\t");
+//            for (int j = 0; j < Game.SIZE; j++) {
+//                sb.append(String.format("%3d", grass[i][j]));
+//            }
+//            sb.append("\n");
+//        }
+//
+//        sb.append(game.getWell().toString());
+//
+//        if (!game.getDomesticAnimals().isEmpty()) {
+//            sb.append("\n").append("Domestics:\n");
+//            for (Animal animal : game.getDomesticAnimals()) {
+//                sb.append("\t").append(animal.toString()).append("\n");
+//            }
+//        }
+//        if (!game.getWildAnimals().isEmpty()) {
+//            sb.append("\n").append("Wilds:\n");
+//            for (Animal animal : game.getWildAnimals()) {
+//                sb.append("\t").append(animal.toString()).append("\n");
+//            }
+//        }
+//        if (!game.getProtectiveAnimals().isEmpty()) {
+//            sb.append("\n").append("Protectives:\n");
+//            for (Animal animal : game.getProtectiveAnimals()) {
+//                sb.append("\t").append(animal.toString()).append("\n");
+//            }
+//        }
+//        if (!game.getCollectorAnimals().isEmpty()) {
+//            sb.append("\n").append("Collectors:\n");
+//            for (Animal animal : game.getCollectorAnimals()) {
+//                sb.append("\t").append(animal.toString()).append("\n");
+//            }
+//        }
+//        if (!game.getGoods().isEmpty()) {
+//            sb.append("\n").append("Goods:\n");
+//            for (Good good : game.getGoods()) {
+//                sb.append("\t").append(good.toString()).append("\n");
+//            }
+//        }
+//        if (!game.getFactories().isEmpty()) {
+//            sb.append("\n").append("Factories:\n");
+//            for (Factory factory : game.getFactories()) {
+//                sb.append("\t").append(factory.toString()).append("\n");
+//            }
+//        }
+//        sb.append("\n").append("Tasks:\n");
+//        for (Map.Entry<String, Integer[]> task : game.getTasks().entrySet()) {
+//            sb.append("\t").append((task.getValue()[0].equals(task.getValue()[1]) ? "+ " : "- ")).append(task.getKey()).append(": ").append(task.getValue()[1]).append("/").append(task.getValue()[0]).append("\n");
+//        }
+//
+//        if (!game.getWarehouse().isEmpty())
+//            sb.append(game.getWarehouse().toString());
+//
+//        if (game.getTruck().isInTruck() || game.getTruck().isCheckShow())
+//            sb.append(game.getTruck().toString());
+//
+//        sb.delete(sb.length() - 1, sb.length());
+//        return sb.toString();
+//    }
 
     public ResultType upgrade(String name) {
         FactoryList factoryList = FactoryList.getFactory(name);
@@ -471,7 +485,7 @@ public class GameManager {
             }
         }
         ResultType result = ResultType.SUCCESS;
-        result.setValue(inquiry());
+        //result.setValue(inquiry());
         return result;
     }
 
@@ -541,5 +555,17 @@ public class GameManager {
         for (Good good : new HashSet<>(game.getGoods())) {
             good.update();
         }
+    }
+
+    public void play() {
+        game.play();
+    }
+
+    public void pause() {
+        game.pause();
+    }
+
+    public void run() {
+        game.play();
     }
 }

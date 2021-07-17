@@ -10,38 +10,24 @@ import java.util.HashSet;
 public abstract class Protective extends Animal {
 
     public Protective(int price) {
-        super(price, Integer.MAX_VALUE, Integer.MAX_VALUE, 1);
+        super(price, Integer.MAX_VALUE, Integer.MAX_VALUE, 1.0);
     }
 
     public void move() {
-        preI = i;
-        preJ = j;
-        boolean horizontal = false;
-        boolean vertical = false;
-        int distance = Integer.MAX_VALUE;
+        double distance = -1;
 
-        ArrayList<Wild> list1 = new ArrayList<>(Game.getInstance().getWildAnimals());
-        ArrayList<Wild> list2 = new ArrayList<>();
-
-        for (int k = Game.getInstance().getWildAnimals().size(); k > 0; k--) {
-            list2.add(list1.remove(rand.nextInt(k)));
-        }
-
-        for (Wild wild : list2) {
+        for (Wild wild : new ArrayList<>(Game.getInstance().getWildAnimals())) {
             if (!wild.isInCage()) {
-                int ii = wild.getI();
-                int jj = wild.getJ();
-                int dis = Math.abs(ii - i) + Math.abs(jj - j);
-
-                if (dis < distance) {
+                double dis = Math.abs(wild.getI() - getI()) + Math.abs(wild.getJ() - getJ());
+                if (distance == -1 || dis < distance) {
                     distance = dis;
-                    vertical = Math.abs(ii - i) > Math.abs(jj - j);
-                    horizontal = (ii - i) + (jj - j) > 0;
+                    if (wild.getJ() - getJ() == 0) angle = wild.getI() - getI() > 0 ? 90 : -90;
+                    else angle = Math.atan((wild.getI() - getI()) / (wild.getJ() - getJ())) + (wild.getJ() - getJ() > 0 ? 0 : Math.PI);
                 }
             }
         }
-        if (distance == Integer.MAX_VALUE) super.move(rand.nextBoolean(), rand.nextBoolean());
-        else if (distance != 0) super.move(vertical, horizontal);
+
+        super.move();
     }
 
     public void work() {
@@ -55,13 +41,13 @@ public abstract class Protective extends Animal {
         Wild removedWild = null;
 
         for (Wild wild : list2) {
-            if (wild.getI() == i && wild.getJ() == j && !wild.isInCage()) {
+            if (wild.getI() == getI() && wild.getJ() == getJ() && !wild.isInCage()) {
                 if (removedWild == null) {
                     removedWild = wild;
                 } else if (wild.isGreaterThan(removedWild)) {
                     removedWild = wild;
                 }
-            } else if (preI != -1 && preJ != -1 && wild.getPreI() != -1 && wild.getPreJ() != -1 && !wild.isInCage() && wild.encounter(this)) {
+            } else if (!wild.isInCage() && wild.encounter(this)) {
                 if (removedWild == null) {
                     removedWild = wild;
                 } else if (wild.isGreaterThan(removedWild)) {

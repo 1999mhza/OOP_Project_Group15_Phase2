@@ -22,7 +22,7 @@ public abstract class Factory {
         this.price = price;
         this.upgradePrice = price;
         this.level = 1;
-        this.finalLevel = 5;
+        this.finalLevel = 4;
         this.number = 1;
         this.produceTime = produceTime;
         this.produceRemainingTime = 0;

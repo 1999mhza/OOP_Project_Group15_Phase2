@@ -3,8 +3,10 @@ package sample;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -26,16 +28,18 @@ public class Main extends Application {
 
         homeMedia.play();
 
+        double height = Screen.getPrimary().getBounds().getHeight();
+        double width = Screen.getPrimary().getBounds().getWidth();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/home.fxml"));
-        stage.setScene(new Scene(loader.load()));/*
+        stage.setScene(new Scene(loader.load(), width, height));
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        stage.setResizable(false);*/
+        stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         HomeController homeController = (HomeController) (loader.getController());
-        homeController.initiate(homeMedia, gameMedia);
+        homeController.initiate(homeMedia, gameMedia, width, height);
         stage.show();
-        homeController.initiate(stage.getWidth(), stage.getHeight());
     }
 
     public static void main(String[] args) {

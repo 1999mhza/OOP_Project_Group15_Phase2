@@ -4,7 +4,6 @@ import java.util.regex.Pattern;
 
 public enum WildList {
     BEAR("model.animal.wild.Bear", "Bear", "^(?i)\\s*bear\\s*$"),
-    TIGER("model.animal.wild.Tiger", "Tiger", "^(?i)\\s*tiger\\s*$"),
     LION("model.animal.wild.Lion", "Lion", "^(?i)\\s*lion\\s*$");
 
     private final String packageName;

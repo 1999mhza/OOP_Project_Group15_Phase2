@@ -3,9 +3,8 @@ package model.animal.domestic;
 import java.util.regex.Pattern;
 
 public enum DomesticList {
-    BUFFALO("model.animal.domestic.Buffalo", "Buffalo", "^(?i)\\s*buffalo\\s*$", 400),
     CHICKEN("model.animal.domestic.Chicken", "Chicken", "^(?i)\\s*chicken\\s*$", 100),
-    TURKEY("model.animal.domestic.Turkey", "Turkey", "^(?i)\\s*turkey\\s*$", 200);
+    SHEEP("model.animal.domestic.Sheep", "Sheep", "^(?i)\\s*sheep\\s*$", 200);
 
     private final String packageName;
     private final String className;

@@ -6,7 +6,7 @@ import model.animal.domestic.DomesticList;
 
 public class Incubator extends Factory {
     public Incubator() {
-        super(350, 6, "Egg", "Chicken");
+        super(450, 6, "Egg", "Chicken");
     }
 
     public void update() {
@@ -17,6 +17,8 @@ public class Incubator extends Factory {
                 try {
                     for (int i = 0; i < number; i++) {
                         Domestic domestic = (Domestic) Class.forName(domesticList.getPackageName()).newInstance();
+                        domestic.setAnimation();
+                        Game.getInstance().updateTask(domestic.getClass().getSimpleName(), true);
                         Game.getInstance().getDomesticAnimals().add(domestic);
                     }
                 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ignored) {
