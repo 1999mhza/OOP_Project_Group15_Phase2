@@ -16,13 +16,13 @@
             <Image url="@../resource/page.jpg" />
          </image>
       </ImageView>
-      <HBox fx:id="hd1" alignment="CENTER_LEFT" layoutX="542.0" layoutY="102.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hd1" alignment="CENTER_LEFT" layoutX="544.0" layoutY="102.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Chicken.png" />
                </image></ImageView>
-            <Label fx:id="hd1n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hd1n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -39,13 +39,13 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg1" alignment="CENTER_LEFT" layoutX="23.0" layoutY="102.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg1" alignment="CENTER_LEFT" layoutX="285.0" layoutY="102.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Egg.png" />
                </image></ImageView>
-            <Label fx:id="hg1n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg1n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -62,13 +62,13 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg2" alignment="CENTER_LEFT" layoutX="23.0" layoutY="134.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg2" alignment="CENTER_LEFT" layoutX="285.0" layoutY="134.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Flour.png" />
                </image></ImageView>
-            <Label fx:id="hg2n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg2n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -85,13 +85,13 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg3" alignment="CENTER_LEFT" layoutX="23.0" layoutY="166.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg3" alignment="CENTER_LEFT" layoutX="285.0" layoutY="166.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Cookie.png" />
                </image></ImageView>
-            <Label fx:id="hg3n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg3n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -108,13 +108,13 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg4" alignment="CENTER_LEFT" layoutX="23.0" layoutY="198.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg4" alignment="CENTER_LEFT" layoutX="285.0" layoutY="198.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Cake.png" />
                </image></ImageView>
-            <Label fx:id="hg4n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg4n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -131,13 +131,13 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg5" alignment="CENTER_LEFT" layoutX="23.0" layoutY="230.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg5" alignment="CENTER_LEFT" layoutX="285.0" layoutY="230.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Wool.png" />
                </image></ImageView>
-            <Label fx:id="hg5n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg5n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -154,13 +154,13 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg6" alignment="CENTER_LEFT" layoutX="23.0" layoutY="262.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg6" alignment="CENTER_LEFT" layoutX="285.0" layoutY="262.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Fiber.png" />
                </image></ImageView>
-            <Label fx:id="hg6n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg6n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -177,13 +177,13 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hd2" alignment="CENTER_LEFT" layoutX="542.0" layoutY="134.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hd2" alignment="CENTER_LEFT" layoutX="544.0" layoutY="134.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Sheep.png" />
                </image></ImageView>
-            <Label fx:id="hd2n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hd2n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -200,14 +200,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg7" alignment="CENTER_LEFT" layoutX="23.0" layoutY="294.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg7" alignment="CENTER_LEFT" layoutX="285.0" layoutY="294.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Fabric.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg7n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg7n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -224,14 +224,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg8" alignment="CENTER_LEFT" layoutX="23.0" layoutY="326.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg8" alignment="CENTER_LEFT" layoutX="285.0" layoutY="326.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Dress.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg8n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg8n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -250,14 +250,14 @@
       </HBox>
       <Button fx:id="cancel" alignment="CENTER" contentDisplay="CENTER" layoutX="433.0" layoutY="535.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="CANCEL" AnchorPane.bottomAnchor="20.0" />
       <Button fx:id="go" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="543.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="TRUCK GO" AnchorPane.bottomAnchor="20.0" />
-      <HBox fx:id="hw1" alignment="CENTER_LEFT" layoutX="23.0" layoutY="358.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hw1" alignment="CENTER_LEFT" layoutX="285.0" layoutY="358.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Lion.png" />
                </image>
             </ImageView>
-            <Label fx:id="hw1n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hw1n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -274,14 +274,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hw2" alignment="CENTER_LEFT" layoutX="23.0" layoutY="391.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hw2" alignment="CENTER_LEFT" layoutX="285.0" layoutY="391.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Bear.png" />
                </image>
             </ImageView>
-            <Label fx:id="hw2n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hw2n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Label>
@@ -325,17 +325,17 @@
             <Image url="@../resource/Truck/1_back.png" />
          </image>
       </ImageView>
-      <Label fx:id="title1" alignment="CENTER" layoutX="23.0" layoutY="67.80000305175781" prefHeight="30.0" prefWidth="234.0" style="-fx-font-size: 20; -fx-font-weight: bold" text="Warehouse" />
-      <Label fx:id="title2" alignment="CENTER" layoutX="282.0" layoutY="68.0" prefHeight="30.0" prefWidth="234.0" style="-fx-font-size: 20; -fx-font-weight: bold" text="Truck" />
+      <Label fx:id="title1" alignment="CENTER" layoutX="23.0" layoutY="67.80000305175781" prefHeight="30.0" prefWidth="234.0" style="-fx-font-size: 20; -fx-font-weight: bold" text="Truck" />
+      <Label fx:id="title2" alignment="CENTER" layoutX="282.0" layoutY="68.0" prefHeight="30.0" prefWidth="234.0" style="-fx-font-size: 20; -fx-font-weight: bold" text="Warehouse" />
       <Label fx:id="title3" alignment="CENTER" layoutX="540.0" layoutY="68.0" prefHeight="30.0" prefWidth="234.0" style="-fx-font-size: 20; -fx-font-weight: bold" text="Domestics" />
-      <HBox fx:id="hg11" alignment="CENTER_LEFT" layoutX="283.0" layoutY="102.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg11" alignment="CENTER_LEFT" layoutX="26.0" layoutY="102.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Egg.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg1n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg1n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -353,14 +353,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg21" alignment="CENTER_LEFT" layoutX="283.0" layoutY="134.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg21" alignment="CENTER_LEFT" layoutX="26.0" layoutY="134.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Flour.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg2n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg2n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -378,14 +378,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg31" alignment="CENTER_LEFT" layoutX="283.0" layoutY="166.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg31" alignment="CENTER_LEFT" layoutX="26.0" layoutY="166.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Cookie.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg3n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg3n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -403,14 +403,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg41" alignment="CENTER_LEFT" layoutX="283.0" layoutY="198.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg41" alignment="CENTER_LEFT" layoutX="26.0" layoutY="198.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Cake.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg4n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg4n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -428,14 +428,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg51" alignment="CENTER_LEFT" layoutX="283.0" layoutY="230.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg51" alignment="CENTER_LEFT" layoutX="26.0" layoutY="230.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Wool.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg5n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg5n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -453,14 +453,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg61" alignment="CENTER_LEFT" layoutX="283.0" layoutY="262.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg61" alignment="CENTER_LEFT" layoutX="26.0" layoutY="262.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Fiber.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg6n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg6n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -478,14 +478,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg71" alignment="CENTER_LEFT" layoutX="283.0" layoutY="294.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg71" alignment="CENTER_LEFT" layoutX="26.0" layoutY="294.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Fabric.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg7n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg7n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -503,14 +503,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hg81" alignment="CENTER_LEFT" layoutX="283.0" layoutY="326.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hg81" alignment="CENTER_LEFT" layoutX="26.0" layoutY="326.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Dress.png" />
                </image>
             </ImageView>
-            <Label fx:id="hg8n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hg8n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -528,14 +528,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hw11" alignment="CENTER_LEFT" layoutX="283.0" layoutY="358.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hw11" alignment="CENTER_LEFT" layoutX="26.0" layoutY="358.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Lion.png" />
                </image>
             </ImageView>
-            <Label fx:id="hw1n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hw1n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -553,14 +553,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hw21" alignment="CENTER_LEFT" layoutX="283.0" layoutY="390.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hw21" alignment="CENTER_LEFT" layoutX="26.0" layoutY="390.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Bear.png" />
                </image>
             </ImageView>
-            <Label fx:id="hw2n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hw2n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -578,14 +578,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hd11" alignment="CENTER_LEFT" layoutX="282.0" layoutY="422.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hd11" alignment="CENTER_LEFT" layoutX="26.0" layoutY="422.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Chicken.png" />
                </image>
             </ImageView>
-            <Label fx:id="hd1n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hd1n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -603,14 +603,14 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hd21" alignment="CENTER_LEFT" layoutX="282.0" layoutY="454.0" prefHeight="32.0" prefWidth="233.0">
+      <HBox fx:id="hd21" alignment="CENTER_LEFT" layoutX="26.0" layoutY="454.0" prefHeight="32.0" prefWidth="233.0">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resource/Product/Sheep.png" />
                </image>
             </ImageView>
-            <Label fx:id="hd2n1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
+            <Label fx:id="hd2n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
