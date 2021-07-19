@@ -8,7 +8,7 @@ import java.io.File;
 public class Lion extends Wild {
 
     public Lion() {
-        super(3, 300, 1.0);
+        super(4, 300, 1.0);
     }
 
     @Override

@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -82,12 +83,12 @@ public class Truck {
         coin = new HBox();
         coin.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10");
         coin.setPrefHeight(24);
-        coin.setPrefWidth(48);
+        coin.setPrefWidth(60);
         Label price = new Label();
         price.setAlignment(Pos.CENTER);
         price.setStyle("-fx-font-size: 10; -fx-font-weight: bold");
         price.setPrefHeight(24);
-        price.setPrefWidth(24);
+        price.setPrefWidth(36);
         ImageView coinImage = new ImageView(new Image(new File("src/resource/Task/Coin.png").toURI().toString()));
         coinImage.setFitHeight(24);
         coinImage.setFitWidth(24);
@@ -142,7 +143,7 @@ public class Truck {
                 double width = Screen.getPrimary().getBounds().getWidth();
 
                 Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/truck.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/truck.fxml"));
                 try {
                     stage.setScene(new Scene(loader.load(), width, height));
                 } catch (IOException e) {

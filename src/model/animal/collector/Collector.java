@@ -4,9 +4,6 @@ import model.Game;
 import model.animal.Animal;
 import model.good.Good;
 
-import java.util.Collections;
-import java.util.HashSet;
-
 public abstract class Collector extends Animal {
     protected boolean found;
 

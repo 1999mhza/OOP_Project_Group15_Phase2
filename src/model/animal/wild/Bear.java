@@ -8,7 +8,7 @@ import java.io.File;
 public class Bear extends Wild {
 
     public Bear(){
-        super(4, 400, 2.0);
+        super(5, 400, 2.0);
     }
 
     @Override

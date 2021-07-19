@@ -61,7 +61,7 @@ public class FinishController {
             ((Node) (event.getSource())).getScene().getWindow().hide();
             Stage stage = (Stage) (((Stage) (((Node) (event.getSource())).getScene().getWindow())).getOwner());
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
             try {
                 stage.getScene().setRoot(loader.load());
             } catch (IOException e) {

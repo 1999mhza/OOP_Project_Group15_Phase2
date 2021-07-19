@@ -8,8 +8,12 @@ public class BreakAnimation extends Transition {
 
     public BreakAnimation(Wild wild) {
         this.wild = wild;
-        setCycleDuration(Duration.millis(1000 * wild.getFullLifetime()));
         setCycleCount(1);
+    }
+
+    public void play(double time) {
+        setCycleDuration(Duration.millis(1000 * time));
+        super.play();
     }
 
     @Override

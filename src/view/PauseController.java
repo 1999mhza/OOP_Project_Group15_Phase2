@@ -101,7 +101,7 @@ public class PauseController {
             ((Node) (event.getSource())).getScene().getWindow().hide();
             Stage stage = (Stage) (((Stage) (((Node) (event.getSource())).getScene().getWindow())).getOwner());
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
             try {
                 stage.getScene().setRoot(loader.load());
             } catch (IOException e) {
@@ -151,7 +151,7 @@ public class PauseController {
             ((Node) (event.getSource())).getScene().getWindow().hide();
             Stage stage = (Stage) (((Stage) (((Node) (event.getSource())).getScene().getWindow())).getOwner());
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/home.fxml"));
             try {
                 stage.getScene().setRoot(loader.load());
             } catch (IOException e) {
@@ -195,7 +195,7 @@ public class PauseController {
                 -fx-font-size: 19;
                 -fx-font-weight: bold"""));
         exit.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/yes_no_dialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/yes_no_dialog.fxml"));
             Stage stage = new Stage();
             try {
                 Scene scene = new Scene(loader.load());

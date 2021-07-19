@@ -94,7 +94,7 @@ public class MenuController {
         logout.setOnAction(event -> {
             Logger.log("info", "The user logged out.");
             Stage stage = (Stage) (((Node) (event.getSource())).getScene().getWindow());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/home.fxml"));
             try {
                 stage.getScene().setRoot(loader.load());
             } catch (IOException e) {
@@ -138,7 +138,7 @@ public class MenuController {
                 -fx-font-size: 19;
                 -fx-font-weight: bold"""));
         exit.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/yes_no_dialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/yes_no_dialog.fxml"));
             Stage stage = new Stage();
             try {
                 Scene scene = new Scene(loader.load());
@@ -215,7 +215,7 @@ public class MenuController {
     private void setAction(ActionEvent event, int level, boolean isLock) {
         if (isLock) return;
         Stage stage = (Stage) (((Node) (event.getSource())).getScene().getWindow());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/game.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
         try {
             stage.getScene().setRoot(loader.load());
         } catch (IOException e) {

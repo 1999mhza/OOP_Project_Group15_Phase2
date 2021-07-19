@@ -54,16 +54,8 @@ public abstract class Animal {
         imageView.setLayoutY(y - cells[direction][0].getHeight() / 2);
     }
 
-    public double getFullLifetime() {
-        return fullLifetime;
-    }
-
     public double getSpeed() {
         return speed;
-    }
-
-    public double getAngle() {
-        return angle;
     }
 
     public void setAngle(double first, double last) {
@@ -106,22 +98,9 @@ public abstract class Animal {
         return space;
     }
 
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName() + " [" + getY() + " " + getX() + "]";
-    }
-
     public void move() {
         imageView.setLayoutX(imageView.getLayoutX() + speed * Math.cos(Math.toRadians(angle)));
         imageView.setLayoutY(imageView.getLayoutY() + speed * Math.sin(Math.toRadians(angle)));
-    }
-
-    public boolean encounter(Animal that) {
-        return Math.sqrt(Math.pow(this.getY() - that.getY(), 2) + Math.pow(this.getX() - that.getX(), 2)) < 10;
-    }
-
-    public boolean encounter(Good that) {
-        return Math.sqrt(Math.pow(this.getY() - that.getY(), 2) + Math.pow(this.getX() - that.getX(), 2)) < 10;
     }
 
     public void createImage(int num) {

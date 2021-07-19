@@ -2,8 +2,6 @@ package model.animal;
 
 import javafx.animation.Transition;
 import javafx.util.Duration;
-import model.Game;
-
 public class AnimalAnimation extends Transition {
     private final Animal animal;
 

@@ -4,13 +4,11 @@ import controller.MissionManager;
 import controller.UserManager;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -31,7 +29,6 @@ import model.factory.Factory;
 import model.factory.FactoryList;
 import model.good.Good;
 import view.FinishController;
-import view.TaskController;
 
 import java.io.File;
 import java.io.IOException;
@@ -104,6 +101,7 @@ public class Game {
     private Warehouse warehouse;
     private Truck truck;
     private Well well;
+    private Cage cage;
 
     private ArrayList<Grass> grasses;
 
@@ -199,6 +197,7 @@ public class Game {
         warehouse = new Warehouse();
         truck = new Truck();
         well = new Well();
+        cage = new Cage();
 
         grasses = new ArrayList<>();
 
@@ -381,7 +380,7 @@ public class Game {
         gameMedia.seek(Duration.ZERO);
         winMedia.play();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/finish_dialog.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/finish_dialog.fxml"));
         Stage stage = new Stage();
         try {
             Scene scene = new Scene(loader.load());
@@ -420,6 +419,10 @@ public class Game {
 
     public Well getWell() {
         return well;
+    }
+
+    public Cage getCage() {
+        return cage;
     }
 
     public int getCoin() {

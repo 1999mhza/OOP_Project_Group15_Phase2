@@ -1,7 +1,6 @@
 package model;
 
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
@@ -18,9 +17,7 @@ import view.TruckController;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 public class Warehouse {
     private int capacity;
@@ -83,7 +80,7 @@ public class Warehouse {
                 double width = Screen.getPrimary().getBounds().getWidth();
 
                 Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/truck.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/truck.fxml"));
                 try {
                     stage.setScene(new Scene(loader.load(), width, height));
                 } catch (IOException e) {

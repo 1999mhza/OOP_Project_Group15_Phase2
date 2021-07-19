@@ -104,11 +104,11 @@ public class TruckController {
 
         progressBar = new ProgressBar();
 
-        progressBar.setPrefWidth(100);
-        progressBar.setPrefHeight(10);
+        progressBar.setPrefWidth(200);
+        progressBar.setPrefHeight(30);
 
         progressBar.setLayoutX(back.getLayoutX() + back.getFitWidth() / 2 - progressBar.getPrefWidth() / 2);
-        progressBar.setLayoutY(back.getLayoutY() + back.getFitHeight() - 50);
+        progressBar.setLayoutY(back.getLayoutY() + back.getFitHeight() - 60);
 
         double p = 1 - 1.0 * truck.getCapacity() / truck.getFullCapacity();
         if (p > 1) p = 1;
@@ -136,7 +136,7 @@ public class TruckController {
         fadeTransition.setFromValue(1.0);
         fadeTransition.setToValue(0.0);
 
-        go.setLayoutX(width / 2 - 110);
+        go.setLayoutX(width / 2 - go.getPrefWidth() / 2 - 110);
 
         go.setOnMousePressed(event -> go.setStyle("""
                 -fx-background-radius: 50;
@@ -186,7 +186,7 @@ public class TruckController {
             Game.getInstance().play();
         });
 
-        cancel.setLayoutX(width / 2 + 110);
+        cancel.setLayoutX(width / 2 - cancel.getPrefWidth() / 2 + 110);
 
         cancel.setOnMousePressed(event -> cancel.setStyle("""
                 -fx-background-radius: 50;
@@ -457,32 +457,32 @@ public class TruckController {
         Game game = Game.getInstance();
         for (int i = 0; i < hdps.length; i++) {
             hdps[i].setText(String.valueOf(DomesticList.getDomestic(dns[i]).getPrice() / 2));
-            hdns[i].setText("# " + game.getDomesticNumber(dns[i]));
+            hdns[i].setText(" # " + game.getDomesticNumber(dns[i]));
         }
 
         for (int i = 0; i < hwps.length; i++) {
             hwps[i].setText(String.valueOf(WildList.getWild(wns[i]).getPrice()));
-            hwns[i].setText("# " + game.getWildNumber(wns[i]));
+            hwns[i].setText(" # " + game.getWildNumber(wns[i]));
         }
 
         for (int i = 0; i < hgps.length; i++) {
             hgps[i].setText(String.valueOf(GoodList.getGood(gns[i]).getPrice()));
-            hgns[i].setText("# " + game.getGoodNumber(gns[i]));
+            hgns[i].setText(" # " + game.getGoodNumber(gns[i]));
         }
 
         for (int i = 0; i < hdps1.length; i++) {
             hdps1[i].setText(String.valueOf(DomesticList.getDomestic(dns[i]).getPrice() / 2));
-            hdns1[i].setText("# " + truck.getDomesticNumber(dns[i]));
+            hdns1[i].setText(" # " + truck.getDomesticNumber(dns[i]));
         }
 
         for (int i = 0; i < hwps1.length; i++) {
             hwps1[i].setText(String.valueOf(WildList.getWild(wns[i]).getPrice()));
-            hwns1[i].setText("# " + truck.getWildNumber(wns[i]));
+            hwns1[i].setText(" # " + truck.getWildNumber(wns[i]));
         }
 
         for (int i = 0; i < hgps1.length; i++) {
             hgps1[i].setText(String.valueOf(GoodList.getGood(gns[i]).getPrice()));
-            hgns1[i].setText("# " + truck.getGoodNumber(gns[i]));
+            hgns1[i].setText(" # " + truck.getGoodNumber(gns[i]));
         }
 
         total.setText(String.valueOf(truck.calculatePrice()));

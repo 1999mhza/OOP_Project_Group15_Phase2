@@ -213,14 +213,14 @@ public class MissionManager {
 
         numberOfInitialCoins = 10000;
 
-        domesticAnimals.put("Chicken", 1);
-        domesticAnimals.put("Sheep", 1);
+        //domesticAnimals.put("Chicken", 1);
+        //domesticAnimals.put("Sheep", 1);
 
         //protectiveAnimals.put("Dog", 2);
 
-        collectorAnimals.put("Cat", 1);
+        //collectorAnimals.put("Cat", 1);
 
-        factoriesSet.add("Mill");
+        //factoriesSet.add("Mill");
         /*factoriesSet.add("CookieBakery");
         factoriesSet.add("CakeBakery");
         factoriesSet.add("Spinnery");
@@ -229,7 +229,7 @@ public class MissionManager {
         factoriesSet.add("Incubator");*/
 
         wildAnimalsTime.put("Lion", new ArrayList<>(Arrays.asList(2.0, 6.0)));
-        //wildAnimalsTime.put("Bear", new ArrayList<>(Arrays.asList(20.0, 21.0)));
+        wildAnimalsTime.put("Bear", new ArrayList<>(Arrays.asList(20.0, 21.0)));
 
         //tasksMap.put("Egg", 20);
         tasksMap.put("Flour", 10);

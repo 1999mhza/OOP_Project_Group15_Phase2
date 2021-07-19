@@ -17,10 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.Game;
-import model.Truck;
-import model.Warehouse;
-import model.Well;
+import model.*;
 import model.animal.collector.Collector;
 import model.animal.collector.CollectorList;
 import model.animal.domestic.Domestic;
@@ -102,6 +99,9 @@ public class GameController {
     public Button upTruck;
     public ImageView imageTruck;
     public Label labelTruck;
+    public Button upCage;
+    public ImageView imageCage;
+    public Label labelCage;
 
     private String username;
     private int level;
@@ -211,7 +211,7 @@ public class GameController {
                 -fx-font-weight: bold"""));
         menu.setOnAction(event -> {
             game.pause();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/pause_dialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/pause_dialog.fxml"));
             Stage stage = new Stage();
             try {
                 Scene scene = new Scene(loader.load());
@@ -365,6 +365,7 @@ public class GameController {
         setWell();
         setWarehouse();
         setTruck();
+        setCage();
 
         vFactory.setLayoutX((width - image.getFitWidth()) / 2 + 5);
         setFactory("Mill", buildMill, labelMill, factoryMill);
@@ -375,7 +376,7 @@ public class GameController {
         setFactory("SewingFactory", buildSew, labelSew, factorySew);
         setFactory("Incubator", buildIncubate, labelIncubate, factoryIncubate);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/task_list.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/task_list.fxml"));
         Stage stage = new Stage();
         try {
             Scene scene = new Scene(loader.load());
@@ -607,6 +608,52 @@ public class GameController {
         price.setText(String.valueOf(truck.getUpgradePrice()));
         Image image = new Image(new File("src/resource/Truck/" + (truck.getLevel() + 1) + "_front.png").toURI().toString());
         imageView.setImage(image);
+    }
+
+    private void setCage() {
+        Button button = upCage;
+        Label price = labelCage;
+        ImageView imageView = imageCage;
+
+        Game game = Game.getInstance();
+        Cage cage = game.getCage();
+
+        button.setOnMousePressed(event -> button.setStyle("""
+                -fx-background-radius: 20;
+                -fx-background-color: lightpink;"""));
+        button.setOnMouseReleased(event -> {
+            if (button.isHover()) button.setStyle("""
+                    -fx-background-radius: 20;
+                    -fx-background-color: indianred;""");
+        });
+        button.setOnMouseEntered(event -> button.setStyle("""
+                -fx-background-radius: 20;
+                -fx-background-color: indianred;"""));
+        button.setOnMouseExited(event -> button.setStyle("""
+                -fx-background-radius: 20;
+                -fx-background-color: tomato;"""));
+        button.setOnAction(event -> {
+            if (cage.getUpgradePrice() > game.getCoin()) {
+                game.setResult("Not Enough Coin");
+            } else {
+                game.decreaseCoin(cage.getUpgradePrice());
+                cage.upgrade();
+                if (!cage.checkFinalLevel()) {
+                    price.setText(String.valueOf(cage.getUpgradePrice()));
+                    Image image = new Image(new File("src/resource/Cage/" + (cage.getLevel() + 1) + "_break.png").toURI().toString());
+                    imageView.setImage(image);
+                    imageView.setViewport(new Rectangle2D(0, 0, image.getWidth() / 5, image.getHeight() / 5));
+                } else {
+                    ((VBox) price.getParent()).setVisible(false);
+                    game.setResult("Last Level Cage!");
+                }
+            }
+        });
+
+        price.setText(String.valueOf(cage.getUpgradePrice()));
+        Image image = new Image(new File("src/resource/Cage/" + (cage.getLevel() + 1) + "_break.png").toURI().toString());
+        imageView.setImage(image);
+        imageView.setViewport(new Rectangle2D(0, 0, image.getWidth() / 5, image.getHeight() / 5));
     }
 
     private void plant(double x, double y) {

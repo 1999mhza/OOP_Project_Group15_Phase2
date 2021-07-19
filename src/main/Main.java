@@ -31,7 +31,7 @@ public class Main extends Application {
         double height = Screen.getPrimary().getBounds().getHeight();
         double width = Screen.getPrimary().getBounds().getWidth();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/home.fxml"));
         stage.setScene(new Scene(loader.load(), width, height));
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);

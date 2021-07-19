@@ -14,7 +14,7 @@
         <Image url="@../resource/back.png" />
     </ImageView>
      <Button fx:id="menu" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="MENU" AnchorPane.bottomAnchor="5.0" />
-    <AnchorPane fx:id="parent" layoutX="183.0" layoutY="179.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="410.0" style="-fx-border-color: black;" />
+    <AnchorPane fx:id="parent" layoutX="183.0" layoutY="179.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="410.0" />
    <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 15; -fx-font-weight: bold;" textAlignment="CENTER" visible="false" AnchorPane.topAnchor="0.0">
       <graphic>
          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -274,9 +274,19 @@
                <Label fx:id="labelTruck" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
             </children>
          </VBox>
+         <VBox alignment="CENTER" layoutX="10.0" layoutY="200.0" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="upCage" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="imageCage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelCage" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
       </children>
    </VBox>
-   <ImageView fx:id="road" fitHeight="150.0" fitWidth="250.0" layoutX="549.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="5.0">
+   <ImageView fx:id="road" fitHeight="100.0" fitWidth="250.0" layoutX="549.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="5.0">
       <image>
          <Image url="@../resource/road.png" />
       </image>

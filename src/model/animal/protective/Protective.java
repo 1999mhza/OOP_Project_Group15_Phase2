@@ -7,7 +7,6 @@ import model.animal.Animal;
 import model.animal.wild.Wild;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public abstract class Protective extends Animal {
     protected boolean found;
@@ -82,7 +81,7 @@ public abstract class Protective extends Animal {
                     pause();
                     game.getRoot().getChildren().remove(wild.getImageView());
                     game.getWildAnimals().remove(wild);
-                    battleAnimation = new BattleAnimation(this, wild);
+                    battleAnimation = new BattleAnimation(this);
                     battleAnimation.setOnFinished(event -> {
                         game.getProtectiveAnimals().remove(this);
                         game.getRoot().getChildren().remove(imageView);
