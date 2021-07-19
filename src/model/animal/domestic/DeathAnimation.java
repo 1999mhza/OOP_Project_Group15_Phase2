@@ -2,7 +2,6 @@ package model.animal.domestic;
 
 import javafx.animation.Transition;
 import javafx.util.Duration;
-import model.animal.Animal;
 
 public class DeathAnimation extends Transition {
     private final Domestic domestic;

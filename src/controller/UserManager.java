@@ -49,6 +49,20 @@ public class UserManager {
         }
     }
 
+    public int getCollectedCoin(String username) {
+        try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
+
+            ResultSet resultSet = statement.executeQuery("select collectedCoins from users where username = '" + username + "'");
+
+            if (resultSet.next()) {
+                return resultSet.getInt("collectedCoins");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public void updateUser(String username, int level, int coin, boolean rewarded) {
         try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
 

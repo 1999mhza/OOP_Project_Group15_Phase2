@@ -1,27 +1,102 @@
 package model;
 
+import javafx.geometry.Rectangle2D;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.animal.wild.Wild;
 import model.good.Good;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 public class Warehouse {
     private int capacity;
+    private int fulCapacity;
     private int upgradePrice;
     private int level;
     private int finalLevel;
     private HashSet<Wild> wilds;
     private HashSet<Good> goods;
 
+    private int row, column;
+    private double length;
+    private ImageView imageView;
+    private ProgressBar progressBar;
+    private ImageView[][] imageViews;
+
     public Warehouse() {
         capacity = 30;
+        fulCapacity = 30;
         wilds = new HashSet<>();
         goods = new HashSet<>();
         upgradePrice = 450;
         level = 1;
-        finalLevel = 3;
+        finalLevel = 4;
+
+        row = 6;
+        column = 10;
+        length = 12;
+        Image image = new Image(new File("src/resource/Warehouse/1.png").toURI().toString());
+        imageView = new ImageView(image);
+        progressBar = new ProgressBar();
+
+        Game game = Game.getInstance();
+        game.getParent().getChildren().add(imageView);
+        game.getParent().getChildren().add(progressBar);
+
+        double scale = game.getScale();
+
+        imageView.setFitWidth(image.getWidth() * scale);
+        imageView.setFitHeight(image.getHeight() * scale);
+
+        imageView.setLayoutX(scale * (500 - game.getOldX()) + game.getNewX() - imageView.getFitWidth() / 2);
+        imageView.setLayoutY(scale * (530 - game.getOldY()) + game.getNewY() - imageView.getFitHeight() / 2);
+
+        progressBar.setPrefWidth(100);
+        progressBar.setPrefHeight(10);
+
+        progressBar.setLayoutX(imageView.getLayoutX() + imageView.getFitWidth() / 2 - progressBar.getPrefWidth() / 2);
+        progressBar.setLayoutY(imageView.getLayoutY() + imageView.getFitHeight() - 30);
+
+        double p = 1 - 1.0 * capacity / fulCapacity;
+        if (p > 1) p = 1;
+        if (p < 0) p = 0;
+        progressBar.setProgress(p);
+
+        length *= 0.9 * scale;
+
+        imageViews = new ImageView[row][column];
+        for (int i = 0; i < row; i++) {
+            imageViews[i] = new ImageView[column];
+            for (int j = 0; j < column; j++) {
+                imageViews[i][j] = new ImageView();
+                imageViews[i][j].setFitWidth(length);
+                imageViews[i][j].setFitHeight(length);
+            }
+        }
+
+        double biasX = (imageView.getFitWidth() - column * length) / 2;
+        double biasY = 80;
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                game.getParent().getChildren().add(imageViews[i][j]);
+                imageViews[i][j].setLayoutX(imageView.getLayoutX() + biasX + j * length);
+                imageViews[i][j].setLayoutY(imageView.getLayoutY() + biasY + (row - 1 - i) * length);
+            }
+        }
+        format();
+    }
+
+    public HashSet<Wild> getWilds() {
+        return wilds;
+    }
+
+    public HashSet<Good> getGoods() {
+        return goods;
     }
 
     public int getCapacity() {
@@ -33,138 +108,111 @@ public class Warehouse {
     }
 
     public void upgrade() {
-        capacity += 15;
+        capacity += 10;
+        fulCapacity += 10;
         upgradePrice *= 1.2;
         level++;
+
+        Image image = new Image(new File("src/resource/Warehouse/" + level + ".png").toURI().toString());
+        imageView.setImage(image);
+        double p = 1 - 1.0 * capacity / fulCapacity;
+        if (p > 1) p = 1;
+        if (p < 0) p = 0;
+        progressBar.setProgress(p);
     }
 
     public boolean checkFinalLevel() {
         return level >= finalLevel;
     }
 
-    public boolean addWild(HashSet<Wild> wildSet) {
-        int space = 0;
-        for (Wild wild : wildSet) {
-            space += wild.getSpace();
+    private void format() {
+        double p = 1 - 1.0 * capacity / fulCapacity;
+        if (p > 1) p = 1;
+        if (p < 0) p = 0;
+        progressBar.setProgress(p);
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                imageViews[i][j].setImage(null);
+            }
         }
-        if (space > capacity) return false;
-        capacity -= space;
-        wilds.addAll(wildSet);
+
+        int num = 0;
+        for (Wild wild : wilds) {
+            Image image = new Image(new File("src/resource/Product/" + wild.getClass().getSimpleName() + ".png").toURI().toString());
+            for (int i = 0; i < wild.getSpace(); i++) {
+                imageViews[num / column][num % column].setImage(image);
+                num++;
+            }
+        }
+        for (Good good : goods) {
+            Image image = new Image(new File("src/resource/Product/" + good.getClass().getSimpleName() + ".png").toURI().toString());
+            for (int i = 0; i < good.getSpace(); i++) {
+                imageViews[num / column][num % column].setImage(image);
+                num++;
+            }
+        }
+    }
+
+    public boolean addWild(Wild wild) {
+        if (wild.getSpace() > capacity) return false;
+        capacity -= wild.getSpace();
+        wilds.add(wild);
+        format();
         return true;
     }
 
-    public boolean addGood(HashSet<Good> goodSet) {
-        int space = 0;
-        for (Good good : goodSet) {
-            space += good.getSpace();
-        }
-        if (space > capacity) return false;
-        capacity -= space;
-        goods.addAll(goodSet);
+    public boolean addGood(Good good) {
+        if (good.getSpace() > capacity) return false;
+        capacity -= good.getSpace();
+        goods.add(good);
+        format();
         return true;
     }
 
-    public HashSet<Wild> getWild(String name, int number) {
-        HashSet<Wild> removed = new HashSet<>();
-        int space = 0;
+    public Wild getWild(String name) {
         for (Wild wild : wilds) {
             if (wild.getClass().getSimpleName().equalsIgnoreCase(name)) {
-                removed.add(wild);
-                space += wild.getSpace();
-                number--;
-                if (number == 0) break;
+                wilds.remove(wild);
+                capacity += wild.getSpace();
+                format();
+                return wild;
             }
         }
-        if (number != 0) return null;
-        wilds.removeAll(removed);
-        capacity += space;
-        return removed;
+        return null;
     }
 
-    public int getWildSpace(String name, int number) {
-        int space = 0;
+    public int getWildSpace(String name) {
         for (Wild wild : wilds) {
             if (wild.getClass().getSimpleName().equalsIgnoreCase(name)) {
-                space += wild.getSpace();
-                number--;
-                if (number == 0) break;
+                return wild.getSpace();
             }
         }
-        if (number != 0) return -1;
-        return space;
+        return -1;
     }
 
-    public HashSet<Good> getGood(String name, int number) {
-        HashSet<Good> removed = new HashSet<>();
-        int space = 0;
+    public Good getGood(String name) {
         for (Good good : goods) {
             if (good.getClass().getSimpleName().equalsIgnoreCase(name)) {
-                removed.add(good);
-                space += good.getSpace();
-                number--;
-                if (number == 0) break;
+                goods.remove(good);
+                capacity += good.getSpace();
+                format();
+                return good;
             }
         }
-        if (number != 0) return null;
-        goods.removeAll(removed);
-        capacity += space;
-        return removed;
+        return null;
     }
 
-    public int getGoodSpace(String name, int number) {
-        int space = 0;
+    public int getGoodSpace(String name) {
         for (Good good : goods) {
             if (good.getClass().getSimpleName().equalsIgnoreCase(name)) {
-                space += good.getSpace();
-                number--;
-                if (number == 0) break;
+                return good.getSpace();
             }
         }
-        if (number != 0) return -1;
-        return space;
+        return -1;
     }
 
-    public boolean isEmpty() {
-        return goods.isEmpty() && wilds.isEmpty();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n").append("Warehouse L").append(level).append(":\n");
-        sb.append("\t").append("Capacity = ").append(capacity).append("\n");
-
-        HashMap<String, Integer> wildsMap = new HashMap<>();
-        for (Wild wild : wilds) {
-            String name = wild.getClass().getSimpleName();
-            if (wildsMap.containsKey(name)) {
-                wildsMap.replace(name, wildsMap.get(name) + 1);
-            } else {
-                wildsMap.put(name, 1);
-            }
-        }
-        if (!wildsMap.isEmpty()) {
-            sb.append("\n").append("\t").append("Wilds:").append("\n");
-            for (Map.Entry<String, Integer> wild : wildsMap.entrySet()) {
-                sb.append("\t").append("\t").append(wild.getKey()).append(": ").append(wild.getValue()).append("\n");
-            }
-        }
-
-        HashMap<String, Integer> goodsMap = new HashMap<>();
-        for (Good good : goods) {
-            String name = good.getClass().getSimpleName();
-            if (goodsMap.containsKey(name)) {
-                goodsMap.replace(name, goodsMap.get(name) + 1);
-            } else {
-                goodsMap.put(name, 1);
-            }
-        }
-        if (!goodsMap.isEmpty()) {
-            sb.append("\n").append("\t").append("Goods:").append("\n");
-            for (Map.Entry<String, Integer> good : goodsMap.entrySet()) {
-                sb.append("\t").append("\t").append(good.getKey()).append(": ").append(good.getValue()).append("\n");
-            }
-        }
-        return sb.toString();
+    public int getLevel() {
+        return level;
     }
 }

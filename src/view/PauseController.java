@@ -22,7 +22,7 @@ public class PauseController {
     public Button home;
     public Button exit;
 
-    public void initiate(String username, MediaPlayer homeMedia, MediaPlayer gameMedia, double width, double height, GameManager gameManager) {
+    public void initiate(String username, MediaPlayer homeMedia, MediaPlayer gameMedia, double width, double height) {
         continueE.setOnMousePressed(event -> continueE.setStyle("""
                 -fx-background-radius: 50;
                 -fx-background-color: lightgreen;
@@ -58,7 +58,7 @@ public class PauseController {
                 -fx-font-size: 19;
                 -fx-font-weight: bold"""));
         continueE.setOnAction(event -> {
-            gameManager.play();
+            Game.getInstance().play();
             ((Node) (event.getSource())).getScene().getWindow().hide();
         });
 

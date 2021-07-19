@@ -8,10 +8,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -29,6 +31,7 @@ public class MenuController {
 
     public Button exit;
     public Button logout;
+    public Label coin;
 
     private String username;
     private MediaPlayer homeMedia;
@@ -49,6 +52,10 @@ public class MenuController {
         image.setFitWidth(s * image.getImage().getWidth());
         image.setX((width - image.getFitWidth()) / 2);
         image.setY((height - image.getFitHeight()) / 2);
+
+        VBox vBox = (VBox) coin.getParent();
+        vBox.setLayoutX((width + image.getFitWidth()) / 2 - 20 - vBox.getPrefWidth());
+        coin.setText(String.valueOf(UserManager.getInstance().getCollectedCoin(username)));
 
         logout.setOnMousePressed(event -> logout.setStyle("""
                 -fx-background-radius: 50;

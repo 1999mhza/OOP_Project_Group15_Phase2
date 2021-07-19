@@ -10,12 +10,16 @@ public class Time extends Transition {
     private double lastTime;
     private Label show;
 
+    private Game game;
+
     public Time(Label show) {
         startTime = (double) System.currentTimeMillis();
-        lastTime = (double) System.currentTimeMillis();
+        lastTime = startTime;
         time = 0;
         this.show = show;
         show.setText(String.format("%02d:%02d", 0, 0));
+
+        game = Game.getInstance();
 
         setCycleCount(-1);
         setCycleDuration(Duration.ONE);
@@ -40,5 +44,6 @@ public class Time extends Transition {
         time = (double) System.currentTimeMillis() - startTime;
         int second = (int) (time / 1000);
         show.setText(String.format("%02d:%02d", second / 60, second % 60));
+        game.loadWilds();
     }
 }

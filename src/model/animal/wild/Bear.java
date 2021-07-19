@@ -41,6 +41,20 @@ public class Bear extends Wild {
             }
         }
 
-        super.setAnimation(images, cells);
+        Image cagedWildImage = new Image(new File("src/resource/" + getClass().getSimpleName() + "/caged.png").toURI().toString());
+        int numberOfCageRows = 4;
+        int numberOfCageColumns = 6;
+
+        Rectangle2D[] cagedWildCells = new Rectangle2D[24];
+        double cellWidth = cagedWildImage.getWidth() / numberOfCageColumns;
+        double cellHeight = cagedWildImage.getHeight() / numberOfCageRows;
+
+        for (int j = 0; j < numberOfCageRows; j++) {
+            for (int k = 0; k < numberOfCageColumns; k++) {
+                cagedWildCells[j * numberOfCageColumns + k] = new Rectangle2D(k * cellWidth, j * cellHeight, cellWidth, cellHeight);
+            }
+        }
+
+        super.setAnimation(images, cells, cagedWildImage, cagedWildCells);
     }
 }

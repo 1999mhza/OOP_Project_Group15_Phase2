@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,7 +25,7 @@ public class MissionManager {
     private MissionManager() {
         numberOfLevels = 0;
         try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
-            statement.executeUpdate("create table if not exists missions (level int, numberOfInitialCoins int, domesticAnimals varchar(50), protectiveAnimals varchar(50), collectorAnimals varchar(50), factories varchar(50), wildAnimalsTime varchar(50), tasks varchar(50), maxPrizeTime int, prize int, primary key(level))");
+            statement.executeUpdate("create table if not exists missions (level int, numberOfInitialCoins int, domesticAnimals varchar(100), protectiveAnimals varchar(100), collectorAnimals varchar(100), factories varchar(100), wildAnimalsTime varchar(100), tasks varchar(100), maxPrizeTime double, prize int, primary key(level))");
             ResultSet resultSet = statement.executeQuery("select count(*) from missions");
             if (resultSet.next())
                 numberOfLevels = resultSet.getInt(1);
@@ -41,7 +42,7 @@ public class MissionManager {
         return missionManagerInstance;
     }
 
-    private void processMission(int level, int numberOfInitialCoins, HashMap<DomesticList, Integer> domesticAnimals, HashMap<ProtectiveList, Integer> protectiveAnimals, HashMap<CollectorList, Integer> collectorAnimals, HashSet<FactoryList> factories, HashMap<WildList, Integer[]> wildAnimalsTime, HashMap<String, Integer> tasks, int maxPrizeTime, int prize) {
+    private void processMission(int level, int numberOfInitialCoins, HashMap<DomesticList, Integer> domesticAnimals, HashMap<ProtectiveList, Integer> protectiveAnimals, HashMap<CollectorList, Integer> collectorAnimals, HashSet<FactoryList> factories, HashMap<WildList, ArrayList<Double>> wildAnimalsTime, HashMap<String, Integer> tasks, int maxPrizeTime, int prize) {
         if (level <= numberOfLevels && level > 0) {
             try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
                 statement.executeUpdate(String.format("update missions set numberOfInitialCoins = %d, domesticAnimals = '%s', protectiveAnimals = '%s', collectorAnimals = '%s', factories = '%s', wildAnimalsTime = '%s', tasks = '%s', maxPrizeTime = %d, prize = %d where level = %d", numberOfInitialCoins, new GsonBuilder().create().toJson(domesticAnimals), new GsonBuilder().create().toJson(protectiveAnimals), new GsonBuilder().create().toJson(collectorAnimals), new GsonBuilder().create().toJson(factories), new GsonBuilder().create().toJson(wildAnimalsTime), new GsonBuilder().create().toJson(tasks), maxPrizeTime, prize, level));
@@ -153,11 +154,11 @@ public class MissionManager {
         return null;
     }
 
-    public HashMap<WildList, Integer[]> getWildAnimalsTime(int level) {
+    public HashMap<WildList, ArrayList<Double>> getWildAnimalsTime(int level) {
         try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
             ResultSet resultSet = statement.executeQuery("select wildAnimalsTime from missions where level = " + level);
             if (resultSet.next()) {
-                return new GsonBuilder().create().fromJson(resultSet.getString("wildAnimalsTime"), new TypeToken<HashMap<WildList, Integer[]>>() {
+                return new GsonBuilder().create().fromJson(resultSet.getString("wildAnimalsTime"), new TypeToken<HashMap<WildList, ArrayList<Double>>>() {
                 }.getType());
             }
         } catch (SQLException e) {
@@ -166,11 +167,11 @@ public class MissionManager {
         return null;
     }
 
-    public int getMaxPrizeTime(int level) {
+    public double getMaxPrizeTime(int level) {
         try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
             ResultSet resultSet = statement.executeQuery("select maxPrizeTime from missions where level = " + level);
             if (resultSet.next()) {
-                return resultSet.getInt("maxPrizeTime");
+                return resultSet.getDouble("maxPrizeTime");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -202,7 +203,7 @@ public class MissionManager {
         HashMap<String, Integer> protectiveAnimals = new HashMap<>();
         HashMap<String, Integer> collectorAnimals = new HashMap<>();
         HashSet<String> factoriesSet = new HashSet<>();
-        HashMap<String, Integer[]> wildAnimalsTime = new HashMap<>();
+        HashMap<String, ArrayList<Double>> wildAnimalsTime = new HashMap<>();
         HashMap<String, Integer> tasksMap = new HashMap<>();
         int maxPrizeTime;
         int prize;
@@ -210,23 +211,28 @@ public class MissionManager {
         // ---------- Enter the Specifications -----------
         level = 1;
 
-        numberOfInitialCoins = 100;
+        numberOfInitialCoins = 10000;
 
-        domesticAnimals.put("Chicken", 2);
-        //domesticAnimals.put("Sheep", 3);
+        domesticAnimals.put("Chicken", 1);
+        domesticAnimals.put("Sheep", 1);
 
         //protectiveAnimals.put("Dog", 2);
 
-        //collectorAnimals.put("Cat", 3);
+        collectorAnimals.put("Cat", 1);
 
-        factoriesSet.add("Incubator");
-        //factoriesSet.add("MilkPacker");
+        factoriesSet.add("Mill");
+        /*factoriesSet.add("CookieBakery");
+        factoriesSet.add("CakeBakery");
+        factoriesSet.add("Spinnery");
+        factoriesSet.add("WeavingFactory");
+        factoriesSet.add("SewingFactory");
+        factoriesSet.add("Incubator");*/
 
-        wildAnimalsTime.put("Lion", new Integer[]{2, 6, 12, 18});
-        //wildAnimalsTime.put("Bear", new Integer[]{20, 21});
+        wildAnimalsTime.put("Lion", new ArrayList<>(Arrays.asList(2.0, 6.0)));
+        //wildAnimalsTime.put("Bear", new ArrayList<>(Arrays.asList(20.0, 21.0)));
 
-        tasksMap.put("Egg", 2);
-        //tasksMap.put("Flour", 10);
+        //tasksMap.put("Egg", 20);
+        tasksMap.put("Flour", 10);
         //tasksMap.put("Bread", 10);
         //tasksMap.put("Egg", 10);
         //tasksMap.put("Buffalo", 3);
@@ -271,7 +277,7 @@ public class MissionManager {
         HashMap<ProtectiveList, Integer> protectives = new HashMap<>();
         HashMap<CollectorList, Integer> collectors = new HashMap<>();
         HashSet<FactoryList> factories = new HashSet<>();
-        HashMap<WildList, Integer[]> wildsTime = new HashMap<>();
+        HashMap<WildList, ArrayList<Double>> wildsTime = new HashMap<>();
         HashMap<String, Integer> tasks = new HashMap<>();
 
         for (String animal : domesticAnimals.keySet()) {
@@ -299,7 +305,7 @@ public class MissionManager {
         }
 
         for (String animal : wildAnimalsTime.keySet()) {
-            if (WildList.getWild(animal) == null || Arrays.asList(wildAnimalsTime.get(animal)).contains(0)) {
+            if (WildList.getWild(animal) == null || wildAnimalsTime.get(animal).contains(0)) {
                 System.out.println("Wild animals have some problems!");
                 return;
             }

@@ -8,11 +8,14 @@ import java.io.File;
 public class Sheep extends Domestic {
 
     public Sheep() {
-        super(200, 4, "Wool");
+        super(200, 8, "Wool");
     }
 
     @Override
     public void setAnimation() {
+
+        double cellWidth, cellHeight;
+
         Image[] images = new Image[8];
         images[0] = new Image(new File("src/resource/Sheep/right.png").toURI().toString());
         images[1] = new Image(new File("src/resource/Sheep/down_right.png").toURI().toString());
@@ -30,8 +33,8 @@ public class Sheep extends Domestic {
         Rectangle2D[][] cells = new Rectangle2D[8][24];
         for (int i = 0; i < 8; i++) {
             cells[i] = new Rectangle2D[24];
-            double cellWidth = images[i].getWidth() / numberOfColumns[i];
-            double cellHeight = images[i].getHeight() / numberOfRows[i];
+            cellWidth = images[i].getWidth() / numberOfColumns[i];
+            cellHeight = images[i].getHeight() / numberOfRows[i];
 
             for (int j = 0; j < numberOfRows[i]; j++) {
                 for (int k = 0; k < Math.min(numberOfColumns[i],24 - j * numberOfColumns[i]); k++) {
@@ -40,20 +43,46 @@ public class Sheep extends Domestic {
             }
         }
 
-        Image deathImage = new Image(new File("src/resource/Sheep/death.png").toURI().toString());
-        Rectangle2D[] deathCells = new Rectangle2D[24];
+        Image[] deathImage = new Image[2];
+        deathImage[0] = new Image(new File("src/resource/Sheep/death_right.png").toURI().toString());
+        deathImage[1] = new Image(new File("src/resource/Sheep/death_left.png").toURI().toString());
 
         int numberOfDeathRows = 6;
         int numberOfDeathColumns = 4;
-        double cellWidth = deathImage.getWidth() / numberOfDeathColumns;
-        double cellHeight = deathImage.getHeight() / numberOfDeathRows;
 
-        for (int j = 0; j < numberOfDeathRows; j++) {
-            for (int k = 0; k < Math.min(numberOfDeathColumns, 24 - j * numberOfDeathColumns); k++) {
-                deathCells[j * numberOfDeathColumns + k] = new Rectangle2D(k * cellWidth, j * cellHeight, cellWidth, cellHeight);
+        Rectangle2D[][] deathCells = new Rectangle2D[2][24];
+        for (int i = 0; i < 2; i++) {
+            deathCells[i] = new Rectangle2D[24];
+            cellWidth = deathImage[i].getWidth() / numberOfDeathColumns;
+            cellHeight = deathImage[i].getHeight() / numberOfDeathRows;
+
+            for (int j = 0; j < numberOfDeathRows; j++) {
+                for (int k = 0; k < Math.min(numberOfDeathColumns, 24 - j * numberOfDeathColumns); k++) {
+                    deathCells[i][j * numberOfDeathColumns + k] = new Rectangle2D((i % 2 == 1 ? k : numberOfDeathColumns - 1 - k) * cellWidth, j * cellHeight, cellWidth, cellHeight);
+                }
             }
         }
 
-        super.setAnimation(images, cells, deathImage, deathCells);
+        Image[] eatImage = new Image[2];
+        eatImage[0] = new Image(new File("src/resource/Sheep/eat_right.png").toURI().toString());
+        eatImage[1] = new Image(new File("src/resource/Sheep/eat_left.png").toURI().toString());
+
+        int numberOfEatRows = 6;
+        int numberOfEatColumns = 4;
+
+        Rectangle2D[][] eatCells = new Rectangle2D[2][24];
+        for (int i = 0; i < 2; i++) {
+            eatCells[i] = new Rectangle2D[24];
+            cellWidth = eatImage[i].getWidth() / numberOfEatColumns;
+            cellHeight = eatImage[i].getHeight() / numberOfEatRows;
+
+            for (int j = 0; j < numberOfEatRows; j++) {
+                for (int k = 0; k < Math.min(numberOfEatColumns, 24 - j * numberOfEatColumns); k++) {
+                    eatCells[i][j * numberOfEatColumns + k] = new Rectangle2D((i % 2 == 1 ? k : numberOfEatColumns - 1 - k) * cellWidth, j * cellHeight, cellWidth, cellHeight);
+                }
+            }
+        }
+        super.setAnimation(images, cells, deathImage, deathCells, eatImage, eatCells);
+
     }
 }

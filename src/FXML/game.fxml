@@ -24,7 +24,7 @@
          </ImageView>
       </graphic>
    </Label>
-   <VBox alignment="CENTER" layoutX="513.0" layoutY="7.0" prefHeight="110.0" prefWidth="60.0" style="-fx-border-color: darkblue; -fx-border-radius: 20; -fx-border-width: 5; -fx-background-color: lightskyblue; -fx-background-radius: 25;" AnchorPane.topAnchor="5.0">
+   <VBox alignment="CENTER" layoutX="513.0" layoutY="7.0" prefHeight="100.0" prefWidth="85.0" style="-fx-border-color: darkblue; -fx-border-radius: 20; -fx-border-width: 5; -fx-background-color: lightskyblue; -fx-background-radius: 25;" AnchorPane.topAnchor="5.0">
       <children>
          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0">
             <graphic>
@@ -35,7 +35,7 @@
                </ImageView>
             </graphic>
          </Label>
-         <Label fx:id="coin" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 20; -fx-font-weight: bold;" />
+         <Label fx:id="coin" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="80.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="10000" />
       </children>
    </VBox>
    <HBox alignment="CENTER" layoutX="573.0" layoutY="530.0" prefHeight="60.0" prefWidth="226.0" style="-fx-background-color: gold; -fx-border-color: saddlebrown; -fx-border-width: 5;" AnchorPane.bottomAnchor="5.0">
@@ -109,4 +109,176 @@
             </children></VBox>
       </children>
    </HBox>
+   <HBox fx:id="hBuy" layoutX="14.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.topAnchor="5.0">
+      <children>
+         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="85.0" style="-fx-background-radius: 25; -fx-background-color: lawngreen; -fx-border-color: darkgreen; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buyChicken" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lawngreen; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../resource/Buy/Chicken.png" />
+                        </image>
+                     </ImageView>
+                  </graphic></Button>
+               <Label fx:id="priceChicken" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="85.0" style="-fx-background-radius: 25; -fx-background-color: lawngreen; -fx-border-color: darkgreen; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buySheep" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lawngreen; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../resource/Buy/Sheep.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Label fx:id="priceSheep" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="106.0" layoutY="10.0" prefHeight="100.0" prefWidth="85.0" style="-fx-background-radius: 25; -fx-background-color: lawngreen; -fx-border-color: darkgreen; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buyCat" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lawngreen; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../resource/Buy/Cat.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Label fx:id="priceCat" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="202.0" layoutY="10.0" prefHeight="100.0" prefWidth="85.0" style="-fx-background-radius: 25; -fx-background-color: lawngreen; -fx-border-color: darkgreen; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buyDog" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: lawngreen; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../resource/Buy/Dog.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Label fx:id="priceDog" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+      </children>
+   </HBox>
+   <VBox fx:id="vFactory" alignment="CENTER" fillWidth="false" layoutX="8.0" layoutY="113.0" prefHeight="200.0" prefWidth="50.0" AnchorPane.topAnchor="110.0">
+      <children>
+         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buildMill" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="factoryMill" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelMill" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="17.0" layoutY="60.0" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buildCookie" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="factoryCookie" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelCookie" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="17.0" layoutY="110.0" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buildCake" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="factoryCake" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelCake" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="17.0" layoutY="200.0" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buildSpin" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="factorySpin" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelSpin" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="17.0" layoutY="293.0" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buildWeave" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="factoryWeave" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelWeave" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="17.0" layoutY="388.0" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buildSew" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="factorySew" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelSew" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="17.0" layoutY="482.0" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="buildIncubate" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="factoryIncubate" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelIncubate" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+      </children>
+   </VBox>
+   <VBox fx:id="vUpgrade" alignment="CENTER" fillWidth="false" layoutX="701.0" layoutY="110.0" prefHeight="200.0" prefWidth="85.0" AnchorPane.topAnchor="210.0">
+      <children>
+         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="upWell" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="imageWell" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelWell" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="17.0" layoutY="60.0" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="upWarehouse" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="imageWarehouse" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelWarehouse" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" layoutX="17.0" layoutY="110.0" prefHeight="100.0" prefWidth="75.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 20; -fx-font-size: 19; -fx-font-weight: bold;">
+            <children>
+               <Button fx:id="upTruck" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tomato; -fx-background-radius: 20;">
+                  <graphic>
+                     <ImageView fx:id="imageTruck" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                  </graphic>
+               </Button>
+               <Label fx:id="labelTruck" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 15; -fx-font-weight: bold;" />
+            </children>
+         </VBox>
+      </children>
+   </VBox>
+   <ImageView fx:id="road" fitHeight="150.0" fitWidth="250.0" layoutX="549.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="5.0">
+      <image>
+         <Image url="@../resource/road.png" />
+      </image>
+   </ImageView>
 </AnchorPane>

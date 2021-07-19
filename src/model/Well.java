@@ -68,16 +68,16 @@ public class Well {
         game.getParent().getChildren().add(imageView);
         game.getParent().getChildren().add(progressBar);
 
-        imageView.setLayoutX(game.getScale() * (480 - game.getOldX()) + game.getNewX() - cells[0].getWidth());
-        imageView.setLayoutY(game.getScale() * (160 - game.getOldY()) + game.getNewY() - cells[0].getHeight());
+        imageView.setLayoutX(game.getScale() * (360 - game.getOldX()) + game.getNewX() - cells[0].getWidth());
+        imageView.setLayoutY(game.getScale() * (165 - game.getOldY()) + game.getNewY() - cells[0].getHeight());
 
         imageView.setOnMouseClicked(mouseEvent -> {
-            if (water > 0) {
-                game.setResult("Not Empty!");
+            if (isWorking) {
+                game.setResult("Well Is Working!");
                 return;
             }
-            if (isWorking()) {
-                game.setResult("Well Is Working!");
+            if (water > 0) {
+                game.setResult("Not Empty!");
                 return;
             }
             if (fillPrice > Game.getInstance().getCoin()) {
@@ -85,11 +85,12 @@ public class Well {
                 return;
             }
             Game.getInstance().decreaseCoin(fillPrice);
+            isWorking = true;
             wellAnimation.play();
         });
 
-        progressBar.setLayoutX(game.getScale() * (480 - game.getOldX()) + game.getNewX() - cells[0].getWidth() - 20);
-        progressBar.setLayoutY(game.getScale() * (160 - game.getOldY()) + game.getNewY() - 50);
+        progressBar.setLayoutX(game.getScale() * (360 - game.getOldX()) + game.getNewX() - cells[0].getWidth() - 10);
+        progressBar.setLayoutY(game.getScale() * (165 - game.getOldY()) + game.getNewY() - cells[0].getHeight() / 2);
 
         progressBar.setRotate(270);
 
@@ -101,6 +102,10 @@ public class Well {
         if (num >= 15) num = 15;
         if (num < 0) num = 0;
         imageView.setViewport(cells[num]);
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public void play() {
@@ -116,21 +121,24 @@ public class Well {
         bucketCapacity += 1;
         fillPrice -= 2;
         upgradePrice *= 1.2;
+
+        Image image = new Image(new File("src/resource/Well/" + level + ".png").toURI().toString());
+        double cellWidth = image.getWidth() / 4;
+        double cellHeight = image.getHeight() / 4;
+        for (int j = 0; j < 4; j++) {
+            for (int k = 0; k < 4; k++) {
+                cells[j * 4 + k] = new Rectangle2D(k * cellWidth, j * cellHeight, cellWidth, cellHeight);
+            }
+        }
+
+        imageView.setImage(image);
+        imageView.setViewport(cells[0]);
     }
 
     public void update(double v) {
         water = v * bucketCapacity;
         progressBar.setProgress(v);
         imageView.setViewport(cells[((int) (v * 63.1)) % 16]);
-    }
-
-    public ResultType work() {
-        if (water > 0) return ResultType.BAD_CONDITION;
-        if (isWorking()) return ResultType.EXISTED;
-        if (fillPrice > Game.getInstance().getCoin()) return ResultType.NOT_ENOUGH;
-        Game.getInstance().decreaseCoin(fillPrice);
-        fillRemainingTime = fillTime;
-        return ResultType.SUCCESS;
     }
 
     public double getFillTime() {
@@ -155,26 +163,6 @@ public class Well {
     }
 
     public boolean isWorking() {
-        return fillRemainingTime > 0;
-    }
-
-    public void update() {
-        if (fillRemainingTime > 0) {
-            fillRemainingTime--;
-            if (fillRemainingTime == 0) {
-                water = bucketCapacity;
-            }
-        }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n").append("Well L").append(level).append(":\n");
-        if (isWorking())
-            sb.append("\t").append("Remaining Time to Fill Well = ").append(fillRemainingTime).append("\n");
-        else
-            sb.append("\t").append("Water = ").append(water).append("\n");
-        return sb.toString();
+        return isWorking;
     }
 }

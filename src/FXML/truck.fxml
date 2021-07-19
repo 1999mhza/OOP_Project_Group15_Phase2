@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TruckController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resource/page.jpg" />
+         </image>
+      </ImageView>
+      <HBox fx:id="hd1" alignment="CENTER_LEFT" layoutX="542.0" layoutY="102.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Chicken.png" />
+               </image></ImageView>
+            <Label fx:id="hd1n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hd1p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hg1" alignment="CENTER_LEFT" layoutX="23.0" layoutY="103.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Egg.png" />
+               </image></ImageView>
+            <Label fx:id="hg1n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hg1p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hg2" alignment="CENTER_LEFT" layoutX="23.0" layoutY="135.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Flour.png" />
+               </image></ImageView>
+            <Label fx:id="hg2n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hg2p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hg3" alignment="CENTER_LEFT" layoutX="23.0" layoutY="167.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Cookie.png" />
+               </image></ImageView>
+            <Label fx:id="hg3n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hg3p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hg4" alignment="CENTER_LEFT" layoutX="23.0" layoutY="199.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Cake.png" />
+               </image></ImageView>
+            <Label fx:id="hg4n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hg4p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hg5" alignment="CENTER_LEFT" layoutX="23.0" layoutY="231.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Wool.png" />
+               </image></ImageView>
+            <Label fx:id="hg5n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hg5p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hg6" alignment="CENTER_LEFT" layoutX="23.0" layoutY="263.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Fiber.png" />
+               </image></ImageView>
+            <Label fx:id="hg6n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hg6p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hd2" alignment="CENTER_LEFT" layoutX="542.0" layoutY="135.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Sheep.png" />
+               </image></ImageView>
+            <Label fx:id="hd2n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hd2p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hg7" alignment="CENTER_LEFT" layoutX="23.0" layoutY="296.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Fabric.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="hg7n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hg7p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hg8" alignment="CENTER_LEFT" layoutX="23.0" layoutY="328.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Dress.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="hg8n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hg8p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Button fx:id="cancel" alignment="CENTER" contentDisplay="CENTER" layoutX="433.0" layoutY="535.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="CANCEL" AnchorPane.bottomAnchor="15.0" />
+      <Button fx:id="ok" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="543.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="OK" AnchorPane.bottomAnchor="15.0" />
+      <HBox fx:id="hw1" alignment="CENTER_LEFT" layoutX="283.0" layoutY="104.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Lion.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="hw1n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hw1p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hw2" alignment="CENTER_LEFT" layoutX="283.0" layoutY="136.0" prefHeight="32.0" prefWidth="233.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Product/Bear.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="hw2n" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <Label fx:id="hw2p" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-font-size: 15; -fx-font-weight: bold" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/Task/Coin.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" layoutX="275.0" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 15; -fx-font-weight: bold;" textAlignment="CENTER" visible="false" AnchorPane.topAnchor="0.0">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resource/labelBack.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+   </children>
+</AnchorPane>

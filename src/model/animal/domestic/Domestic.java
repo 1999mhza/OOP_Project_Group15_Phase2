@@ -3,61 +3,80 @@ package model.animal.domestic;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import model.Game;
 import model.Grass;
 import model.animal.Animal;
-import model.animal.AnimalAnimation;
 import model.good.Good;
 import model.good.GoodList;
-
-import java.util.ArrayList;
 
 public abstract class Domestic extends Animal {
     protected double produceTime;
     protected double produceRemainingTime;
     protected String product;
-    private double fulLifetime;
 
     private ProgressBar lifeBar;
     private double preV;
 
+    protected int currentAnimation;
+
     protected DeathAnimation deathAnimation;
-    protected Image deathImage;
-    protected Rectangle2D[] deathCells;
+    protected Image[] deathImage;
+    protected Rectangle2D[][] deathCells;
+
+    protected EatAnimation eatAnimation;
+    protected Image[] eatImage;
+    protected Rectangle2D[][] eatCells;
 
     public Domestic(int price, double produceTime, String product) {
-        super(price, 10, 5, 1.0);
-        this.fulLifetime = 10;
+        super(price, 20, 5, 1.0);
         this.produceTime = produceTime;
         this.produceRemainingTime = produceTime;
         this.product = product;
 
+        currentAnimation = 1;
+
         lifeBar = new ProgressBar();
         lifeBar.setPrefHeight(10);
         lifeBar.setPrefWidth(40);
-        lifeBar.setProgress(lifetime / fulLifetime);
+        lifeBar.setProgress(lifetime / fullLifetime);
         preV = 0;
     }
 
-    public void setAnimation(Image[] images, Rectangle2D[][] cells, Image deathImage, Rectangle2D[] deathCells) {
+    public void setAnimation(Image[] images, Rectangle2D[][] cells, Image[] deathImage, Rectangle2D[][] deathCells, Image[] eatImage, Rectangle2D[][] eatCells) {
 
         super.setAnimation(images, cells);
+
+        this.eatCells = eatCells;
+        this.eatImage = eatImage;
+
+        eatAnimation = new EatAnimation(this);
 
         this.deathCells = deathCells;
         this.deathImage = deathImage;
 
         deathAnimation = new DeathAnimation(this);
-        deathAnimation.setOnFinished(event -> Game.getInstance().getRoot().getChildren().remove(imageView));
+        deathAnimation.setOnFinished(event -> {
+            Game game = Game.getInstance();
+            game.getDomesticAnimals().remove(this);
+            game.getRoot().getChildren().remove(imageView);
+        });
 
         Game.getInstance().getRoot().getChildren().add(lifeBar);
-        lifeBar.setLayoutX(imageView.getLayoutX());
-        lifeBar.setLayoutY(imageView.getLayoutY() + cells[2][0].getHeight());
+        lifeBar.setLayoutX(imageView.getLayoutX() + cells[0][0].getWidth() / 2 - 20);
+        lifeBar.setLayoutY(imageView.getLayoutY() + cells[0][0].getHeight());
+    }
+
+    public ProgressBar getLifeBar() {
+        return lifeBar;
+    }
+
+    public boolean isAlive() {
+        return lifetime > 0;
     }
 
     @Override
     public void update(double v) {
-        v = (lifetime > 5) ? v : ((2 * v) % 1.0);
+        v = (speed / defaultSpeed * v) % 1.0;
         super.update(v);
 
         if (v > preV) {
@@ -74,24 +93,46 @@ public abstract class Domestic extends Animal {
             GoodList goodList = GoodList.getGood(product);
             try {
                 Good good = (Good) Class.forName(goodList.getPackageName()).newInstance();
-                System.out.println("G: " + Game.getInstance().getTimer());
-                //good.setPlace(i, j);
-                Game.getInstance().getGoods().add(good);
+                good.setPosition(getX(), getY());
             } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ignored) {
             }
         }
 
-        if (lifetime <= 0) {
+        if (isHungry()) {
+            for (Grass grass : Game.getInstance().getGrasses()) {
+                if (Math.abs(grass.getX() - getX()) + Math.abs(grass.getY() - getY()) < 25) {
+                    grass.decreaseValue();
+                    animalAnimation.pause();
+                    currentAnimation = 2;
+                    eatAnimation.play();
+                    eatAnimation.setOnFinished(event -> {
+                        grass.decreaseImage();
+                        lifetime++;
+                        lifeBar.setProgress(lifetime / fullLifetime);
+                        if (grass.isExist() && lifetime < fullLifetime - 1) {
+                            grass.decreaseValue();
+                            eatAnimation.play();
+                        } else {
+                            currentAnimation = 1;
+                            animalAnimation.play();
+                        }
+                    });
+                    return;
+                }
+            }
+        }
+
+        if (!isAlive()) {
             animalAnimation.pause();
             Game game = Game.getInstance();
-            game.getDomesticAnimals().remove(this);
             game.getRoot().getChildren().remove(lifeBar);
+            currentAnimation = 3;
             deathAnimation.play();
             game.updateTask(this.getClass().getSimpleName(), false);
             return;
         }
 
-        lifeBar.setProgress(lifetime / fulLifetime);
+        lifeBar.setProgress(lifetime / fullLifetime);
     }
 
     public void updateDeath(double v) {
@@ -99,77 +140,81 @@ public abstract class Domestic extends Animal {
         int num = (int) (v * 23.05);
         if (num >= 24) num = 23;
         if (num < 0) num = 0;
+        int direction = ((int) ((angle + 360.0 + 90.0) / 180.0)) % 2;
 
         imageView.setOpacity(1 - v);
-        imageView.setImage(deathImage);
-        imageView.setViewport(deathCells[num]);
+        imageView.setImage(deathImage[direction]);
+        imageView.setViewport(deathCells[direction][num]);
+    }
+
+    public void updateEat(double v) {
+
+        int num = (int) (v * 23.05);
+        if (num >= 23) num = 23;
+        if (num < 0) num = 0;
+        int direction = ((int) ((angle + 360.0 + 90.0) / 180.0)) % 2;
+
+        imageView.setImage(eatImage[direction]);
+        imageView.setViewport(eatCells[direction][num]);
     }
 
     public void move() {
-        if (this.lifetime > 5) {
-            speed = deafultSpeed;
+        if (!isHungry()) {
+            speed = defaultSpeed;
         } else {
-            speed = 2 * deafultSpeed;
-            /*
+            speed = 2 * defaultSpeed;
+
             double distance = -1;
             for (Grass grass : Game.getInstance().getGrasses()) {
-                double dis = Math.abs(grass.getI() - i) + Math.abs(grass.getJ() - j);
+                double dis = Math.abs(grass.getX() - getX()) + Math.abs(grass.getY() - getY());
                 if (distance == -1 || dis < distance) {
                     distance = dis;
-                    if (grass.getJ() - j == 0) angle = grass.getI() - i > 0 ? 90 : -90;
+                    if (grass.getX() - getX() == 0) angle = grass.getY() - getY() > 0 ? 90 : -90;
                     else
-                        angle = Math.atan((grass.getI() - i) / (grass.getJ() - j)) + (grass.getJ() - j > 0 ? 0 : Math.PI);
+                        angle = Math.toDegrees(Math.atan((grass.getY() - getY()) / (grass.getX() - getX())) + (grass.getX() - getX() > 0 ? 0 : Math.PI));
                 }
-            }*/
+            }
         }
         super.move();
         moveBar();
     }
 
     public void moveBar() {
-        lifeBar.setLayoutX(imageView.getLayoutX());
-        lifeBar.setLayoutY(imageView.getLayoutY() + cells[2][0].getHeight());
-    }
-
-    public void work() {
-        if (produceRemainingTime > 0) {
-            produceRemainingTime--;
-            if (produceRemainingTime == 0) {
-                produceRemainingTime = produceTime;
-                GoodList goodList = GoodList.getGood(product);
-                try {
-                    Good good = (Good) Class.forName(goodList.getPackageName()).newInstance();
-                    //good.setPlace(i, j);
-                    Game.getInstance().getGoods().add(good);
-                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ignored) {
-                }
-            }
-        }
-
-        if (lifetime > 0) {
-            lifetime--;
-            if (lifetime == 0) {
-                Game.getInstance().getDomesticAnimals().remove(this);
-                Game.getInstance().updateTask(this.getClass().getSimpleName(), false);
-            }
-        }
-    }
-
-    public void eatGrass() {
-        //Game.getInstance().getGrass()[i][j]--;
-        lifetime = fulLifetime + 1;
+        lifeBar.setLayoutX(imageView.getLayoutX() + cells[0][0].getWidth() / 2 - 20);
+        lifeBar.setLayoutY(imageView.getLayoutY() + cells[0][0].getHeight());
     }
 
     public boolean isHungry() {
-        return lifetime <= 5;
-    }
-
-    public boolean isLessThan(Domestic that) {
-        return this.lifetime < that.lifetime;
+        return lifetime < fullLifetime / 2;
     }
 
     @Override
-    public String toString() {
-        return (lifetime > 5 ? "" : "* ") + this.getClass().getSimpleName() + " " + lifetime + " " + "[" + getI() + " " + getJ() + "]";
+    public void play() {
+        switch (currentAnimation) {
+            case 1:
+                animalAnimation.play();
+                break;
+            case 2:
+                eatAnimation.play();
+                break;
+            case 3:
+                deathAnimation.play();
+                break;
+        }
+    }
+
+    @Override
+    public void pause() {
+        switch (currentAnimation) {
+            case 1:
+                animalAnimation.pause();
+                break;
+            case 2:
+                eatAnimation.pause();
+                break;
+            case 3:
+                deathAnimation.pause();
+                break;
+        }
     }
 }

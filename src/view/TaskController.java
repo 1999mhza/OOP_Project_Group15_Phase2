@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameManager;
+import controller.MissionManager;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import model.Game;
+import model.good.Egg;
 
 import java.io.File;
 import java.util.HashMap;
@@ -28,7 +30,9 @@ public class TaskController {
     public ImageView imageTask4;
     public Label labelTask4;
 
-    public void initiate(GameManager gameManager) {
+    public void initiate() {
+
+        Game game = Game.getInstance();
 
         play.setOnMousePressed(event -> play.setStyle("""
                 -fx-background-radius: 50;
@@ -66,10 +70,10 @@ public class TaskController {
                 -fx-font-weight: bold"""));
         play.setOnAction(event -> {
             ((Node) (event.getSource())).getScene().getWindow().hide();
-            gameManager.run();
+            game.play();
         });
 
-        HashMap<String, Integer[]> tasks = gameManager.getTasks();
+        HashMap<String, Integer[]> tasks = game.getTasks();
 
         Label[] labels = new Label[]{labelTask1, labelTask2, labelTask3, labelTask4};
         ImageView[] imageViews = new ImageView[]{imageTask1, imageTask2, imageTask3, imageTask4};
@@ -82,8 +86,8 @@ public class TaskController {
             i++;
         }
 
-        int maxTime = gameManager.getMaxPrizeTime();
+        int maxTime = (int) Math.round(MissionManager.getInstance().getMaxPrizeTime(game.getLevel()));
         time.setText(String.format("%02d:%02d", maxTime / 60, maxTime % 60));
-        prize.setText("+" + gameManager.getPrize());
+        prize.setText("+" + MissionManager.getInstance().getPrize(game.getLevel()));
     }
 }
