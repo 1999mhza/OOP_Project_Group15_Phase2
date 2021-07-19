@@ -1,7 +1,5 @@
 package view;
 
-import controller.GameManager;
-import controller.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;

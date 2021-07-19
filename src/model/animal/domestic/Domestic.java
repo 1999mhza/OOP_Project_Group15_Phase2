@@ -100,7 +100,7 @@ public abstract class Domestic extends Animal {
 
         if (isHungry()) {
             for (Grass grass : Game.getInstance().getGrasses()) {
-                if (Math.abs(grass.getX() - getX()) + Math.abs(grass.getY() - getY()) < 25) {
+                if (Math.sqrt(Math.pow(grass.getX() - getX(), 2) + Math.pow(grass.getY() - getY(), 2)) < 50) {
                     grass.decreaseValue();
                     animalAnimation.pause();
                     currentAnimation = 2;

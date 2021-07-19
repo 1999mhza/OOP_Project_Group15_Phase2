@@ -212,7 +212,7 @@ public abstract class Wild extends Animal {
             Game game = Game.getInstance();
             HashSet<Good> removedGoods = new HashSet<>();
             for (Good good : game.getGoods()) {
-                if (Math.abs(good.getX() - getX()) + Math.abs(good.getY() - getY()) < 16) {
+                if (Math.sqrt(Math.abs(good.getX() - getX()) + Math.abs(good.getY() - getY())) < 50) {
                     removedGoods.add(good);
                 }
             }
@@ -223,7 +223,7 @@ public abstract class Wild extends Animal {
             }
             HashSet<Domestic> removedDomestics = new HashSet<>();
             for (Domestic domestic : game.getDomesticAnimals()) {
-                if (domestic.isAlive() && Math.abs(domestic.getX() - getX()) + Math.abs(domestic.getY() - getY()) < 16) {
+                if (domestic.isAlive() && Math.sqrt(Math.pow(domestic.getX() - getX(), 2) + Math.pow(domestic.getY() - getY(), 2)) < 50) {
                     removedDomestics.add(domestic);
                 }
             }

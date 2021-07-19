@@ -1,14 +1,9 @@
 package model;
 
-import controller.Logger;
-import controller.ResultType;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.animal.AnimalAnimation;
-import model.factory.Factory;
 
 import java.io.File;
 
@@ -18,7 +13,6 @@ public class Well {
     private double bucketCapacity;
     private double water;
     private double fillTime;
-    private double fillRemainingTime;
     private int fillPrice;
     private int upgradePrice;
     private boolean isWorking;
@@ -34,7 +28,6 @@ public class Well {
         bucketCapacity = 5;
         water = bucketCapacity;
         fillTime = 4;
-        fillRemainingTime = 0;
         fillPrice = 20;
         upgradePrice = 300;
         isWorking = false;
@@ -121,6 +114,7 @@ public class Well {
         bucketCapacity += 1;
         fillPrice -= 2;
         upgradePrice *= 1.2;
+        progressBar.setProgress(water / bucketCapacity);
 
         Image image = new Image(new File("src/resource/Well/" + level + ".png").toURI().toString());
         double cellWidth = image.getWidth() / 4;

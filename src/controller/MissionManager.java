@@ -233,11 +233,10 @@ public class MissionManager {
 
         //tasksMap.put("Egg", 20);
         tasksMap.put("Flour", 10);
-        //tasksMap.put("Bread", 10);
+        tasksMap.put("Chicken", 10);
         //tasksMap.put("Egg", 10);
         //tasksMap.put("Buffalo", 3);
-        //tasksMap.put("Coin", 500);
-        //tasksMap.put("Lion", 2);
+        tasksMap.put("Coin", 50000);
 
         maxPrizeTime = 30;
         prize = 50;

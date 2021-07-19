@@ -45,8 +45,8 @@ public class Game {
         return gameInstance;
     }
 
-    public static void initiateGame(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews) {
-        gameInstance = new Game(stageWidth, stageHeight, homeMedia, gameMedia, level, username, width, height, root, parent, scale, oldX, oldY, newX, newY, result, coin, time, labels, labels1, imageViews);
+    public static void initiateGame(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
+        gameInstance = new Game(stageWidth, stageHeight, homeMedia, gameMedia, level, username, width, height, root, parent, scale, oldX, oldY, newX, newY, result, coin, time, labels, labels1, imageViews, road);
     }
 
     public AnchorPane getRoot() {
@@ -99,6 +99,7 @@ public class Game {
 
     private int coin;
     private Label coinL;
+    private ImageView road;
 
     private Warehouse warehouse;
     private Truck truck;
@@ -113,7 +114,7 @@ public class Game {
     private HashSet<Protective> protectiveAnimals;
     private HashSet<Collector> collectorAnimals;
 
-    private Game(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews) {
+    private Game(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
         this.stageWidth = stageWidth;
         this.stageHeight = stageHeight;
         this.homeMedia = homeMedia;
@@ -122,6 +123,7 @@ public class Game {
         this.labels = labels;
         this.labels1 = labels1;
         this.imageViews = imageViews;
+        this.road = road;
 
         this.width = width;
         this.height = height;
@@ -143,6 +145,10 @@ public class Game {
 
         this.level = level;
         this.username = username;
+    }
+
+    public ImageView getRoad() {
+        return road;
     }
 
     public AnchorPane getParent() {
@@ -295,6 +301,7 @@ public class Game {
             good.play();
         }
         well.play();
+        truck.play();
         for (Factory factory : factories) {
             factory.play();
         }
@@ -318,6 +325,7 @@ public class Game {
             good.pause();
         }
         well.pause();
+        truck.pause();
         for (Factory factory : factories) {
             factory.pause();
         }
@@ -429,7 +437,7 @@ public class Game {
 
     public int getDomesticSpace(String name) {
         for (Domestic domestic : domesticAnimals) {
-            if (domestic.getClass().getSimpleName().equalsIgnoreCase(name)) {
+            if (domestic.isAlive() && domestic.getClass().getSimpleName().equalsIgnoreCase(name)) {
                 return domestic.getSpace();
             }
         }
@@ -489,9 +497,6 @@ public class Game {
         coin -= price;
         coinL.setText(String.valueOf(coin));
         updateTask("Coin", true);
-    }
-
-    public void increaseTime() {
     }
 
     public HashSet<Domestic> getDomesticAnimals() {

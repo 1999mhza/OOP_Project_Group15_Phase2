@@ -1,8 +1,6 @@
 package view;
 
-import controller.GameManager;
 import controller.MissionManager;
-import controller.ResultType;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
@@ -41,6 +39,7 @@ public class GameController {
     public ImageView image;
     public Button menu;
     public AnchorPane parent;
+    public ImageView road;
     public Label result;
     public Label coin;
     public Label time;
@@ -103,7 +102,6 @@ public class GameController {
     public Button upTruck;
     public ImageView imageTruck;
     public Label labelTruck;
-    public ImageView road;
 
     private String username;
     private int level;
@@ -171,7 +169,7 @@ public class GameController {
         HBox hBox = (HBox) time.getParent();
         hBox.setLayoutX((width + image.getFitWidth()) / 2 - 5 - hBox.getPrefWidth());
 
-        Game.initiateGame(width, height, homeMedia, gameMedia, level, username, parent.getPrefWidth(), parent.getPrefHeight(), parent, (AnchorPane) (parent.getParent()), s, image.getImage().getWidth() / 2, image.getImage().getHeight() / 2, width / 2, height / 2, result, coin, time, labels, labels1, imageViews);
+        Game.initiateGame(width, height, homeMedia, gameMedia, level, username, parent.getPrefWidth(), parent.getPrefHeight(), parent, (AnchorPane) (parent.getParent()), s, image.getImage().getWidth() / 2, image.getImage().getHeight() / 2, width / 2, height / 2, result, coin, time, labels, labels1, imageViews, road);
         Game game = Game.getInstance();
         game.initiate();
 
@@ -617,7 +615,7 @@ public class GameController {
             game.setResult("Out Of Bounds!");
         } else if (game.getWell().isWorking()) {
             game.setResult("Well Is Working!");
-        } else if (game.getWell().getWater() <= 0) {
+        } else if (game.getWell().getWater() <= 0.9) {
             game.setResult("No Water!");
         } else {
             game.getWell().decreaseWater();

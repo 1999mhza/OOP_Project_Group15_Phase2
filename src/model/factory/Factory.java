@@ -1,17 +1,14 @@
 package model.factory;
 
-import controller.ResultType;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.Game;
-import model.WellAnimation;
 import model.good.Good;
 import model.good.GoodList;
 
 import java.io.File;
-import java.util.HashSet;
 import java.util.Random;
 
 public abstract class Factory {
@@ -21,7 +18,6 @@ public abstract class Factory {
     protected int finalLevel;
     protected int number;
     protected double produceTime;
-    protected double produceRemainingTime;
     protected String input;
     protected String output;
     protected boolean isWorking;
@@ -43,7 +39,6 @@ public abstract class Factory {
         this.finalLevel = 4;
         this.number = 1;
         this.produceTime = produceTime;
-        this.produceRemainingTime = 0;
         this.input = input;
         this.output = output;
         this.isWorking = false;
@@ -51,8 +46,8 @@ public abstract class Factory {
         Game game = Game.getInstance();
         this.x = game.getScale() * (x - game.getOldX()) + game.getNewX();
         this.y = game.getScale() * (y - game.getOldY()) + game.getNewY();
-        this.goodX = game.getScale() * goodX;//(goodX - game.getOldX()) + game.getNewX();
-        this.goodY = game.getScale() * goodY;//(goodY - game.getOldY()) + game.getNewY();
+        this.goodX = game.getScale() * goodX;
+        this.goodY = game.getScale() * goodY;
         this.barX = barX;
         this.barY = barY;
         this.random = new Random();

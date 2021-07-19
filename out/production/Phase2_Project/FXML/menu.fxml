@@ -22,7 +22,7 @@
       <Button fx:id="logout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: yellow; -fx-border-color: darkgoldenrod; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="LOG OUT" />
       <Button fx:id="exit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="EXIT" />
    </HBox>
-   <VBox alignment="CENTER" layoutX="726.0" layoutY="14.0" prefHeight="110.0" prefWidth="60.0" style="-fx-border-color: darkblue; -fx-border-radius: 20; -fx-border-width: 5; -fx-background-color: lightskyblue; -fx-background-radius: 25;" AnchorPane.topAnchor="20.0">
+   <VBox alignment="CENTER" layoutX="689.0" layoutY="20.0" prefHeight="110.0" prefWidth="100.0" style="-fx-border-color: darkblue; -fx-border-radius: 20; -fx-border-width: 5; -fx-background-color: lightskyblue; -fx-background-radius: 25;" AnchorPane.topAnchor="20.0">
       <children>
          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0">
             <graphic>
@@ -33,7 +33,7 @@
                </ImageView>
             </graphic>
          </Label>
-         <Label fx:id="coin" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-font-size: 20; -fx-font-weight: bold;" />
+         <Label fx:id="coin" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="100.0" style="-fx-font-size: 20; -fx-font-weight: bold;" />
       </children>
    </VBox>
 </AnchorPane>

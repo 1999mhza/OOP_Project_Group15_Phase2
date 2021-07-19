@@ -1,13 +1,23 @@
 package model;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.animal.wild.Wild;
 import model.good.Good;
+import view.TruckController;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -54,6 +64,43 @@ public class Warehouse {
 
         imageView.setLayoutX(scale * (500 - game.getOldX()) + game.getNewX() - imageView.getFitWidth() / 2);
         imageView.setLayoutY(scale * (530 - game.getOldY()) + game.getNewY() - imageView.getFitHeight() / 2);
+
+        imageView.setOnMouseEntered(mouseEvent -> {
+            if (!game.getTruck().isWorking())
+                imageView.setOpacity(0.8);
+        });
+        imageView.setOnMouseExited(mouseEvent -> {
+            if (!game.getTruck().isWorking())
+                imageView.setOpacity(1);
+        });
+
+        imageView.setOnMouseClicked(mouseEvent -> {
+            if (!game.getTruck().isWorking()) {
+                imageView.setOpacity(1);
+                Game.getInstance().pause();
+
+                double height = Screen.getPrimary().getBounds().getHeight();
+                double width = Screen.getPrimary().getBounds().getWidth();
+
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/truck.fxml"));
+                try {
+                    stage.setScene(new Scene(loader.load(), width, height));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                stage.setFullScreen(true);
+                stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+                stage.setResizable(false);
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.initOwner(((Node) (mouseEvent.getSource())).getScene().getWindow());
+                TruckController truckController = (TruckController) (loader.getController());
+                truckController.initiate(width, height);
+                stage.show();
+            }
+        });
 
         progressBar.setPrefWidth(100);
         progressBar.setPrefHeight(10);

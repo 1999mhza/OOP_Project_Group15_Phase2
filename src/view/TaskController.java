@@ -1,6 +1,5 @@
 package view;
 
-import controller.GameManager;
 import controller.MissionManager;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -9,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import model.Game;
-import model.good.Egg;
 
 import java.io.File;
 import java.util.HashMap;

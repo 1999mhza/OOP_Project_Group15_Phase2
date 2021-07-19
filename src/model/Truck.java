@@ -1,12 +1,15 @@
 package model;
 
-import controller.ResultType;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -14,14 +17,11 @@ import javafx.stage.StageStyle;
 import model.animal.Animal;
 import model.animal.domestic.Domestic;
 import model.good.Good;
-import view.HomeController;
 import view.TruckController;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 public class Truck {
     private int capacity;
@@ -31,12 +31,19 @@ public class Truck {
     private int finalLevel;
     private HashSet<Animal> animals;
     private HashSet<Good> goods;
-    private double timeRemaining;
     private double timeOfWork;
-    private int loadPrice;
-    private boolean inTruck;
+    private boolean isWorking;
 
     private ImageView imageView;
+    private ImageView road;
+    private Image right, left;
+    private ImageView mini;
+    private double miniStartX, miniFinishX;
+    private HBox coin;
+    private Rectangle2D[] miniCells;
+    private TruckAnimation truckAnimation;
+    private double preV;
+    private boolean isBack;
 
     public Truck() {
         capacity = 20;
@@ -44,10 +51,8 @@ public class Truck {
         animals = new HashSet<>();
         goods = new HashSet<>();
         timeOfWork = 10;
-        timeRemaining = 0;
         upgradePrice = 400;
-        loadPrice = 0;
-        inTruck = false;
+        isWorking = false;
         level = 1;
         finalLevel = 4;
 
@@ -58,6 +63,59 @@ public class Truck {
         Game game = Game.getInstance();
         game.getParent().getChildren().add(imageView);
 
+        road = game.getRoad();
+        right = new Image(new File("src/resource/Truck/1_right.png").toURI().toString());
+        left = new Image(new File("src/resource/Truck/1_left.png").toURI().toString());
+        miniCells = new Rectangle2D[2];
+        miniCells[0] = new Rectangle2D(0, 0, right.getWidth() / 2, right.getHeight());
+        miniCells[1] = new Rectangle2D(right.getWidth() / 2, 0, right.getWidth() / 2, right.getHeight());
+
+        mini = new ImageView();
+        mini.setFitWidth(right.getWidth() / 2);
+        mini.setFitHeight(right.getHeight());
+        miniStartX = road.getLayoutX() + 32;
+        miniFinishX = road.getLayoutX() + road.getFitWidth() - mini.getFitWidth() - 5;
+        mini.setLayoutX(miniStartX);
+        mini.setLayoutY(road.getLayoutY() + road.getFitHeight() - mini.getFitHeight() - 3);
+        mini.setVisible(false);
+
+        coin = new HBox();
+        coin.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 10");
+        coin.setPrefHeight(24);
+        coin.setPrefWidth(48);
+        Label price = new Label();
+        price.setAlignment(Pos.CENTER);
+        price.setStyle("-fx-font-size: 10; -fx-font-weight: bold");
+        price.setPrefHeight(24);
+        price.setPrefWidth(24);
+        ImageView coinImage = new ImageView(new Image(new File("src/resource/Task/Coin.png").toURI().toString()));
+        coinImage.setFitHeight(24);
+        coinImage.setFitWidth(24);
+        coin.getChildren().add(price);
+        coin.getChildren().add(coinImage);
+        coin.setAlignment(Pos.CENTER);
+        setXCoin();
+        coin.setLayoutY(mini.getLayoutY() - coin.getPrefHeight());
+        coin.setVisible(false);
+
+        game.getParent().getChildren().add(mini);
+        game.getParent().getChildren().add(coin);
+
+        truckAnimation = new TruckAnimation(this);
+        truckAnimation.setOnFinished(event -> {
+            Game.getInstance().decreaseCoin(-calculatePrice());
+            clear();
+            mini.setVisible(false);
+            coin.setVisible(false);
+            imageView.setVisible(true);
+            preV = 0;
+            isBack = false;
+            isWorking = false;
+        });
+
+        preV = 0;
+        isBack = false;
+
         double scale = game.getScale();
 
         imageView.setFitWidth(image.getWidth() * scale);
@@ -66,38 +124,42 @@ public class Truck {
         imageView.setLayoutX(scale * (250 - game.getOldX()) + game.getNewX() - imageView.getFitWidth() / 2);
         imageView.setLayoutY(scale * (530 - game.getOldY()) + game.getNewY() - imageView.getFitHeight() / 2);
 
-        imageView.setOnMouseEntered(mouseEvent -> imageView.setOpacity(0.8));
-        imageView.setOnMouseExited(mouseEvent -> imageView.setOpacity(1));
+        imageView.setOnMouseEntered(mouseEvent -> {
+            if (!game.getTruck().isWorking())
+                imageView.setOpacity(0.8);
+        });
+        imageView.setOnMouseExited(mouseEvent -> {
+            if (!game.getTruck().isWorking())
+                imageView.setOpacity(1);
+        });
 
         imageView.setOnMouseClicked(mouseEvent -> {
-            imageView.setOpacity(1);
-            Game.getInstance().pause();
+            if (!game.getTruck().isWorking()) {
+                imageView.setOpacity(1);
+                Game.getInstance().pause();
 
-            double height = Screen.getPrimary().getBounds().getHeight();
-            double width = Screen.getPrimary().getBounds().getWidth();
+                double height = Screen.getPrimary().getBounds().getHeight();
+                double width = Screen.getPrimary().getBounds().getWidth();
 
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/truck.fxml"));
-            try {
-                stage.setScene(new Scene(loader.load(), width, height));
-            } catch (IOException e) {
-                e.printStackTrace();
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/truck.fxml"));
+                try {
+                    stage.setScene(new Scene(loader.load(), width, height));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                stage.setFullScreen(true);
+                stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+                stage.setResizable(false);
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.initOwner(((Node) (mouseEvent.getSource())).getScene().getWindow());
+                TruckController truckController = (TruckController) (loader.getController());
+                truckController.initiate(width, height);
+                stage.show();
             }
-            stage.setFullScreen(true);
-            stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-            stage.setResizable(false);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.initOwner(((Node) (mouseEvent.getSource())).getScene().getWindow());
-            TruckController truckController = (TruckController) (loader.getController());
-            truckController.initiate(width, height);
-            stage.show();
         });
-    }
-
-    public boolean isInTruck() {
-        return inTruck;
     }
 
     public int getCapacity() {
@@ -108,31 +170,51 @@ public class Truck {
         return upgradePrice;
     }
 
+    public void play() {
+        if (isWorking && truckAnimation.getCurrentRate() == 0.0) truckAnimation.play();
+    }
+
+    public void pause() {
+        if (isWorking) truckAnimation.pause();
+    }
+
     public void upgrade() {
         capacity += 10;
         fulCapacity += 10;
-        timeOfWork -= 2;
+        timeOfWork -= 1;
         level++;
         upgradePrice *= 1.2;
 
-        Image image = new Image(new File("src/resource/Truck/" + level + "_front.png").toURI().toString());
-        imageView.setImage(image);
+        right = new Image(new File("src/resource/Truck/" + level + "_right.png").toURI().toString());
+        left = new Image(new File("src/resource/Truck/" + level + "_left.png").toURI().toString());
+        imageView.setImage(new Image(new File("src/resource/Truck/" + level + "_front.png").toURI().toString()));
     }
 
     public boolean checkFinalLevel() {
         return level >= finalLevel;
     }
 
-    public ResultType go() {
-        if (timeRemaining > 0) return ResultType.EXISTED;
-        if (goods.isEmpty() && animals.isEmpty()) return ResultType.NOT_ENOUGH;
-        timeRemaining = timeOfWork;
-        loadPrice = calculatePrice();
-        inTruck = true;
-        return ResultType.SUCCESS;
+    public boolean isEmpty() {
+        return goods.isEmpty() && animals.isEmpty();
     }
 
-    private int calculatePrice() {
+    public void go() {
+        isWorking = true;
+        isBack = false;
+        imageView.setVisible(false);
+        mini.setVisible(true);
+        mini.setImage(right);
+        mini.setViewport(miniCells[0]);
+        coin.setVisible(true);
+        for (Node child : coin.getChildren()) {
+            if (child instanceof Label) {
+                ((Label) child).setText(String.valueOf(calculatePrice()));
+            }
+        }
+        truckAnimation.play(timeOfWork);
+    }
+
+    public int calculatePrice() {
         int loadPrice = 0;
         for (Good good : goods) {
             loadPrice += good.getPrice();
@@ -146,24 +228,28 @@ public class Truck {
         return loadPrice;
     }
 
-    public boolean isWorking() {
-        return timeRemaining > 0;
+    public int getLevel() {
+        return level;
     }
 
-    public boolean addAnimal(Animal animal) {
-        if (animal.getSpace() > capacity) return false;
+    public double getFullCapacity() {
+        return fulCapacity;
+    }
+
+    public boolean isWorking() {
+        return isWorking;
+    }
+
+    public void addAnimal(Animal animal) {
+        if (animal.getSpace() > capacity) return;
         capacity -= animal.getSpace();
         animals.add(animal);
-        inTruck = true;
-        return true;
     }
 
-    public boolean addGood(Good good) {
-        if (good.getSpace() > capacity) return false;
+    public void addGood(Good good) {
+        if (good.getSpace() > capacity) return;
         capacity -= good.getSpace();
         goods.add(good);
-        inTruck = true;
-        return true;
     }
 
     public HashSet<Animal> getAnimals() {
@@ -183,6 +269,7 @@ public class Truck {
     public Animal getAnimal(String name) {
         for (Animal animal : animals) {
             if (animal.getClass().getSimpleName().equalsIgnoreCase(name)) {
+                capacity += animal.getSpace();
                 animals.remove(animal);
                 return animal;
             }
@@ -202,6 +289,7 @@ public class Truck {
     public Good getGood(String name) {
         for (Good good : goods) {
             if (good.getClass().getSimpleName().equalsIgnoreCase(name)) {
+                capacity += good.getSpace();
                 goods.remove(good);
                 return good;
             }
@@ -218,28 +306,52 @@ public class Truck {
         return -1;
     }
 
-    public boolean isEmpty() {
-        return goods.isEmpty() && animals.isEmpty();
-    }
-
-   /* public void update() {
-        if (timeRemaining > 0) {
-            timeRemaining--;
-            if (timeRemaining == timeOfWork / 2) {
-                for (Good good : new HashSet<>(goods)) {
-                    getGood(good.getClass().getSimpleName(), 1);
-                }
-                for (Animal animal : new HashSet<>(animals)) {
-                    getAnimal(animal.getClass().getSimpleName(), 1);
-                }
-            }
-            if (timeRemaining == 0) {
-                Game.getInstance().decreaseCoin(-loadPrice);
+    public int getDomesticNumber(String name) {
+        int num = 0;
+        for (Animal animal : animals) {
+            if (animal.getClass().getSimpleName().equalsIgnoreCase(name)) {
+                num++;
             }
         }
-    }*/
+        return num;
+    }
 
-    public int getLevel() {
-        return level;
+    public int getWildNumber(String name) {
+        int num = 0;
+        for (Animal animal : animals) {
+            if (animal.getClass().getSimpleName().equalsIgnoreCase(name)) {
+                num++;
+            }
+        }
+        return num;
+    }
+
+    public int getGoodNumber(String name) {
+        int num = 0;
+        for (Good good : goods) {
+            if (good.getClass().getSimpleName().equalsIgnoreCase(name)) {
+                num++;
+            }
+        }
+        return num;
+    }
+
+    public void update(double v) {
+        if (v < preV) isBack = true;
+        preV = v;
+        if (!isBack) {
+            mini.setImage(right);
+            mini.setViewport(miniCells[((int) (v * timeOfWork * 4)) % 2]);
+            mini.setLayoutX(v * (miniFinishX - miniStartX) + miniStartX);
+        } else {
+            mini.setImage(left);
+            mini.setViewport(miniCells[((int) (v * timeOfWork * 4)) % 2]);
+            mini.setLayoutX((1 - v) * (miniFinishX - miniStartX) + miniStartX);
+        }
+        setXCoin();
+    }
+
+    private void setXCoin() {
+        coin.setLayoutX(mini.getLayoutX() + mini.getFitWidth() / 2 - coin.getPrefWidth() / 2);
     }
 }

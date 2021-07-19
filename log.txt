@@ -1419,3 +1419,146 @@
 19/07/2021 - 08:33:36, [INFO], User a
 19/07/2021 - 08:33:36, [INFO], a entered the game menu.
 19/07/2021 - 08:34:47, [INFO], The user closed the game.
+19/07/2021 - 08:52:28, [INFO], The user went to home.
+19/07/2021 - 08:52:28, [INFO], User a
+19/07/2021 - 08:52:28, [INFO], a entered the game menu.
+19/07/2021 - 08:53:57, [INFO], The user closed the game.
+19/07/2021 - 16:38:51, [INFO], User a
+19/07/2021 - 16:38:51, [INFO], a entered the game menu.
+19/07/2021 - 16:39:32, [INFO], The user closed the game.
+19/07/2021 - 16:40:19, [INFO], User a
+19/07/2021 - 16:40:19, [INFO], a entered the game menu.
+19/07/2021 - 16:40:39, [INFO], The user closed the game.
+19/07/2021 - 16:44:11, [INFO], User a
+19/07/2021 - 16:44:11, [INFO], a entered the game menu.
+19/07/2021 - 16:45:02, [INFO], The user closed the game.
+19/07/2021 - 16:49:28, [INFO], User a
+19/07/2021 - 16:49:28, [INFO], a entered the game menu.
+19/07/2021 - 16:49:38, [INFO], The user closed the game.
+19/07/2021 - 16:51:27, [INFO], User a
+19/07/2021 - 16:51:27, [INFO], a entered the game menu.
+19/07/2021 - 16:52:00, [INFO], The user closed the game.
+19/07/2021 - 16:52:50, [INFO], User a
+19/07/2021 - 16:52:50, [INFO], a entered the game menu.
+19/07/2021 - 16:53:11, [INFO], The user closed the game.
+19/07/2021 - 16:56:34, [INFO], User a
+19/07/2021 - 16:56:34, [INFO], a entered the game menu.
+19/07/2021 - 16:57:35, [INFO], The user closed the game.
+19/07/2021 - 17:00:17, [INFO], User a
+19/07/2021 - 17:00:17, [INFO], a entered the game menu.
+19/07/2021 - 17:00:30, [INFO], The user closed the game.
+19/07/2021 - 17:00:45, [INFO], User a
+19/07/2021 - 17:00:45, [INFO], a entered the game menu.
+19/07/2021 - 17:00:55, [INFO], The user logged out.
+19/07/2021 - 17:00:58, [INFO], The user closed the game.
+19/07/2021 - 17:09:51, [INFO], User a
+19/07/2021 - 17:09:51, [INFO], a entered the game menu.
+19/07/2021 - 17:10:08, [INFO], The user closed the game.
+19/07/2021 - 17:11:28, [INFO], User a
+19/07/2021 - 17:11:28, [INFO], a entered the game menu.
+19/07/2021 - 17:12:24, [INFO], The user closed the game.
+19/07/2021 - 17:12:55, [INFO], User a
+19/07/2021 - 17:12:55, [INFO], a entered the game menu.
+19/07/2021 - 17:13:43, [INFO], The user closed the game.
+19/07/2021 - 17:14:02, [INFO], User a
+19/07/2021 - 17:14:02, [INFO], a deleted his/her account.
+19/07/2021 - 17:14:05, [ERROR], The user entered a username not existing.
+19/07/2021 - 17:14:08, [INFO], User a
+19/07/2021 - 17:14:08, [INFO], a was added to the user list.
+19/07/2021 - 17:14:09, [ERROR], The user entered an empty username.
+19/07/2021 - 17:14:12, [INFO], User a
+19/07/2021 - 17:14:12, [INFO], a entered the game menu.
+19/07/2021 - 17:16:15, [INFO], The user closed the game.
+19/07/2021 - 17:18:51, [INFO], User a
+19/07/2021 - 17:18:51, [INFO], a entered the game menu.
+19/07/2021 - 17:19:20, [INFO], The user closed the game.
+19/07/2021 - 17:45:48, [INFO], User a
+19/07/2021 - 17:45:48, [INFO], a entered the game menu.
+19/07/2021 - 17:45:59, [INFO], The user closed the game.
+19/07/2021 - 17:47:31, [INFO], User a
+19/07/2021 - 17:47:31, [INFO], a entered the game menu.
+19/07/2021 - 17:47:56, [INFO], The user closed the game.
+19/07/2021 - 17:48:26, [INFO], User a
+19/07/2021 - 17:48:26, [INFO], a entered the game menu.
+19/07/2021 - 17:48:43, [INFO], The user closed the game.
+19/07/2021 - 17:50:19, [INFO], User a
+19/07/2021 - 17:50:19, [INFO], a entered the game menu.
+19/07/2021 - 17:52:08, [INFO], The user closed the game.
+19/07/2021 - 18:03:34, [INFO], User a
+19/07/2021 - 18:03:34, [INFO], a entered the game menu.
+19/07/2021 - 18:04:28, [INFO], The user closed the game.
+19/07/2021 - 18:06:21, [INFO], User a
+19/07/2021 - 18:06:21, [INFO], a entered the game menu.
+19/07/2021 - 18:06:36, [INFO], The user closed the game.
+19/07/2021 - 18:06:47, [INFO], User a
+19/07/2021 - 18:06:47, [INFO], a entered the game menu.
+19/07/2021 - 18:07:40, [INFO], The user closed the game.
+19/07/2021 - 19:24:16, [INFO], User a
+19/07/2021 - 19:24:16, [INFO], a entered the game menu.
+19/07/2021 - 19:26:50, [INFO], User a
+19/07/2021 - 19:26:50, [INFO], a entered the game menu.
+19/07/2021 - 19:30:58, [INFO], User a
+19/07/2021 - 19:30:58, [INFO], a entered the game menu.
+19/07/2021 - 19:31:23, [INFO], The user closed the game.
+19/07/2021 - 19:32:29, [INFO], User a
+19/07/2021 - 19:32:29, [INFO], a entered the game menu.
+19/07/2021 - 19:33:50, [INFO], The user closed the game.
+19/07/2021 - 19:35:46, [INFO], User a
+19/07/2021 - 19:35:46, [INFO], a entered the game menu.
+19/07/2021 - 19:36:22, [INFO], The user closed the game.
+19/07/2021 - 19:38:15, [INFO], User a
+19/07/2021 - 19:38:15, [INFO], a entered the game menu.
+19/07/2021 - 19:39:04, [INFO], The user closed the game.
+19/07/2021 - 19:41:22, [INFO], User a
+19/07/2021 - 19:41:22, [INFO], a entered the game menu.
+19/07/2021 - 19:42:17, [INFO], The user closed the game.
+19/07/2021 - 19:43:22, [INFO], User a
+19/07/2021 - 19:43:22, [INFO], a entered the game menu.
+19/07/2021 - 19:43:46, [INFO], The user closed the game.
+19/07/2021 - 19:45:57, [INFO], User a
+19/07/2021 - 19:45:57, [INFO], a entered the game menu.
+19/07/2021 - 19:46:12, [INFO], The user closed the game.
+19/07/2021 - 19:46:25, [INFO], User a
+19/07/2021 - 19:46:25, [INFO], a entered the game menu.
+19/07/2021 - 19:47:02, [INFO], The user closed the game.
+19/07/2021 - 19:51:26, [INFO], User a
+19/07/2021 - 19:51:26, [INFO], a entered the game menu.
+19/07/2021 - 19:51:45, [INFO], The user closed the game.
+19/07/2021 - 19:55:46, [INFO], User a
+19/07/2021 - 19:55:46, [INFO], a entered the game menu.
+19/07/2021 - 19:56:27, [INFO], The user closed the game.
+19/07/2021 - 19:58:04, [INFO], User a
+19/07/2021 - 19:58:04, [INFO], a entered the game menu.
+19/07/2021 - 19:58:45, [INFO], The user closed the game.
+19/07/2021 - 19:59:27, [INFO], User a
+19/07/2021 - 19:59:27, [INFO], a entered the game menu.
+19/07/2021 - 19:59:33, [INFO], The user closed the game.
+19/07/2021 - 20:00:08, [INFO], User a
+19/07/2021 - 20:00:08, [INFO], a entered the game menu.
+19/07/2021 - 20:00:53, [INFO], The user closed the game.
+19/07/2021 - 20:01:52, [INFO], The user closed the game.
+19/07/2021 - 20:02:07, [INFO], User a
+19/07/2021 - 20:02:07, [INFO], a entered the game menu.
+19/07/2021 - 20:04:16, [INFO], User a
+19/07/2021 - 20:04:16, [INFO], a entered the game menu.
+19/07/2021 - 20:04:40, [INFO], The user closed the game.
+19/07/2021 - 20:04:59, [INFO], User a
+19/07/2021 - 20:04:59, [INFO], a entered the game menu.
+19/07/2021 - 20:08:55, [INFO], The user closed the game.
+19/07/2021 - 20:12:38, [INFO], User a
+19/07/2021 - 20:12:38, [INFO], a entered the game menu.
+19/07/2021 - 20:12:45, [INFO], The user closed the game.
+19/07/2021 - 20:14:15, [ADMIN], The missions of the level 1 was changed!
+19/07/2021 - 20:14:15, [ADMIN], The users info was reset!
+19/07/2021 - 20:14:22, [INFO], User a
+19/07/2021 - 20:14:22, [INFO], a entered the game menu.
+19/07/2021 - 20:17:55, [INFO], The user closed the game.
+19/07/2021 - 20:21:14, [INFO], User a
+19/07/2021 - 20:21:14, [INFO], a entered the game menu.
+19/07/2021 - 20:23:09, [INFO], The user closed the game.
+19/07/2021 - 20:28:44, [INFO], User a
+19/07/2021 - 20:28:44, [INFO], a entered the game menu.
+19/07/2021 - 20:31:01, [INFO], The user closed the game.
+19/07/2021 - 20:35:10, [INFO], User a
+19/07/2021 - 20:35:10, [INFO], a entered the game menu.
+19/07/2021 - 20:37:27, [INFO], The user closed the game.

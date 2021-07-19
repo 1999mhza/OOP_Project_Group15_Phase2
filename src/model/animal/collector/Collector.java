@@ -53,7 +53,7 @@ public abstract class Collector extends Animal {
 
         Game game = Game.getInstance();
         for (Good good : game.getGoods()) {
-            if (Math.abs(good.getX() - getX()) + Math.abs(good.getY() - getY()) < 25) {
+            if (Math.sqrt(Math.pow(good.getX() - getX(), 2) + Math.pow(good.getY() - getY(), 2)) < 50) {
                 if (game.getWarehouse().addGood(good)) {
                     good.pause();
                     game.getRoot().getChildren().remove(good.getImageView());

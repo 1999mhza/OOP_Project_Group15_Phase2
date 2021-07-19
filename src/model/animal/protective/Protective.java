@@ -76,7 +76,7 @@ public abstract class Protective extends Animal {
 
         Game game = Game.getInstance();
         for (Wild wild : game.getWildAnimals()) {
-            if (Math.abs(wild.getX() - getX()) + Math.abs(wild.getY() - getY()) < 25) {
+            if (Math.sqrt(Math.pow(wild.getX() - getX(), 2) + Math.pow(wild.getY() - getY(), 2)) < 50) {
                 if (!wild.isInCage()) {
                     wild.pause();
                     pause();

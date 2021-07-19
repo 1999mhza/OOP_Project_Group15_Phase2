@@ -276,7 +276,7 @@
          </VBox>
       </children>
    </VBox>
-   <ImageView fx:id="road" fitHeight="150.0" fitWidth="250.0" layoutX="549.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="5.0">
+   <ImageView fx:id="road" fitHeight="100.0" fitWidth="250.0" layoutX="549.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="5.0">
       <image>
          <Image url="@../resource/road.png" />
       </image>
