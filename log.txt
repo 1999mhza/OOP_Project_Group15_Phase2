@@ -1632,3 +1632,12 @@
 19/07/2021 - 23:31:34, [INFO], a entered the game menu.
 19/07/2021 - 23:34:05, [INFO], The user logged out.
 19/07/2021 - 23:34:06, [INFO], The user closed the game.
+20/07/2021 - 00:35:33, [INFO], User a
+20/07/2021 - 00:35:33, [INFO], a entered the game menu.
+20/07/2021 - 00:35:35, [INFO], The user logged out.
+20/07/2021 - 00:35:43, [INFO], User amirali
+20/07/2021 - 00:35:43, [INFO], amirali entered the game menu.
+20/07/2021 - 00:35:47, [INFO], The user closed the game.
+20/07/2021 - 12:17:17, [INFO], User a
+20/07/2021 - 12:17:17, [INFO], a entered the game menu.
+20/07/2021 - 12:23:45, [INFO], The user closed the game.

@@ -126,16 +126,16 @@ public class Truck {
         imageView.setLayoutY(scale * (530 - game.getOldY()) + game.getNewY() - imageView.getFitHeight() / 2);
 
         imageView.setOnMouseEntered(mouseEvent -> {
-            if (!game.getTruck().isWorking())
+            if (!isWorking)
                 imageView.setOpacity(0.8);
         });
         imageView.setOnMouseExited(mouseEvent -> {
-            if (!game.getTruck().isWorking())
+            if (!isWorking)
                 imageView.setOpacity(1);
         });
 
         imageView.setOnMouseClicked(mouseEvent -> {
-            if (!game.getTruck().isWorking()) {
+            if (!isWorking) {
                 imageView.setOpacity(1);
                 Game.getInstance().pause();
 

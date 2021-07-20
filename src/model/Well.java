@@ -64,6 +64,15 @@ public class Well {
         imageView.setLayoutX(game.getScale() * (360 - game.getOldX()) + game.getNewX() - cells[0].getWidth());
         imageView.setLayoutY(game.getScale() * (165 - game.getOldY()) + game.getNewY() - cells[0].getHeight());
 
+        imageView.setOnMouseEntered(mouseEvent -> {
+            if (!isWorking)
+                imageView.setOpacity(0.8);
+        });
+        imageView.setOnMouseExited(mouseEvent -> {
+            if (!isWorking)
+                imageView.setOpacity(1);
+        });
+
         imageView.setOnMouseClicked(mouseEvent -> {
             if (isWorking) {
                 game.setResult("Well Is Working!");
@@ -77,6 +86,8 @@ public class Well {
                 game.setResult("Not Enough Coin!");
                 return;
             }
+
+            imageView.setOpacity(1);
             Game.getInstance().decreaseCoin(fillPrice);
             isWorking = true;
             wellAnimation.play();

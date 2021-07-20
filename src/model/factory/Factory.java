@@ -99,6 +99,15 @@ public abstract class Factory {
         imageView.setLayoutX(x - cells[0].getWidth() / 2);
         imageView.setLayoutY(y - cells[0].getHeight() / 2);
 
+        imageView.setOnMouseEntered(mouseEvent -> {
+            if (!isWorking)
+                imageView.setOpacity(0.8);
+        });
+        imageView.setOnMouseExited(mouseEvent -> {
+            if (!isWorking)
+                imageView.setOpacity(1);
+        });
+
         imageView.setOnMouseClicked(mouseEvent -> {
             if (isWorking) {
                 game.setResult("Factory Is Working!");
@@ -114,6 +123,8 @@ public abstract class Factory {
                 game.setResult("Not Enough Goods!");
                 return;
             }
+
+            imageView.setOpacity(1);
             number = i;
             progressBar.setVisible(true);
             isWorking = true;
