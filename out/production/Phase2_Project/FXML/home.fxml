@@ -15,6 +15,13 @@
    <ImageView fx:id="image" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../resource/back.png" />
    </ImageView>
+   <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" layoutX="275.0" layoutY="14.0" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 18; -fx-font-weight: bold;" visible="false" AnchorPane.topAnchor="5.0">
+      <graphic>
+         <ImageView fitHeight="70.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../resource/labelBack.png" />
+         </ImageView>
+      </graphic>
+   </Label>
    <VBox fx:id="vbox" alignment="CENTER" fillWidth="false" layoutX="150.0" layoutY="50.0" prefHeight="500.0" prefWidth="500.0" spacing="5.0" style="-fx-background-radius: 10;">
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 22; -fx-font-weight: bold;" text="Username">
          <graphic>
@@ -25,7 +32,7 @@
       </Label>
       <TextField fx:id="username" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" style="-fx-background-radius: 10; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10; -fx-font-size: 20; -fx-font-weight: bold;">
          <VBox.margin>
-            <Insets />
+            <Insets bottom="10.0" />
          </VBox.margin>
       </TextField>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 22; -fx-font-weight: bold;" text="Password">
@@ -37,26 +44,15 @@
       </Label>
       <PasswordField fx:id="password" alignment="CENTER" prefHeight="50.0" prefWidth="400.0" style="-fx-background-radius: 10; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10; -fx-font-size: 20; -fx-font-weight: bold;">
          <VBox.margin>
-            <Insets />
+            <Insets bottom="30.0" />
          </VBox.margin>
       </PasswordField>
-      <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 18; -fx-font-weight: bold;" visible="false">
-         <graphic>
-            <ImageView fitHeight="70.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../resource/labelBack.png" />
-            </ImageView>
-         </graphic>
-         <VBox.margin>
-            <Insets bottom="50.0" />
-         </VBox.margin>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="10.0">
-         <Button fx:id="login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: lawngreen; -fx-border-color: darkgreen; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="LOG IN" />
-         <Button fx:id="signup" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="SIGN UP" />
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="10.0">
-         <Button fx:id="delete" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: yellow; -fx-border-color: darkgoldenrod; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="DELETE" />
-         <Button fx:id="exit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="EXIT" />
-      </HBox>
+      <Button fx:id="login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: lawngreen; -fx-border-color: darkgreen; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="LOG IN" />
+      <Button fx:id="signup" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="SIGN UP" />
+      <Button fx:id="delete" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: yellow; -fx-border-color: darkgoldenrod; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="DELETE" />
    </VBox>
+   <HBox fx:id="hbox" alignment="BOTTOM_LEFT" layoutY="549.0" prefHeight="50.0" prefWidth="500.0" spacing="10.0" AnchorPane.bottomAnchor="5.0">
+      <Button fx:id="exit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="EXIT" />
+      <Button fx:id="setting" alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: plum; -fx-border-color: indigo; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="SETTING" />
+   </HBox>
 </AnchorPane>

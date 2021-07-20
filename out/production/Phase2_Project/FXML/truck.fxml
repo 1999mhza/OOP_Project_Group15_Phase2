@@ -24,7 +24,7 @@
                </image></ImageView>
             <Label fx:id="hd1n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hd1p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -34,9 +34,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg1" alignment="CENTER_LEFT" layoutX="285.0" layoutY="102.0" prefHeight="32.0" prefWidth="233.0">
@@ -47,7 +48,7 @@
                </image></ImageView>
             <Label fx:id="hg1n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hg1p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -57,9 +58,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg2" alignment="CENTER_LEFT" layoutX="285.0" layoutY="134.0" prefHeight="32.0" prefWidth="233.0">
@@ -70,7 +72,7 @@
                </image></ImageView>
             <Label fx:id="hg2n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hg2p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -80,9 +82,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg3" alignment="CENTER_LEFT" layoutX="285.0" layoutY="166.0" prefHeight="32.0" prefWidth="233.0">
@@ -93,7 +96,7 @@
                </image></ImageView>
             <Label fx:id="hg3n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hg3p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -103,9 +106,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg4" alignment="CENTER_LEFT" layoutX="285.0" layoutY="198.0" prefHeight="32.0" prefWidth="233.0">
@@ -116,7 +120,7 @@
                </image></ImageView>
             <Label fx:id="hg4n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hg4p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -126,9 +130,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg5" alignment="CENTER_LEFT" layoutX="285.0" layoutY="230.0" prefHeight="32.0" prefWidth="233.0">
@@ -139,7 +144,7 @@
                </image></ImageView>
             <Label fx:id="hg5n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hg5p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -149,9 +154,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg6" alignment="CENTER_LEFT" layoutX="285.0" layoutY="262.0" prefHeight="32.0" prefWidth="233.0">
@@ -162,7 +168,7 @@
                </image></ImageView>
             <Label fx:id="hg6n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hg6p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -172,9 +178,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hd2" alignment="CENTER_LEFT" layoutX="544.0" layoutY="134.0" prefHeight="32.0" prefWidth="233.0">
@@ -185,7 +192,7 @@
                </image></ImageView>
             <Label fx:id="hd2n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hd2p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -195,9 +202,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg7" alignment="CENTER_LEFT" layoutX="285.0" layoutY="294.0" prefHeight="32.0" prefWidth="233.0">
@@ -209,7 +217,7 @@
             </ImageView>
             <Label fx:id="hg7n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hg7p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -219,9 +227,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg8" alignment="CENTER_LEFT" layoutX="285.0" layoutY="326.0" prefHeight="32.0" prefWidth="233.0">
@@ -233,7 +242,7 @@
             </ImageView>
             <Label fx:id="hg8n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hg8p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -243,9 +252,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <Button fx:id="cancel" alignment="CENTER" contentDisplay="CENTER" layoutX="433.0" layoutY="535.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="CANCEL" AnchorPane.bottomAnchor="20.0" />
@@ -259,7 +269,7 @@
             </ImageView>
             <Label fx:id="hw1n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hw1p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -269,9 +279,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hw2" alignment="CENTER_LEFT" layoutX="285.0" layoutY="391.0" prefHeight="32.0" prefWidth="233.0">
@@ -283,7 +294,7 @@
             </ImageView>
             <Label fx:id="hw2n" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin></Label>
             <Label fx:id="hw2p" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -293,9 +304,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="+1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" layoutX="275.0" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 20; -fx-font-weight: bold;" textAlignment="CENTER" visible="false" AnchorPane.topAnchor="0.0">
@@ -317,7 +329,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </ImageView>
-            <Label fx:id="total" prefHeight="30.0" prefWidth="74.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
+            <Label fx:id="total" prefHeight="30.0" prefWidth="74.0" style="-fx-font-size: 20; -fx-font-weight: bold;" textFill="GOLD" />
          </children>
       </HBox>
       <ImageView fx:id="back" fitHeight="284.0" fitWidth="250.0" layoutX="533.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
@@ -337,7 +349,7 @@
             </ImageView>
             <Label fx:id="hg1n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hg1p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -348,9 +360,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg21" alignment="CENTER_LEFT" layoutX="26.0" layoutY="134.0" prefHeight="32.0" prefWidth="233.0">
@@ -362,7 +375,7 @@
             </ImageView>
             <Label fx:id="hg2n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hg2p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -373,9 +386,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg31" alignment="CENTER_LEFT" layoutX="26.0" layoutY="166.0" prefHeight="32.0" prefWidth="233.0">
@@ -387,7 +401,7 @@
             </ImageView>
             <Label fx:id="hg3n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hg3p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -398,9 +412,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg41" alignment="CENTER_LEFT" layoutX="26.0" layoutY="198.0" prefHeight="32.0" prefWidth="233.0">
@@ -412,7 +427,7 @@
             </ImageView>
             <Label fx:id="hg4n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hg4p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -423,9 +438,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg51" alignment="CENTER_LEFT" layoutX="26.0" layoutY="230.0" prefHeight="32.0" prefWidth="233.0">
@@ -437,7 +453,7 @@
             </ImageView>
             <Label fx:id="hg5n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hg5p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -448,9 +464,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg61" alignment="CENTER_LEFT" layoutX="26.0" layoutY="262.0" prefHeight="32.0" prefWidth="233.0">
@@ -462,7 +479,7 @@
             </ImageView>
             <Label fx:id="hg6n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hg6p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -473,9 +490,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg71" alignment="CENTER_LEFT" layoutX="26.0" layoutY="294.0" prefHeight="32.0" prefWidth="233.0">
@@ -487,7 +505,7 @@
             </ImageView>
             <Label fx:id="hg7n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hg7p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -498,9 +516,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hg81" alignment="CENTER_LEFT" layoutX="26.0" layoutY="326.0" prefHeight="32.0" prefWidth="233.0">
@@ -512,7 +531,7 @@
             </ImageView>
             <Label fx:id="hg8n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hg8p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -523,9 +542,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hw11" alignment="CENTER_LEFT" layoutX="26.0" layoutY="358.0" prefHeight="32.0" prefWidth="233.0">
@@ -537,7 +557,7 @@
             </ImageView>
             <Label fx:id="hw1n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hw1p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -548,9 +568,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hw21" alignment="CENTER_LEFT" layoutX="26.0" layoutY="390.0" prefHeight="32.0" prefWidth="233.0">
@@ -562,7 +583,7 @@
             </ImageView>
             <Label fx:id="hw2n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hw2p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -573,9 +594,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hd11" alignment="CENTER_LEFT" layoutX="26.0" layoutY="422.0" prefHeight="32.0" prefWidth="233.0">
@@ -587,7 +609,7 @@
             </ImageView>
             <Label fx:id="hd1n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hd1p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -598,9 +620,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
       <HBox fx:id="hd21" alignment="CENTER_LEFT" layoutX="26.0" layoutY="454.0" prefHeight="32.0" prefWidth="233.0">
@@ -612,7 +635,7 @@
             </ImageView>
             <Label fx:id="hd2n1" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
             <Label fx:id="hd2p1" alignment="CENTER" prefHeight="30.0" prefWidth="45.0" style="-fx-font-size: 20; -fx-font-weight: bold" />
@@ -623,9 +646,10 @@
             </ImageView>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="-1">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="5.0" right="2.0" />
                </HBox.margin>
             </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-radius: 5; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 15; -fx-font-weight: bold;" text="all" />
          </children>
       </HBox>
    </children>

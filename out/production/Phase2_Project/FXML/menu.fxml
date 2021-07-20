@@ -18,9 +18,10 @@
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 25; -fx-background-color: lawngreen; -fx-border-color: darkgreen; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 15; -fx-font-weight: bold;" text="COMPLETED" />
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 25; -fx-background-color: yellow; -fx-border-color: darkgoldenrod; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 15; -fx-font-weight: bold;" text="PRIZED" />
    </HBox>
-   <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-      <Button fx:id="logout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: yellow; -fx-border-color: darkgoldenrod; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="LOG OUT" />
+   <HBox fx:id="hbox" alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0" AnchorPane.bottomAnchor="5.0">
       <Button fx:id="exit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: tomato; -fx-border-color: darkred; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="EXIT" />
+      <Button fx:id="setting" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: plum; -fx-border-color: indigo; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="SETTING" />
+      <Button fx:id="logout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: yellow; -fx-border-color: darkgoldenrod; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="LOG OUT" />
    </HBox>
    <VBox alignment="CENTER" layoutX="689.0" layoutY="20.0" prefHeight="110.0" prefWidth="100.0" style="-fx-border-color: darkblue; -fx-border-radius: 20; -fx-border-width: 5; -fx-background-color: lightskyblue; -fx-background-radius: 25;" AnchorPane.topAnchor="20.0">
       <children>
