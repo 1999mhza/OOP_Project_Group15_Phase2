@@ -211,9 +211,9 @@ public class MissionManager {
         // ---------- Enter the Specifications -----------
         level = 1;
 
-        numberOfInitialCoins = 10000;
+        numberOfInitialCoins = 1000;
 
-        //domesticAnimals.put("Chicken", 1);
+        domesticAnimals.put("Chicken", 1);
         //domesticAnimals.put("Sheep", 1);
 
         //protectiveAnimals.put("Dog", 2);
@@ -228,15 +228,15 @@ public class MissionManager {
         factoriesSet.add("SewingFactory");
         factoriesSet.add("Incubator");*/
 
-        wildAnimalsTime.put("Lion", new ArrayList<>(Arrays.asList(2.0, 6.0)));
-        wildAnimalsTime.put("Bear", new ArrayList<>(Arrays.asList(20.0, 21.0)));
+        //wildAnimalsTime.put("Lion", new ArrayList<>(Arrays.asList(2.0, 6.0)));
+        //wildAnimalsTime.put("Bear", new ArrayList<>(Arrays.asList(20.0, 21.0)));
 
         //tasksMap.put("Egg", 20);
         tasksMap.put("Flour", 10);
         tasksMap.put("Chicken", 10);
         //tasksMap.put("Egg", 10);
         //tasksMap.put("Buffalo", 3);
-        tasksMap.put("Coin", 50000);
+        tasksMap.put("Coin", 5000);
 
         maxPrizeTime = 30;
         prize = 50;

@@ -18,7 +18,7 @@ public class FinishController {
     public Label reward;
     public Label bank;
 
-    public void initiate(String username, MediaPlayer winMeida, MediaPlayer homeMedia, MediaPlayer gameMedia, double width, double height, int coinNumber, int timeSecond, int rewardValue, int bankValue) {
+    public void initiate(String username, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, double width, double height, int coinNumber, int timeSecond, int rewardValue, int bankValue) {
 
         ok.setOnMousePressed(event -> ok.setStyle("""
                 -fx-background-radius: 50;
@@ -55,8 +55,8 @@ public class FinishController {
                 -fx-font-size: 19;
                 -fx-font-weight: bold"""));
         ok.setOnAction(event -> {
-            winMeida.stop();
-            winMeida.seek(Duration.ZERO);
+            winMedia.stop();
+            winMedia.seek(Duration.ZERO);
             homeMedia.play();
             ((Node) (event.getSource())).getScene().getWindow().hide();
             Stage stage = (Stage) (((Stage) (((Node) (event.getSource())).getScene().getWindow())).getOwner());
@@ -67,7 +67,7 @@ public class FinishController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((MenuController) (loader.getController())).initiate(username, homeMedia, gameMedia, width, height);
+            ((MenuController) (loader.getController())).initiate(username, homeMedia, gameMedia, winMedia, width, height);
         });
 
         coin.setText(String.valueOf(coinNumber));

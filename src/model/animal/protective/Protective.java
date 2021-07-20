@@ -9,7 +9,6 @@ import model.animal.wild.Wild;
 import java.io.File;
 
 public abstract class Protective extends Animal {
-    protected boolean found;
     protected int currentAnimation;
 
     protected BattleAnimation battleAnimation;
@@ -18,7 +17,6 @@ public abstract class Protective extends Animal {
 
     public Protective(int price) {
         super(price, Integer.MAX_VALUE, Integer.MAX_VALUE, 1.0);
-        found = false;
         currentAnimation = 1;
     }
 
@@ -42,41 +40,45 @@ public abstract class Protective extends Animal {
     }
 
     @Override
-    public void move() {
+    public void update(double v) {
+
+        Game game = Game.getInstance();
+        speed = defaultSpeed;
+        for (Wild wild : game.getWildAnimals()) {
+            if (wild.isFree()) {
+                speed = 2 * defaultSpeed;
+                break;
+            }
+        }
+
+        v = (speed / defaultSpeed * v) % 1.0;
+        super.update(v);
+
         double distance = -1;
 
-        for (Wild wild : Game.getInstance().getWildAnimals()) {
-            if (!wild.isInCage()) {
+        for (Wild wild : game.getWildAnimals()) {
+            if (wild.isFree()) {
                 double dis = Math.abs(wild.getY() - getY()) + Math.abs(wild.getX() - getX());
                 if (distance == -1 || dis < distance) {
                     distance = dis;
-                    if (wild.getX() - getX() == 0) angle = wild.getY() - getY() > 0 ? 90 : -90;
-                    else
+                    if (wild.getX() - getX() == 0) {
+                        angle = wild.getY() - getY() > 0 ? 90 : -90;
+                        int direction = ((int) ((angle + 360.0 + 22.5) / 45.0)) % 8;
+                        imageView.setImage(images[direction]);
+                        imageView.setViewport(cells[direction][((int) (v * 24)) % 24]);
+                    } else {
                         angle = Math.toDegrees(Math.atan((wild.getY() - getY()) / (wild.getX() - getX())) + (wild.getX() - getX() > 0 ? 0 : Math.PI));
+                        int direction = ((int) ((angle + 360.0 + 22.5) / 45.0)) % 8;
+                        imageView.setImage(images[direction]);
+                        imageView.setViewport(cells[direction][((int) (v * 24)) % 24]);
+                    }
                 }
             }
         }
 
-        if (distance != -1) {
-            found = true;
-            speed = 2 * defaultSpeed;
-        } else {
-            found = false;
-            speed = defaultSpeed;
-        }
-
-        super.move();
-    }
-
-    @Override
-    public void update(double v) {
-        v = (speed / defaultSpeed * v) % 1.0;
-        super.update(v);
-
-        Game game = Game.getInstance();
         for (Wild wild : game.getWildAnimals()) {
             if (Math.sqrt(Math.pow(wild.getX() - getX(), 2) + Math.pow(wild.getY() - getY(), 2)) < 50) {
-                if (!wild.isInCage()) {
+                if (wild.isFree()) {
                     wild.pause();
                     pause();
                     game.getRoot().getChildren().remove(wild.getImageView());
@@ -87,8 +89,12 @@ public abstract class Protective extends Animal {
                         game.getRoot().getChildren().remove(imageView);
                     });
                     currentAnimation = 2;
+
+                    imageView.setImage(battleImage);
+                    imageView.setViewport(battleCells[0]);
                     imageView.setLayoutX(imageView.getLayoutX() + (cells[((int) ((angle + 360.0 + 22.5) / 45.0)) % 8][0].getWidth() - battleCells[0].getWidth()) / 2);
                     imageView.setLayoutY(imageView.getLayoutY() + (cells[((int) ((angle + 360.0 + 22.5) / 45.0)) % 8][0].getHeight() - battleCells[0].getHeight()) / 2);
+
                     battleAnimation.play();
                     return;
                 }
@@ -97,12 +103,8 @@ public abstract class Protective extends Animal {
     }
 
     public void updateBattle(double v) {
-        int num = (int) (v * 19.05);
-        if (num >= 20) num = 20;
-        if (num < 0) num = 0;
-
         imageView.setImage(battleImage);
-        imageView.setViewport(battleCells[num]);
+        imageView.setViewport(battleCells[((int) (v * 20)) % 20]);
     }
 
     @Override

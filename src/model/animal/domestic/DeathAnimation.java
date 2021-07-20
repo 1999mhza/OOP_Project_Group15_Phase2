@@ -1,5 +1,6 @@
 package model.animal.domestic;
 
+import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 
@@ -10,6 +11,7 @@ public class DeathAnimation extends Transition {
         this.domestic = domestic;
         setCycleDuration(Duration.millis(1000.0));
         setCycleCount(1);
+        setInterpolator(Interpolator.LINEAR);
     }
 
     @Override

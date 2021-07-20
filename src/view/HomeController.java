@@ -2,6 +2,7 @@ package view;
 
 import controller.Logger;
 import controller.UserManager;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -9,12 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -23,13 +26,17 @@ public class HomeController {
     public Button signup;
     public Button delete;
     public Button exit;
+    public Button setting;
     public TextField username;
     public TextField password;
     public Label result;
     public ImageView image;
     public VBox vbox;
+    public HBox hbox;
 
-    public void initiate(MediaPlayer homeMedia, MediaPlayer gameMedia, double width, double height) {
+    private FadeTransition fadeTransition;
+
+    public void initiate(MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, double width, double height) {
 
         double s = Math.min(height / image.getImage().getHeight(), width / image.getImage().getWidth());
         image.setFitHeight(s * image.getImage().getHeight());
@@ -40,9 +47,17 @@ public class HomeController {
         vbox.setLayoutX((width - vbox.getPrefWidth()) / 2);
         vbox.setLayoutY((height - vbox.getPrefHeight()) / 2);
 
+        hbox.setLayoutX((width - image.getFitWidth()) / 2 + 5);
+
         UserManager userManager = UserManager.getInstance();
 
         result.setVisible(false);
+        result.setPrefWidth(s * result.getPrefWidth());
+        result.setPrefHeight(s * result.getPrefHeight());
+        result.setLayoutX(s * (result.getLayoutX() - image.getImage().getWidth() / 2) + width / 2);
+        fadeTransition = new FadeTransition(Duration.seconds(1), result);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.0);
 
         login.setOnMousePressed(event -> login.setStyle("""
                 -fx-background-radius: 50;
@@ -79,7 +94,7 @@ public class HomeController {
                 -fx-font-size: 19;
                 -fx-font-weight: bold"""));
         login.setOnAction(event -> {
-            result.setText("");
+            setResult("");
             result.setVisible(true);
 
             String username = this.username.getText();
@@ -90,20 +105,20 @@ public class HomeController {
 
             if (username.length() <= 0) {
                 Logger.log("error", "The user entered an empty username.");
-                result.setText("Empty Username!");
+                setResult("Empty Username!");
                 return;
             }
 
             if (!userManager.checkUserExists(username)) {
                 Logger.log("error", "The user entered a username not existing.");
-                result.setText("No Username!");
+                setResult("No Username!");
                 return;
             }
 
             Logger.log("info", "User " + username);
             if (userManager.checkIncorrectPassword(username, password)) {
                 Logger.log("error", "The user entered an incorrect password.");
-                result.setText("Incorrect Password!");
+                setResult("Incorrect Password!");
                 return;
             }
 
@@ -117,7 +132,7 @@ public class HomeController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((MenuController) (loader.getController())).initiate(username, homeMedia, gameMedia, width, height);
+            ((MenuController) (loader.getController())).initiate(username, homeMedia, gameMedia, winMedia, width, height);
         });
 
         signup.setOnMousePressed(event -> signup.setStyle("""
@@ -155,7 +170,7 @@ public class HomeController {
                 -fx-font-size: 19;
                 -fx-font-weight: bold"""));
         signup.setOnAction(event -> {
-            result.setText("");
+            setResult("");
             result.setVisible(true);
 
             String username = this.username.getText();
@@ -166,32 +181,32 @@ public class HomeController {
 
             if (username.length() <= 0) {
                 Logger.log("error", "The user entered an empty username.");
-                result.setText("Empty Username!");
+                setResult("Empty Username!");
                 return;
             }
 
             if (userManager.checkUserExists(username)) {
                 Logger.log("error", "The user entered a username existing.");
-                result.setText("Duplicate Username!");
+                setResult("Duplicate Username!");
                 return;
             }
 
             if (!userManager.checkUsername(username)) {
                 Logger.log("error", "The user entered a inappropriate username.");
-                result.setText("Bad Username!");
+                setResult("Bad Username!");
                 return;
             }
 
             Logger.log("info", "User " + username);
             if (!userManager.checkPassword(password)) {
                 Logger.log("error", "The user entered a inappropriate password.");
-                result.setText("Bad Password!");
+                setResult("Bad Password!");
                 return;
             }
 
             Logger.log("info", username + " was added to the user list.");
             userManager.addUser(username, password);
-            result.setText("Successful Sign Up!");
+            setResult("Successful Sign Up!");
         });
 
         delete.setOnMousePressed(event -> delete.setStyle("""
@@ -229,7 +244,7 @@ public class HomeController {
                 -fx-font-size: 19;
                 -fx-font-weight: bold"""));
         delete.setOnAction(event -> {
-            result.setText("");
+            setResult("");
             result.setVisible(true);
 
             String username = this.username.getText();
@@ -240,26 +255,26 @@ public class HomeController {
 
             if (username.length() <= 0) {
                 Logger.log("error", "The user entered an empty username.");
-                result.setText("Empty Username!");
+                setResult("Empty Username!");
                 return;
             }
 
             if (!userManager.checkUserExists(username)) {
                 Logger.log("error", "The user entered a username not existing.");
-                result.setText("No Username!");
+                setResult("No Username!");
                 return;
             }
 
             Logger.log("info", "User " + username);
             if (userManager.checkIncorrectPassword(username, password)) {
                 Logger.log("error", "The user entered an incorrect password.");
-                result.setText("Incorrect Password!");
+                setResult("Incorrect Password!");
                 return;
             }
 
             Logger.log("info", username + " deleted his/her account.");
             userManager.removeUser(username);
-            result.setText("Successful Delete!");
+            setResult("Successful Delete!");
         });
 
         exit.setOnMousePressed(event -> exit.setStyle("""
@@ -313,5 +328,63 @@ public class HomeController {
             stage.initOwner(((Node) (event.getSource())).getScene().getWindow());
             stage.show();
         });
+
+        setting.setOnMousePressed(event -> setting.setStyle("""
+                -fx-background-radius: 50;
+                -fx-background-color: lavender;
+                -fx-border-color:  indigo;
+                -fx-border-width: 5;
+                -fx-border-radius: 50;
+                -fx-font-size: 19;
+                -fx-font-weight: bold"""));
+        setting.setOnMouseReleased(event -> {
+            if (setting.isHover()) setting.setStyle("""
+                    -fx-background-radius: 50;
+                    -fx-background-color: medium purple;
+                    -fx-border-color:  indigo;
+                    -fx-border-width: 5;
+                    -fx-border-radius: 50;
+                    -fx-font-size: 19;
+                    -fx-font-weight: bold""");
+        });
+        setting.setOnMouseEntered(event -> setting.setStyle("""
+                -fx-background-radius: 50;
+                -fx-background-color: mediumpurple;
+                -fx-border-color:  indigo;
+                -fx-border-width: 5;
+                -fx-border-radius: 50;
+                -fx-font-size: 19;
+                -fx-font-weight: bold"""));
+        setting.setOnMouseExited(event -> setting.setStyle("""
+                -fx-background-radius: 50;
+                -fx-background-color:  plum;
+                -fx-border-color:  indigo;
+                -fx-border-width: 5;
+                -fx-border-radius: 50;
+                -fx-font-size: 19;
+                -fx-font-weight: bold"""));
+        setting.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/option_dialog.fxml"));
+            Stage stage = new Stage();
+            try {
+                Scene scene = new Scene(loader.load());
+                scene.setFill(Color.TRANSPARENT);
+                stage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.initStyle(StageStyle.UNDECORATED);
+            ((OptionController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.initOwner(((Node) (event.getSource())).getScene().getWindow());
+            stage.show();
+        });
+    }
+
+    public void setResult(String s) {
+        result.setVisible(true);
+        result.setText(s);
+        fadeTransition.playFromStart();
     }
 }

@@ -26,6 +26,13 @@ public class Main extends Application {
         MediaPlayer gameMedia = new MediaPlayer(new Media(new File("src/resource/Sounds/Game.m4a").toURI().toString()));
         gameMedia.setOnEndOfMedia(() -> gameMedia.seek(Duration.ZERO));
 
+        MediaPlayer winMedia = new MediaPlayer(new Media(new File("src/resource/Sounds/Win.mp3").toURI().toString()));
+        winMedia.setOnEndOfMedia(() -> winMedia.seek(Duration.ZERO));
+
+        homeMedia.setVolume(0.5);
+        gameMedia.setVolume(0.5);
+        winMedia.setVolume(0.5);
+
         homeMedia.play();
 
         double height = Screen.getPrimary().getBounds().getHeight();
@@ -38,7 +45,7 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         HomeController homeController = (HomeController) (loader.getController());
-        homeController.initiate(homeMedia, gameMedia, width, height);
+        homeController.initiate(homeMedia, gameMedia, winMedia, width, height);
         stage.show();
     }
 

@@ -1,15 +1,18 @@
 package model.animal.domestic;
 
+import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.util.Duration;
+import model.Grass;
 
 public class EatAnimation extends Transition {
     private Domestic domestic;
 
     public EatAnimation(Domestic domestic) {
         this.domestic = domestic;
-        setCycleDuration(Duration.millis(500));
-        setCycleCount(1);
+        setCycleDuration(Duration.millis(1000));
+        setCycleCount(-1);
+        setInterpolator(Interpolator.LINEAR);
     }
 
     @Override

@@ -110,7 +110,7 @@ public class GameController {
     private double width;
     private double height;
 
-    public void initiate(String username, int level, MediaPlayer homeMedia, MediaPlayer gameMedia, double width, double height) {
+    public void initiate(String username, int level, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, double width, double height) {
 
         this.username = username;
         this.level = level;
@@ -154,7 +154,6 @@ public class GameController {
         labelBack.setFitHeight(s * labelBack.getFitHeight());
 
         result.setLayoutX(s * (result.getLayoutX() - image.getImage().getWidth() / 2) + width / 2);
-        result.setLayoutY(s * (result.getLayoutY() - image.getImage().getHeight() / 2) + height / 2);
         result.setPrefWidth(s * result.getPrefWidth());
         result.setPrefHeight(s * result.getPrefHeight());
         result.setVisible(false);
@@ -169,7 +168,7 @@ public class GameController {
         HBox hBox = (HBox) time.getParent();
         hBox.setLayoutX((width + image.getFitWidth()) / 2 - 5 - hBox.getPrefWidth());
 
-        Game.initiateGame(width, height, homeMedia, gameMedia, level, username, parent.getPrefWidth(), parent.getPrefHeight(), parent, (AnchorPane) (parent.getParent()), s, image.getImage().getWidth() / 2, image.getImage().getHeight() / 2, width / 2, height / 2, result, coin, time, labels, labels1, imageViews, road);
+        Game.initiateGame(width, height, homeMedia, gameMedia, winMedia, level, username, parent.getPrefWidth(), parent.getPrefHeight(), parent, (AnchorPane) (parent.getParent()), s, image.getImage().getWidth() / 2, image.getImage().getHeight() / 2, width / 2, height / 2, result, coin, time, labels, labels1, imageViews, road);
         Game game = Game.getInstance();
         game.initiate();
 
@@ -221,7 +220,7 @@ public class GameController {
                 e.printStackTrace();
             }
             stage.initStyle(StageStyle.UNDECORATED);
-            ((PauseController) (loader.getController())).initiate(username, homeMedia, gameMedia, width, height);
+            ((PauseController) (loader.getController())).initiate(username, homeMedia, gameMedia, winMedia, width, height);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initOwner(((Node) (event.getSource())).getScene().getWindow());
@@ -482,18 +481,18 @@ public class GameController {
 
         button.setOnMousePressed(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: lightpink;"""));
+                -fx-background-color: lavender;"""));
         button.setOnMouseReleased(event -> {
             if (button.isHover()) button.setStyle("""
                     -fx-background-radius: 20;
-                    -fx-background-color: indianred;""");
+                    -fx-background-color: mediumpurple;""");
         });
         button.setOnMouseEntered(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: indianred;"""));
+                -fx-background-color: mediumpurple;"""));
         button.setOnMouseExited(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: tomato;"""));
+                -fx-background-color: plum;"""));
         button.setOnAction(event -> {
             if (well.isWorking()) {
                 game.setResult("Well Is Working!");
@@ -530,18 +529,18 @@ public class GameController {
 
         button.setOnMousePressed(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: lightpink;"""));
+                -fx-background-color: lavender;"""));
         button.setOnMouseReleased(event -> {
             if (button.isHover()) button.setStyle("""
                     -fx-background-radius: 20;
-                    -fx-background-color: indianred;""");
+                    -fx-background-color: mediumpurple;""");
         });
         button.setOnMouseEntered(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: indianred;"""));
+                -fx-background-color: mediumpurple;"""));
         button.setOnMouseExited(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: tomato;"""));
+                -fx-background-color: plum;"""));
         button.setOnAction(event -> {
             if (warehouse.getUpgradePrice() > game.getCoin()) {
                 game.setResult("Not Enough Coin");
@@ -574,18 +573,18 @@ public class GameController {
 
         button.setOnMousePressed(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: lightpink;"""));
+                -fx-background-color: lavender;"""));
         button.setOnMouseReleased(event -> {
             if (button.isHover()) button.setStyle("""
                     -fx-background-radius: 20;
-                    -fx-background-color: indianred;""");
+                    -fx-background-color: mediumpurple;""");
         });
         button.setOnMouseEntered(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: indianred;"""));
+                -fx-background-color: mediumpurple;"""));
         button.setOnMouseExited(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: tomato;"""));
+                -fx-background-color: plum;"""));
         button.setOnAction(event -> {
             if (truck.isWorking()) {
                 game.setResult("Truck Is Working!");
@@ -620,18 +619,18 @@ public class GameController {
 
         button.setOnMousePressed(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: lightpink;"""));
+                -fx-background-color: lavender;"""));
         button.setOnMouseReleased(event -> {
             if (button.isHover()) button.setStyle("""
                     -fx-background-radius: 20;
-                    -fx-background-color: indianred;""");
+                    -fx-background-color: mediumpurple;""");
         });
         button.setOnMouseEntered(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: indianred;"""));
+                -fx-background-color: mediumpurple;"""));
         button.setOnMouseExited(event -> button.setStyle("""
                 -fx-background-radius: 20;
-                -fx-background-color: tomato;"""));
+                -fx-background-color: plum;"""));
         button.setOnAction(event -> {
             if (cage.getUpgradePrice() > game.getCoin()) {
                 game.setResult("Not Enough Coin");

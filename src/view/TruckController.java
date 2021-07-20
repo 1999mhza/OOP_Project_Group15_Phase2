@@ -324,39 +324,73 @@ public class TruckController {
         for (int i = 0; i < hds.length; i++) {
             for (Node child : hds[i].getChildren()) {
                 if (child instanceof Button) {
-                    int finalI = i;
-                    ((Button) child).setOnAction(event -> {
-                        DomesticList domesticList = DomesticList.getDomestic(dns[finalI]);
-                        int space = game.getDomesticSpace(domesticList.getClassName());
-                        if (space == -1) {
-                            setResult("Not Enough Object!");
-                            return;
-                        }
-                        if (truck.getCapacity() < space) {
-                            setResult("Not Enough Capacity!");
-                        } else {
-                            truck.addAnimal(game.getDomestic(domesticList.getClassName()));
-                            game.updateTask(domesticList.getClassName(), false);
-                            format();
-                        }
-                    });
+                    if (!((Button) child).getText().equalsIgnoreCase("all")) {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = game.getDomesticSpace(dns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            if (truck.getCapacity() < space) {
+                                setResult("Not Enough Capacity!");
+                            } else {
+                                truck.addAnimal(game.getDomestic(dns[finalI]));
+                                format();
+                            }
+                        });
+                    } else {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = game.getDomesticSpace(dns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            int end = game.getDomesticNumber(dns[finalI]);
+                            for (int j = 0; j < end; j++) {
+                                if (truck.getCapacity() < space) {
+                                    setResult("Not Enough Capacity!");
+                                    return;
+                                } else {
+                                    truck.addAnimal(game.getDomestic(dns[finalI]));
+                                    format();
+                                }
+                            }
+                        });
+                    }
                 }
             }
         }
         for (int i = 0; i < hds1.length; i++) {
             for (Node child : hds1[i].getChildren()) {
                 if (child instanceof Button) {
-                    int finalI = i;
-                    ((Button) child).setOnAction(event -> {
-                        DomesticList domesticList = DomesticList.getDomestic(dns[finalI]);
-                        int space = truck.getAnimalSpace(domesticList.getClassName());
-                        if (space == -1) {
-                            setResult("Not Enough Object!");
-                            return;
-                        }
-                        game.addDomestic((Domestic) truck.getAnimal(domesticList.getClassName()));
-                        format();
-                    });
+                    if (!((Button) child).getText().equalsIgnoreCase("all")) {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = truck.getAnimalSpace(dns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            game.addDomestic((Domestic) truck.getAnimal(dns[finalI]));
+                            format();
+                        });
+                    } else {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = truck.getAnimalSpace(dns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            int end = truck.getDomesticNumber(dns[finalI]);
+                            for (int j = 0; j < end; j++) {
+                                game.addDomestic((Domestic) truck.getAnimal(dns[finalI]));
+                                format();
+                            }
+                        });
+                    }
                 }
             }
         }
@@ -364,42 +398,81 @@ public class TruckController {
         for (int i = 0; i < hws.length; i++) {
             for (Node child : hws[i].getChildren()) {
                 if (child instanceof Button) {
-                    int finalI = i;
-                    ((Button) child).setOnAction(event -> {
-                        WildList wildList = WildList.getWild(wns[finalI]);
-                        int space = warehouse.getWildSpace(wildList.getClassName());
-                        if (space == -1) {
-                            setResult("Not Enough Object!");
-                            return;
-                        }
-                        if (truck.getCapacity() < space) {
-                            setResult("Not Enough Capacity!");
-                        } else {
-                            truck.addAnimal(warehouse.getWild(wildList.getClassName()));
-                            format();
-                        }
-                    });
+                    if (!((Button) child).getText().equalsIgnoreCase("all")) {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = warehouse.getWildSpace(wns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            if (truck.getCapacity() < space) {
+                                setResult("Not Enough Capacity!");
+                            } else {
+                                truck.addAnimal(warehouse.getWild(wns[finalI]));
+                                format();
+                            }
+                        });
+                    } else {int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = warehouse.getWildSpace(wns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            int end = game.getWildNumber(wns[finalI]);
+                            for (int j = 0; j < end; j++) {
+                                if (truck.getCapacity() < space) {
+                                    setResult("Not Enough Capacity!");
+                                    return;
+                                } else {
+                                    truck.addAnimal(warehouse.getWild(wns[finalI]));
+                                    format();
+                                }
+                            }
+                        });
+                    }
                 }
             }
         }
         for (int i = 0; i < hws1.length; i++) {
             for (Node child : hws1[i].getChildren()) {
                 if (child instanceof Button) {
-                    int finalI = i;
-                    ((Button) child).setOnAction(event -> {
-                        WildList wildList = WildList.getWild(wns[finalI]);
-                        int space = truck.getAnimalSpace(wildList.getClassName());
-                        if (space == -1) {
-                            setResult("Not Enough Object!");
-                            return;
-                        }
-                        if (warehouse.getCapacity() < space) {
-                            setResult("Not Enough Capacity!");
-                        } else {
-                            warehouse.addWild((Wild) truck.getAnimal(wildList.getClassName()));
-                            format();
-                        }
-                    });
+                    if (!((Button) child).getText().equalsIgnoreCase("all")) {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = truck.getAnimalSpace(wns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            if (warehouse.getCapacity() < space) {
+                                setResult("Not Enough Capacity!");
+                            } else {
+                                warehouse.addWild((Wild) truck.getAnimal(wns[finalI]));
+                                format();
+                            }
+                        });
+                    } else {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = truck.getAnimalSpace(wns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            int end = truck.getWildNumber(wns[finalI]);
+                            for (int j = 0; j < end; j++) {
+                                if (warehouse.getCapacity() < space) {
+                                    setResult("Not Enough Capacity!");
+                                    return;
+                                } else {
+                                    warehouse.addWild((Wild) truck.getAnimal(wns[finalI]));
+                                    format();
+                                }
+                            }
+                        });
+                    }
                 }
             }
         }
@@ -407,42 +480,82 @@ public class TruckController {
         for (int i = 0; i < hgs.length; i++) {
             for (Node child : hgs[i].getChildren()) {
                 if (child instanceof Button) {
-                    int finalI = i;
-                    ((Button) child).setOnAction(event -> {
-                        GoodList goodList = GoodList.getGood(gns[finalI]);
-                        int space = warehouse.getGoodSpace(goodList.getClassName());
-                        if (space == -1) {
-                            setResult("Not Enough Object!");
-                            return;
-                        }
-                        if (truck.getCapacity() < space) {
-                            setResult("Not Enough Capacity!");
-                        } else {
-                            truck.addGood(warehouse.getGood(goodList.getClassName()));
-                            format();
-                        }
-                    });
+                    if (!((Button) child).getText().equalsIgnoreCase("all")) {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = warehouse.getGoodSpace(gns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            if (truck.getCapacity() < space) {
+                                setResult("Not Enough Capacity!");
+                            } else {
+                                truck.addGood(warehouse.getGood(gns[finalI]));
+                                format();
+                            }
+                        });
+                    } else {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = warehouse.getGoodSpace(gns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            int end = game.getGoodNumber(gns[finalI]);
+                            for (int j = 0; j < end; j++) {
+                                if (truck.getCapacity() < space) {
+                                    setResult("Not Enough Capacity!");
+                                    return;
+                                } else {
+                                    truck.addGood(warehouse.getGood(gns[finalI]));
+                                    format();
+                                }
+                            }
+                        });
+                    }
                 }
             }
         }
         for (int i = 0; i < hgs1.length; i++) {
             for (Node child : hgs1[i].getChildren()) {
                 if (child instanceof Button) {
-                    int finalI = i;
-                    ((Button) child).setOnAction(event -> {
-                        GoodList goodList = GoodList.getGood(gns[finalI]);
-                        int space = truck.getGoodSpace(goodList.getClassName());
-                        if (space == -1) {
-                            setResult("Not Enough Object!");
-                            return;
-                        }
-                        if (warehouse.getCapacity() < space) {
-                            setResult("Not Enough Capacity!");
-                        } else {
-                            warehouse.addGood(truck.getGood(goodList.getClassName()));
-                            format();
-                        }
-                    });
+                    if (!((Button) child).getText().equalsIgnoreCase("all")) {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = truck.getGoodSpace(gns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            if (warehouse.getCapacity() < space) {
+                                setResult("Not Enough Capacity!");
+                            } else {
+                                warehouse.addGood(truck.getGood(gns[finalI]));
+                                format();
+                            }
+                        });
+                    } else {
+                        int finalI = i;
+                        ((Button) child).setOnAction(event -> {
+                            int space = truck.getGoodSpace(gns[finalI]);
+                            if (space == -1) {
+                                setResult("Not Enough Object!");
+                                return;
+                            }
+                            int end = truck.getGoodNumber(gns[finalI]);
+                            for (int j = 0; j < end; j++) {
+                                if (warehouse.getCapacity() < space) {
+                                    setResult("Not Enough Capacity!");
+                                    return;
+                                } else {
+                                    warehouse.addGood(truck.getGood(gns[finalI]));
+                                    format();
+                                }
+                            }
+                        });
+                    }
                 }
             }
         }

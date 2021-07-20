@@ -1,5 +1,6 @@
 package model.animal.wild;
 
+import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 
@@ -9,6 +10,7 @@ public class BreakAnimation extends Transition {
     public BreakAnimation(Wild wild) {
         this.wild = wild;
         setCycleCount(1);
+        setInterpolator(Interpolator.LINEAR);
     }
 
     public void play(double time) {

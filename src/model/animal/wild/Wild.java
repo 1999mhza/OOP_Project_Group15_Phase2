@@ -75,7 +75,7 @@ public abstract class Wild extends Animal {
         });
 
         imageView.setOnMouseClicked(mouseEvent -> {
-            if (isFixedCage()) {
+            if (isCaged()) {
                 if (game.getWarehouse().addWild(this)) {
                     pause();
                     game.getRoot().getChildren().remove(imageView);
@@ -85,7 +85,7 @@ public abstract class Wild extends Animal {
                 } else {
                     game.setResult("No Capacity!");
                 }
-            } else if (cageRemaining >= cageNeeded - decreaseCageTime) {
+            } else if (isFree()) {
                 decreaseCageTime = cage.getCageTimeDecrease();
                 buildCageImage = cage.getBuildImage();
                 buildCageCells = cage.getBuildCells();
@@ -103,7 +103,7 @@ public abstract class Wild extends Animal {
                 cageAnimation.playFromStart();
             } else {
                 cageRemaining--;
-                if (cageRemaining <= 0) {
+                if (isCaged()) {
                     animalAnimation.pause();
                     cageAnimation.pause();
                     currentAnimation = 3;
@@ -118,7 +118,7 @@ public abstract class Wild extends Animal {
         });
 
         cageImageView.setOnMouseClicked(mouseEvent -> {
-            if (isFixedCage()) {
+            if (isCaged()) {
                 if (game.getWarehouse().addWild(this)) {
                     pause();
                     game.getRoot().getChildren().remove(imageView);
@@ -128,7 +128,7 @@ public abstract class Wild extends Animal {
                 } else {
                     game.setResult("No Capacity!");
                 }
-            } else if (cageRemaining >= cageNeeded - decreaseCageTime) {
+            } else if (isFree()) {
                 decreaseCageTime = cage.getCageTimeDecrease();
                 buildCageImage = cage.getBuildImage();
                 buildCageCells = cage.getBuildCells();
@@ -146,34 +146,32 @@ public abstract class Wild extends Animal {
                 cageAnimation.playFromStart();
             } else {
                 cageRemaining--;
-                if (cageRemaining <= 0) {
+                if (isCaged()) {
                     animalAnimation.pause();
                     cageAnimation.pause();
                     currentAnimation = 3;
 
                     imageView.setImage(cagedWildImage);
                     cageImageView.setImage(breakCageImage);
-                    imageView.setLayoutX(cageImageView.getLayoutX() - (cagedWildCells[0].getWidth() - buildCageCells[0].getWidth()) / 2);
-                    imageView.setLayoutY(cageImageView.getLayoutY() - (cagedWildCells[0].getHeight() - buildCageCells[0].getHeight()) / 2);
+                    imageView.setLayoutX(cageImageView.getLayoutX() - (cagedWildCells[0].getWidth() - breakCageCells[0].getWidth()) / 2);
+                    imageView.setLayoutY(cageImageView.getLayoutY() - (cagedWildCells[0].getHeight() - breakCageCells[0].getHeight()) / 2);
                     breakAnimation.play(fullLifetime + 2 * decreaseCageTime);
                 }
             }
         });
     }
 
-    public boolean isInCage() {
-        return cageRemaining < cageNeeded;
+    public boolean isFree() {
+        return cageRemaining >= cageNeeded - decreaseCageTime;
     }
 
-    public boolean isFixedCage() {
+    public boolean isCaged() {
         return cageRemaining <= 0;
     }
 
     public void move() {
-        if (!isFixedCage()) {
-            super.move();
-            moveCage();
-        }
+        super.move();
+        moveCage();
     }
 
     public void moveCage() {
@@ -190,13 +188,9 @@ public abstract class Wild extends Animal {
         preV = v;
         speed = defaultSpeed * cageRemaining / (cageNeeded - decreaseCageTime);
 
-        int num = (int) (numberOfCageImage * (1.0 - cageRemaining / (cageNeeded - decreaseCageTime)));
-        if (num >= numberOfCageImage - 1) num = numberOfCageImage - 1;
-        if (num < 0) num = 0;
+        cageImageView.setViewport(buildCageCells[((int) (numberOfCageImage * (1.0 - cageRemaining / (cageNeeded - decreaseCageTime)))) % numberOfCageImage]);
 
-        cageImageView.setViewport(buildCageCells[num]);
-
-        if (cageRemaining >= cageNeeded - decreaseCageTime) {
+        if (isFree()) {
             cageAnimation.stop();
             cageImageView.setVisible(false);
             currentAnimation = 1;
@@ -221,7 +215,7 @@ public abstract class Wild extends Animal {
             cageImageView.setOpacity(1);
         }
 
-        int num = ((int) (v * 23.05 * (fullLifetime + 2 * decreaseCageTime))) % 24;
+        int num = ((int) (v * 24 * (fullLifetime + 2 * decreaseCageTime))) % 24;
         imageView.setViewport(cagedWildCells[num]);
         cageImageView.setViewport(breakCageCells[num]);
     }
@@ -231,11 +225,11 @@ public abstract class Wild extends Animal {
         v = (speed / defaultSpeed * v) % 1.0;
         super.update(v);
 
-        if (!isFixedCage()) {
+        if (!isCaged()) {
             Game game = Game.getInstance();
             HashSet<Good> removedGoods = new HashSet<>();
             for (Good good : game.getGoods()) {
-                if (Math.sqrt(Math.abs(good.getX() - getX()) + Math.abs(good.getY() - getY())) < 25) {
+                if (Math.sqrt(Math.pow(good.getX() - getX(), 2) + Math.pow(good.getY() - getY(), 2)) < 25) {
                     removedGoods.add(good);
                 }
             }
@@ -244,6 +238,7 @@ public abstract class Wild extends Animal {
                 game.getRoot().getChildren().remove(good.getImageView());
                 game.getGoods().remove(good);
             }
+
             HashSet<Domestic> removedDomestics = new HashSet<>();
             for (Domestic domestic : game.getDomesticAnimals()) {
                 if (domestic.isAlive() && Math.sqrt(Math.pow(domestic.getX() - getX(), 2) + Math.pow(domestic.getY() - getY(), 2)) < 25) {

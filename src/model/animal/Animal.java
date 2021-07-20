@@ -4,12 +4,11 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.Game;
-import model.good.Good;
 
 import java.util.Random;
 
 public abstract class Animal {
-    protected Random rand;
+    protected Random random;
     protected int price;
     protected int space;
     protected double lifetime;
@@ -24,14 +23,14 @@ public abstract class Animal {
     protected Rectangle2D[][] cells;
 
     public Animal(int price, double lifetime, int space, double speed) {
-        this.rand = new Random();
+        this.random = new Random();
         this.price = price;
         this.lifetime = lifetime;
         this.fullLifetime = lifetime;
         this.space = space;
         this.speed = speed;
         this.defaultSpeed = speed;
-        this.angle = rand.nextDouble() * 360.0;
+        setAngle(0, 360);
     }
 
     public abstract void setAnimation();
@@ -41,7 +40,12 @@ public abstract class Animal {
         this.cells = cells;
         this.images = images;
 
-        createImage(0);
+        int direction = ((int) ((angle + 360.0 + 22.5) / 45.0)) % 8;
+        imageView.setImage(images[direction]);
+        imageView.setViewport(cells[direction][0]);
+
+        imageView.setLayoutX(random.nextDouble() * (Game.getInstance().getWidth() - cells[direction][0].getWidth()));
+        imageView.setLayoutY(random.nextDouble() * (Game.getInstance().getHeight() - cells[direction][0].getHeight()));
 
         animalAnimation = new AnimalAnimation(this);
         Game.getInstance().getRoot().getChildren().add(imageView);
@@ -59,7 +63,7 @@ public abstract class Animal {
     }
 
     public void setAngle(double first, double last) {
-        this.angle = first + (last - first) * rand.nextDouble();
+        angle = first + (last - first) * random.nextDouble();
     }
 
     public void pause() {
@@ -103,23 +107,8 @@ public abstract class Animal {
         imageView.setLayoutY(imageView.getLayoutY() + speed * Math.sin(Math.toRadians(angle)));
     }
 
-    public void createImage(int num) {
-
-        if (num >= 24) num = 23;
-        if (num < 0) num = 0;
-        int direction = ((int) ((angle + 360.0 + 22.5) / 45.0)) % 8;
-
-        imageView.setImage(images[direction]);
-        imageView.setViewport(cells[direction][num]);
-
-        imageView.setLayoutX(rand.nextDouble() * (Game.getInstance().getWidth() - cells[direction][num].getWidth()));
-        imageView.setLayoutY(rand.nextDouble() * (Game.getInstance().getHeight() - cells[direction][num].getHeight()));
-    }
-
     public void update(double v) {
-        int num = (int) (v * 23.05);
-        if (num >= 24) num = 23;
-        if (num < 0) num = 0;
+        int num = ((int) (v * 24)) % 24;
         int direction = ((int) ((angle + 360.0 + 22.5) / 45.0)) % 8;
 
         if (imageView.getLayoutX() + cells[direction][num].getWidth() >= Game.getInstance().getWidth()) {
@@ -156,6 +145,7 @@ public abstract class Animal {
             }
         }
 
+        direction = ((int) ((angle + 360.0 + 22.5) / 45.0)) % 8;
         imageView.setImage(images[direction]);
         imageView.setViewport(cells[direction][num]);
     }

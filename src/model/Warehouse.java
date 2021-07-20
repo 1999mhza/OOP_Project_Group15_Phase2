@@ -99,8 +99,8 @@ public class Warehouse {
             }
         });
 
-        progressBar.setPrefWidth(100);
-        progressBar.setPrefHeight(10);
+        progressBar.setPrefWidth(150);
+        progressBar.setPrefHeight(20);
 
         progressBar.setLayoutX(imageView.getLayoutX() + imageView.getFitWidth() / 2 - progressBar.getPrefWidth() / 2);
         progressBar.setLayoutY(imageView.getLayoutY() + imageView.getFitHeight() - 30);

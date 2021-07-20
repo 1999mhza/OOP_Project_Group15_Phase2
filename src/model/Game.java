@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -42,8 +41,8 @@ public class Game {
         return gameInstance;
     }
 
-    public static void initiateGame(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
-        gameInstance = new Game(stageWidth, stageHeight, homeMedia, gameMedia, level, username, width, height, root, parent, scale, oldX, oldY, newX, newY, result, coin, time, labels, labels1, imageViews, road);
+    public static void initiateGame(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
+        gameInstance = new Game(stageWidth, stageHeight, homeMedia, gameMedia, winMedia, level, username, width, height, root, parent, scale, oldX, oldY, newX, newY, result, coin, time, labels, labels1, imageViews, road);
     }
 
     public AnchorPane getRoot() {
@@ -69,7 +68,7 @@ public class Game {
     }
 
     private double stageWidth, stageHeight;
-    private MediaPlayer homeMedia, gameMedia;
+    private MediaPlayer homeMedia, gameMedia, winMedia;
 
     private AnchorPane root;
     private double width;
@@ -112,11 +111,12 @@ public class Game {
     private HashSet<Protective> protectiveAnimals;
     private HashSet<Collector> collectorAnimals;
 
-    private Game(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
+    private Game(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
         this.stageWidth = stageWidth;
         this.stageHeight = stageHeight;
         this.homeMedia = homeMedia;
         this.gameMedia = gameMedia;
+        this.winMedia = winMedia;
 
         this.labels = labels;
         this.labels1 = labels1;
@@ -258,10 +258,12 @@ public class Game {
         if (unloadedWilds.size() == 0) return;
         Wild animal = null;
         WildList wildList = null;
+        double load = 0;
         for (Map.Entry<WildList, ArrayList<Double>> entry : unloadedWilds.entrySet()) {
             for (Double loadTime : entry.getValue()) {
                 if (loadTime < time.getTime()) {
                     try {
+                        load = loadTime;
                         wildList = entry.getKey();
                         animal = (Wild) Class.forName(entry.getKey().getPackageName()).newInstance();
                         wildAnimals.add(animal);
@@ -273,7 +275,7 @@ public class Game {
                 }
             }
             if (animal != null) {
-                entry.getValue().remove(0);
+                entry.getValue().remove(load);
                 break;
             }
         }
@@ -374,8 +376,6 @@ public class Game {
         }
         UserManager.getInstance().updateUser(username, level, coin + reward, reward != 0);
 
-        MediaPlayer winMedia = new MediaPlayer(new Media(new File("src/resource/Sounds/Win.mp3").toURI().toString()));
-        winMedia.setOnEndOfMedia(() -> winMedia.seek(Duration.ZERO));
         gameMedia.stop();
         gameMedia.seek(Duration.ZERO);
         winMedia.play();
@@ -390,7 +390,7 @@ public class Game {
             e.printStackTrace();
         }
         stage.initStyle(StageStyle.UNDECORATED);
-        ((FinishController) (loader.getController())).initiate(username, winMedia, homeMedia, gameMedia, stageWidth, stageHeight, coin, (int) getTime(), reward, UserManager.getInstance().getCollectedCoin(username));
+        ((FinishController) (loader.getController())).initiate(username, homeMedia, gameMedia, winMedia, stageWidth, stageHeight, coin, (int) getTime(), reward, UserManager.getInstance().getCollectedCoin(username));
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.initOwner(parent.getScene().getWindow());
@@ -402,7 +402,25 @@ public class Game {
     }
 
     public void plant(double x, double y) {
-        new Grass(x, y);
+        if (x < 48)
+            x = 48;
+        else if (x > getWidth() - 48)
+            x = getWidth() - 48;
+
+        if (y < 48)
+            y = 48;
+        else if (y > getHeight() - 48)
+            y = getHeight() - 48;
+
+        new Grass(x, y ,16);
+        new Grass(x, y + 24 ,12);
+        new Grass(x + 24, y ,12);
+        new Grass(x - 24, y ,12);
+        new Grass(x, y - 24 ,12);
+        new Grass(x - 16, y - 16 ,8);
+        new Grass(x + 16, y - 16 ,8);
+        new Grass(x - 16, y + 16 ,8);
+        new Grass(x + 16, y + 16 ,8);
     }
 
     public HashMap<String, Integer[]> getTasks() {
@@ -480,9 +498,10 @@ public class Game {
     public Domestic getDomestic(String name) {
         for (Domestic domestic : domesticAnimals) {
             if (domestic.isAlive() && domestic.getClass().getSimpleName().equalsIgnoreCase(name)) {
+                domesticAnimals.remove(domestic);
                 root.getChildren().remove(domestic.getImageView());
                 root.getChildren().remove(domestic.getLifeBar());
-                domesticAnimals.remove(domestic);
+                updateTask(name, false);
                 return domestic;
             }
         }

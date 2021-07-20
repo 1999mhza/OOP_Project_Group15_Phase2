@@ -7,8 +7,6 @@ import javafx.scene.image.ImageView;
 import model.Game;
 import model.animal.domestic.Domestic;
 import model.animal.domestic.DomesticList;
-import model.good.Good;
-import model.good.GoodList;
 
 import java.io.File;
 
@@ -31,7 +29,7 @@ public class Incubator extends Factory {
                 for (int i = 0; i < number; i++) {
                     Domestic domestic = (Domestic) Class.forName(domesticList.getPackageName()).newInstance();
                     domestic.setAnimation();
-                    domestic.setPosition(goodX, goodY);
+                    domestic.setPosition(goodX + random.nextDouble() * 20, goodY + random.nextDouble() * 20);
                     domestic.play();
                     Game.getInstance().getDomesticAnimals().add(domestic);
                     Game.getInstance().updateTask(domestic.getClass().getSimpleName(), true);

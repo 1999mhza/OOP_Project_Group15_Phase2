@@ -31,19 +31,23 @@ public class MenuController {
 
     public Button exit;
     public Button logout;
+    public Button setting;
     public Label coin;
+    public HBox hbox;
 
     private String username;
     private MediaPlayer homeMedia;
     private MediaPlayer gameMedia;
+    private MediaPlayer winMedia;
     private double width;
     private double height;
 
-    public void initiate(String username, MediaPlayer homeMedia, MediaPlayer gameMedia, double width, double height) {
+    public void initiate(String username, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, double width, double height) {
 
         this.username = username;
         this.homeMedia = homeMedia;
         this.gameMedia = gameMedia;
+        this.winMedia = winMedia;
         this.width = width;
         this.height = height;
 
@@ -56,6 +60,8 @@ public class MenuController {
         VBox vBox = (VBox) coin.getParent();
         vBox.setLayoutX((width + image.getFitWidth()) / 2 - 20 - vBox.getPrefWidth());
         coin.setText(String.valueOf(UserManager.getInstance().getCollectedCoin(username)));
+
+        hbox.setLayoutX((width - image.getFitWidth()) / 2 + 5);
 
         logout.setOnMousePressed(event -> logout.setStyle("""
                 -fx-background-radius: 50;
@@ -100,7 +106,7 @@ public class MenuController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((HomeController) (loader.getController())).initiate(homeMedia, gameMedia, width, height);
+            ((HomeController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia, width, height);
         });
 
         exit.setOnMousePressed(event -> exit.setStyle("""
@@ -150,6 +156,58 @@ public class MenuController {
             stage.initStyle(StageStyle.UNDECORATED);
             YesNoController controller = (YesNoController) (loader.getController());
             controller.initiate();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.initOwner(((Node) (event.getSource())).getScene().getWindow());
+            stage.show();
+        });
+
+        setting.setOnMousePressed(event -> setting.setStyle("""
+                -fx-background-radius: 50;
+                -fx-background-color: lavender;
+                -fx-border-color:  indigo;
+                -fx-border-width: 5;
+                -fx-border-radius: 50;
+                -fx-font-size: 19;
+                -fx-font-weight: bold"""));
+        setting.setOnMouseReleased(event -> {
+            if (setting.isHover()) setting.setStyle("""
+                    -fx-background-radius: 50;
+                    -fx-background-color: medium purple;
+                    -fx-border-color:  indigo;
+                    -fx-border-width: 5;
+                    -fx-border-radius: 50;
+                    -fx-font-size: 19;
+                    -fx-font-weight: bold""");
+        });
+        setting.setOnMouseEntered(event -> setting.setStyle("""
+                -fx-background-radius: 50;
+                -fx-background-color: mediumpurple;
+                -fx-border-color:  indigo;
+                -fx-border-width: 5;
+                -fx-border-radius: 50;
+                -fx-font-size: 19;
+                -fx-font-weight: bold"""));
+        setting.setOnMouseExited(event -> setting.setStyle("""
+                -fx-background-radius: 50;
+                -fx-background-color:  plum;
+                -fx-border-color:  indigo;
+                -fx-border-width: 5;
+                -fx-border-radius: 50;
+                -fx-font-size: 19;
+                -fx-font-weight: bold"""));
+        setting.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/option_dialog.fxml"));
+            Stage stage = new Stage();
+            try {
+                Scene scene = new Scene(loader.load());
+                scene.setFill(Color.TRANSPARENT);
+                stage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.initStyle(StageStyle.UNDECORATED);
+            ((OptionController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initOwner(((Node) (event.getSource())).getScene().getWindow());
@@ -224,7 +282,7 @@ public class MenuController {
         homeMedia.stop();
         homeMedia.seek(Duration.ZERO);
         gameMedia.play();
-        ((GameController) (loader.getController())).initiate(username, level, homeMedia, gameMedia, width, height);
+        ((GameController) (loader.getController())).initiate(username, level, homeMedia, gameMedia, winMedia, width, height);
     }
 
     private void setButton(Button button, int type) {

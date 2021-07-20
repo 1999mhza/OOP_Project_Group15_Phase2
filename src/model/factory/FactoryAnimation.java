@@ -1,5 +1,6 @@
 package model.factory;
 
+import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 
@@ -9,6 +10,7 @@ public class FactoryAnimation extends Transition {
     public FactoryAnimation(Factory factory) {
         this.factory = factory;
         setCycleCount(1);
+        setInterpolator(Interpolator.LINEAR);
     }
 
     public void play(double time) {

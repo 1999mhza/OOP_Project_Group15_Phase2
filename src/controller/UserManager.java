@@ -11,15 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-import java.util.Map;
 
 public class UserManager {
-
-    private static final String[] missionState = {"locked", "unlocked", "completed", "rewarded"};
-
     private UserManager() {
         try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
-            statement.executeUpdate("create table if not exists users (username varchar(50), hashPassword varchar(50), lastUnlockedLevel int, collectedCoins int, missionInfo varchar(50), primary key(username))");
+            statement.executeUpdate("create table if not exists users (username varchar(100), hashPassword varchar(200), lastUnlockedLevel int, collectedCoins int, missionInfo varchar(200), primary key(username))");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,37 +90,6 @@ public class UserManager {
         }
     }
 
-    public boolean checkUserLevel(String username, int level) {
-        try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select lastUnlockedLevel from users where username = '" + username + "'");
-            if (resultSet.next()) {
-                return level > resultSet.getInt("lastUnlockedLevel");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    public String getUserInformation(String username) {
-        try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select collectedCoins, missionInfo from users where username = '" + username + "'");
-            if (resultSet.next()) {
-                HashMap<Integer, Integer> missionInfo = new GsonBuilder().create().fromJson(resultSet.getString("missionInfo"), new TypeToken<HashMap<Integer, Integer>>() {
-                }.getType());
-
-                StringBuilder sb = new StringBuilder("\tUsername: " + username + "\n\tCollected Coins: " + resultSet.getInt("collectedCoins") + "\n\tLevels:\n");
-                for (Map.Entry<Integer, Integer> entry : missionInfo.entrySet()) {
-                    sb.append(String.format("\t\t%3d: %s\n", entry.getKey(), missionState[entry.getValue()]));
-                }
-                return sb.toString();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public HashMap<Integer, Integer> getMissionInformation(String username) {
         try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
             ResultSet resultSet = statement.executeQuery("select collectedCoins, missionInfo from users where username = '" + username + "'");
@@ -140,8 +105,7 @@ public class UserManager {
 
     public void addUser(String username, String password) {
         try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            statement.executeUpdate(String.format("insert into users values ('%s', '%s', 1, 0, '%s')", username, new String(md.digest(password.getBytes(StandardCharsets.UTF_8))), getInitialMissionInfo()));
+            statement.executeUpdate(String.format("insert into users values ('%s', '%s', 1, 0, '%s')", username, new GsonBuilder().create().toJson(MessageDigest.getInstance("SHA-256").digest((username + password).getBytes(StandardCharsets.UTF_8))), getInitialMissionInfo()));
         } catch (SQLException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
@@ -169,8 +133,7 @@ public class UserManager {
         try (Statement statement = DriverManager.getConnection("jdbc:mysql://localhost:3306/farm_frenzy", "MHZ", "mhza1999").createStatement()) {
             ResultSet resultSet = statement.executeQuery("select hashPassword from users where username = '" + username + "'");
             if (resultSet.next()) {
-                MessageDigest md = MessageDigest.getInstance("SHA-256");
-                if (resultSet.getString("hashPassword").equals(new String(md.digest(password.getBytes(StandardCharsets.UTF_8)))))
+                if (resultSet.getString("hashPassword").equals(new GsonBuilder().create().toJson(MessageDigest.getInstance("SHA-256").digest((username + password).getBytes(StandardCharsets.UTF_8)))))
                     return false;
             }
         } catch (SQLException | NoSuchAlgorithmException e) {

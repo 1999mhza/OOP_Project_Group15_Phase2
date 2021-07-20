@@ -164,7 +164,7 @@ public abstract class Factory {
 
     public void update(double v) {
         progressBar.setProgress(v);
-        imageView.setViewport(cells[((int) (v * produceTime * number / level * 15.1)) % 16]);
+        imageView.setViewport(cells[((int) (v * produceTime * number / level * 16)) % 16]);
     }
 
     public int getPrice() {
@@ -173,6 +173,7 @@ public abstract class Factory {
 
     public void upgrade() {
         level++;
+        produceTime -= 0.5;
         upgradePrice *= 1.2;
 
         Image image = new Image(new File("src/resource/" + getClass().getSimpleName() + "/" + level + ".png").toURI().toString());

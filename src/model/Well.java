@@ -123,6 +123,7 @@ public class Well {
     public void upgrade() {
         level++;
         bucketCapacity += 1;
+        fillTime -= 0.5;
         fillPrice -= 2;
         upgradePrice *= 1.2;
         progressBar.setProgress(water / bucketCapacity);
@@ -143,7 +144,7 @@ public class Well {
     public void update(double v) {
         water = v * bucketCapacity;
         progressBar.setProgress(v);
-        imageView.setViewport(cells[((int) (v * 63.1)) % 16]);
+        imageView.setViewport(cells[((int) (v * 64)) % 16]);
     }
 
     public double getFillTime() {

@@ -18,9 +18,10 @@ public class PauseController {
     public Button continueE;
     public Button menu;
     public Button home;
+    public Button setting;
     public Button exit;
 
-    public void initiate(String username, MediaPlayer homeMedia, MediaPlayer gameMedia, double width, double height) {
+    public void initiate(String username, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, double width, double height) {
         continueE.setOnMousePressed(event -> continueE.setStyle("""
                 -fx-background-radius: 50;
                 -fx-background-color: lightgreen;
@@ -107,7 +108,7 @@ public class PauseController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((MenuController) (loader.getController())).initiate(username, homeMedia, gameMedia, width, height);
+            ((MenuController) (loader.getController())).initiate(username, homeMedia, gameMedia, winMedia, width, height);
         });
 
         home.setOnMousePressed(event -> home.setStyle("""
@@ -157,7 +158,59 @@ public class PauseController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((HomeController) (loader.getController())).initiate(homeMedia, gameMedia, width, height);
+            ((HomeController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia, width, height);
+        });
+
+        setting.setOnMousePressed(event -> setting.setStyle("""
+                -fx-background-radius: 50;
+                -fx-background-color: lavender;
+                -fx-border-color:  indigo;
+                -fx-border-width: 5;
+                -fx-border-radius: 50;
+                -fx-font-size: 19;
+                -fx-font-weight: bold"""));
+        setting.setOnMouseReleased(event -> {
+            if (setting.isHover()) setting.setStyle("""
+                    -fx-background-radius: 50;
+                    -fx-background-color: mediumpurple;
+                    -fx-border-color:  indigo;
+                    -fx-border-width: 5;
+                    -fx-border-radius: 50;
+                    -fx-font-size: 19;
+                    -fx-font-weight: bold""");
+        });
+        setting.setOnMouseEntered(event -> setting.setStyle("""
+                -fx-background-radius: 50;
+                -fx-background-color: mediumpurple;
+                -fx-border-color:  indigo;
+                -fx-border-width: 5;
+                -fx-border-radius: 50;
+                -fx-font-size: 19;
+                -fx-font-weight: bold"""));
+        setting.setOnMouseExited(event -> setting.setStyle("""
+                -fx-background-radius: 50;
+                -fx-background-color:  plum;
+                -fx-border-color:  indigo;
+                -fx-border-width: 5;
+                -fx-border-radius: 50;
+                -fx-font-size: 19;
+                -fx-font-weight: bold"""));
+        setting.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/option_dialog.fxml"));
+            Stage stage = new Stage();
+            try {
+                Scene scene = new Scene(loader.load());
+                scene.setFill(Color.TRANSPARENT);
+                stage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.initStyle(StageStyle.UNDECORATED);
+            ((OptionController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.initOwner(((Node) (event.getSource())).getScene().getWindow());
+            stage.show();
         });
 
         exit.setOnMousePressed(event -> exit.setStyle("""

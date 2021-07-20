@@ -1,5 +1,6 @@
 package model;
 
+import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
@@ -23,6 +24,7 @@ public class Time extends Transition {
 
         setCycleCount(-1);
         setCycleDuration(Duration.ONE);
+        setInterpolator(Interpolator.LINEAR);
     }
 
     public double getTime() {
