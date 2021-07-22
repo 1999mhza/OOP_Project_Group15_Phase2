@@ -1903,3 +1903,32 @@
 20/07/2021 - 23:04:39, [INFO], User MHZ
 20/07/2021 - 23:04:39, [INFO], MHZ entered the game menu.
 20/07/2021 - 23:05:56, [INFO], The user closed the game.
+20/07/2021 - 23:31:41, [INFO], The user closed the game.
+20/07/2021 - 23:32:51, [INFO], User MHZ
+20/07/2021 - 23:32:51, [INFO], MHZ entered the game menu.
+20/07/2021 - 23:34:18, [INFO], The user closed the game.
+21/07/2021 - 00:44:19, [INFO], User MHZ
+21/07/2021 - 00:44:20, [INFO], MHZ entered the game menu.
+21/07/2021 - 00:44:28, [INFO], The user closed the game.
+21/07/2021 - 01:05:25, [INFO], The user closed the game.
+21/07/2021 - 16:17:11, [INFO], User MHZ
+21/07/2021 - 16:17:11, [INFO], MHZ entered the game menu.
+21/07/2021 - 16:21:53, [INFO], The user closed the game.
+22/07/2021 - 23:23:10, [INFO], User MHZ
+22/07/2021 - 23:23:11, [INFO], MHZ entered the game menu.
+22/07/2021 - 23:23:39, [INFO], The user closed the game.
+22/07/2021 - 23:23:54, [ADMIN], The missions of the level 1 was changed!
+22/07/2021 - 23:23:54, [ADMIN], The users info was reset!
+22/07/2021 - 23:24:07, [ADMIN], The missions of the level 1 was changed!
+22/07/2021 - 23:24:07, [ADMIN], The users info was reset!
+22/07/2021 - 23:24:18, [INFO], User MHZ
+22/07/2021 - 23:24:18, [INFO], MHZ entered the game menu.
+22/07/2021 - 23:26:16, [INFO], The user closed the game.
+22/07/2021 - 23:27:09, [ADMIN], The missions of the level 1 was changed!
+22/07/2021 - 23:27:09, [ADMIN], The users info was reset!
+22/07/2021 - 23:27:29, [INFO], User MHZ
+22/07/2021 - 23:27:29, [INFO], MHZ entered the game menu.
+22/07/2021 - 23:29:45, [INFO], The user closed the game.
+22/07/2021 - 23:32:14, [INFO], User MHZ
+22/07/2021 - 23:32:15, [INFO], MHZ entered the game menu.
+22/07/2021 - 23:35:00, [INFO], The user closed the game.

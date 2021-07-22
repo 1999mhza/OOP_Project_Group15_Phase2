@@ -103,27 +103,14 @@ public class GameController {
     public ImageView imageCage;
     public Label labelCage;
 
-    private String username;
-    private int level;
-    private MediaPlayer homeMedia;
-    private MediaPlayer gameMedia;
-    private double width;
-    private double height;
+    public void initiate() {
+        Parameter parameter = Parameter.getInstance();
 
-    public void initiate(String username, int level, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, double width, double height) {
-
-        this.username = username;
-        this.level = level;
-        this.homeMedia = homeMedia;
-        this.gameMedia = gameMedia;
-        this.width = width;
-        this.height = height;
-
-        double s = Math.min(height / image.getImage().getHeight(), width / image.getImage().getWidth());
+        double s = Math.min(parameter.getHeight() / image.getImage().getHeight(), parameter.getWidth() / image.getImage().getWidth());
         image.setFitHeight(s * image.getImage().getHeight());
         image.setFitWidth(s * image.getImage().getWidth());
-        image.setX((width - image.getFitWidth()) / 2);
-        image.setY((height - image.getFitHeight()) / 2);
+        image.setX((parameter.getWidth() - image.getFitWidth()) / 2);
+        image.setY((parameter.getHeight() - image.getFitHeight()) / 2);
 
         parent.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getPickResult().getIntersectedNode() instanceof AnchorPane) {
@@ -141,19 +128,19 @@ public class GameController {
             }
         });
 
-        parent.setLayoutX(s * (parent.getLayoutX() - image.getImage().getWidth() / 2) + width / 2);
-        parent.setLayoutY(s * (parent.getLayoutY() - image.getImage().getHeight() / 2) + height / 2);
+        parent.setLayoutX(s * (parent.getLayoutX() - image.getImage().getWidth() / 2) + parameter.getWidth() / 2);
+        parent.setLayoutY(s * (parent.getLayoutY() - image.getImage().getHeight() / 2) + parameter.getHeight() / 2);
         parent.setPrefWidth(s * parent.getPrefWidth());
         parent.setPrefHeight(s * parent.getPrefHeight());
 
         VBox vBox = (VBox) coin.getParent();
-        vBox.setLayoutX(s * (vBox.getLayoutX() - image.getImage().getWidth() / 2) + width / 2);
+        vBox.setLayoutX(s * (vBox.getLayoutX() - image.getImage().getWidth() / 2) + parameter.getWidth() / 2);
 
         ImageView labelBack = (ImageView) result.getGraphic();
         labelBack.setFitWidth(s * labelBack.getFitWidth());
         labelBack.setFitHeight(s * labelBack.getFitHeight());
 
-        result.setLayoutX(s * (result.getLayoutX() - image.getImage().getWidth() / 2) + width / 2);
+        result.setLayoutX(s * (result.getLayoutX() - image.getImage().getWidth() / 2) + parameter.getWidth() / 2);
         result.setPrefWidth(s * result.getPrefWidth());
         result.setPrefHeight(s * result.getPrefHeight());
         result.setVisible(false);
@@ -162,17 +149,17 @@ public class GameController {
         Label[] labels1 = new Label[]{labelTask11, labelTask21, labelTask31, labelTask41};
         ImageView[] imageViews = new ImageView[]{imageTask1, imageTask2, imageTask3, imageTask4};
 
-        road.setLayoutX((width + image.getFitWidth()) / 2 - 5 - road.getFitWidth());
-        h.setLayoutX((width + image.getFitWidth()) / 2 - 5 - h.getPrefWidth());
+        road.setLayoutX((parameter.getWidth() + image.getFitWidth()) / 2 - 5 - road.getFitWidth());
+        h.setLayoutX((parameter.getWidth() + image.getFitWidth()) / 2 - 5 - h.getPrefWidth());
 
         HBox hBox = (HBox) time.getParent();
-        hBox.setLayoutX((width + image.getFitWidth()) / 2 - 5 - hBox.getPrefWidth());
+        hBox.setLayoutX((parameter.getWidth() + image.getFitWidth()) / 2 - 5 - hBox.getPrefWidth());
 
-        Game.initiateGame(width, height, homeMedia, gameMedia, winMedia, level, username, parent.getPrefWidth(), parent.getPrefHeight(), parent, (AnchorPane) (parent.getParent()), s, image.getImage().getWidth() / 2, image.getImage().getHeight() / 2, width / 2, height / 2, result, coin, time, labels, labels1, imageViews, road);
+        Game.initiateGame(parent.getPrefWidth(), parent.getPrefHeight(), parent, (AnchorPane) (parent.getParent()), s, image.getImage().getWidth() / 2, image.getImage().getHeight() / 2, parameter.getWidth() / 2, parameter.getHeight() / 2, result, coin, time, labels, labels1, imageViews, road);
         Game game = Game.getInstance();
         game.initiate();
 
-        menu.setLayoutX((width - image.getFitWidth()) / 2 + 5);
+        menu.setLayoutX((parameter.getWidth() - image.getFitWidth()) / 2 + 5);
 
         menu.setOnMousePressed(event -> menu.setStyle("""
                 -fx-background-radius: 50;
@@ -220,17 +207,17 @@ public class GameController {
                 e.printStackTrace();
             }
             stage.initStyle(StageStyle.UNDECORATED);
-            ((PauseController) (loader.getController())).initiate(username, homeMedia, gameMedia, winMedia, width, height);
+            ((PauseController) (loader.getController())).initiate();
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initOwner(((Node) (event.getSource())).getScene().getWindow());
             stage.show();
         });
 
-        int maxTime = (int) Math.round(MissionManager.getInstance().getMaxPrizeTime(level));
+        int maxTime = (int) Math.round(MissionManager.getInstance().getMaxPrizeTime(parameter.getLevel()));
         prizeTime.setText(String.format("%02d:%02d", maxTime / 60, maxTime % 60));
 
-        hBuy.setLayoutX((width - image.getFitWidth()) / 2 + 5);
+        hBuy.setLayoutX((parameter.getWidth() - image.getFitWidth()) / 2 + 5);
 
         DomesticList domesticListChicken = DomesticList.getDomestic("Chicken");
         priceChicken.setText(String.valueOf(domesticListChicken.getPrice()));
@@ -360,13 +347,13 @@ public class GameController {
             }
         });
 
-        vUpgrade.setLayoutX((width + image.getFitWidth()) / 2 - vUpgrade.getPrefWidth() - 5);
+        vUpgrade.setLayoutX((parameter.getWidth() + image.getFitWidth()) / 2 - vUpgrade.getPrefWidth() - 5);
         setWell();
         setWarehouse();
         setTruck();
         setCage();
 
-        vFactory.setLayoutX((width - image.getFitWidth()) / 2 + 5);
+        vFactory.setLayoutX((parameter.getWidth() - image.getFitWidth()) / 2 + 5);
         setFactory("Mill", buildMill, labelMill, factoryMill);
         setFactory("CookieBakery", buildCookie, labelCookie, factoryCookie);
         setFactory("CakeBakery", buildCake, labelCake, factoryCake);

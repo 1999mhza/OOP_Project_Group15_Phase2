@@ -14,12 +14,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import model.Parameter;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,33 +35,20 @@ public class MenuController {
     public Label coin;
     public HBox hbox;
 
-    private String username;
-    private MediaPlayer homeMedia;
-    private MediaPlayer gameMedia;
-    private MediaPlayer winMedia;
-    private double width;
-    private double height;
+    public void initiate() {
+        Parameter parameter = Parameter.getInstance();
 
-    public void initiate(String username, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, double width, double height) {
-
-        this.username = username;
-        this.homeMedia = homeMedia;
-        this.gameMedia = gameMedia;
-        this.winMedia = winMedia;
-        this.width = width;
-        this.height = height;
-
-        double s = Math.min(height / image.getImage().getHeight(), width / image.getImage().getWidth());
+        double s = Math.min(parameter.getHeight() / image.getImage().getHeight(), parameter.getWidth() / image.getImage().getWidth());
         image.setFitHeight(s * image.getImage().getHeight());
         image.setFitWidth(s * image.getImage().getWidth());
-        image.setX((width - image.getFitWidth()) / 2);
-        image.setY((height - image.getFitHeight()) / 2);
+        image.setX((parameter.getWidth() - image.getFitWidth()) / 2);
+        image.setY((parameter.getHeight() - image.getFitHeight()) / 2);
 
         VBox vBox = (VBox) coin.getParent();
-        vBox.setLayoutX((width + image.getFitWidth()) / 2 - 20 - vBox.getPrefWidth());
-        coin.setText(String.valueOf(UserManager.getInstance().getCollectedCoin(username)));
+        vBox.setLayoutX((parameter.getWidth() + image.getFitWidth()) / 2 - 20 - vBox.getPrefWidth());
+        coin.setText(String.valueOf(UserManager.getInstance().getCollectedCoin(parameter.getUsername())));
 
-        hbox.setLayoutX((width - image.getFitWidth()) / 2 + 5);
+        hbox.setLayoutX((parameter.getWidth() - image.getFitWidth()) / 2 + 5);
 
         logout.setOnMousePressed(event -> logout.setStyle("""
                 -fx-background-radius: 50;
@@ -106,7 +93,7 @@ public class MenuController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((HomeController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia, width, height);
+            ((HomeController) (loader.getController())).initiate();
         });
 
         exit.setOnMousePressed(event -> exit.setStyle("""
@@ -207,7 +194,7 @@ public class MenuController {
                 e.printStackTrace();
             }
             stage.initStyle(StageStyle.UNDECORATED);
-            ((OptionController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia);
+            ((OptionController) (loader.getController())).initiate();
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initOwner(((Node) (event.getSource())).getScene().getWindow());
@@ -227,7 +214,7 @@ public class MenuController {
         for (int i = 0; i < numberOfRows; i++) {
             hBoxes[i] = new HBox();
             parent.getChildren().add(hBoxes[i]);
-            hBoxes[i].setLayoutX((width - (2 * numberOfRowButton - 1) * 50.0) / 2);
+            hBoxes[i].setLayoutX((parameter.getWidth() - (2 * numberOfRowButton - 1) * 50.0) / 2);
             hBoxes[i].setLayoutY(bias * s + i * 100.0);
             hBoxes[i].setAlignment(Pos.CENTER);
 
@@ -259,7 +246,7 @@ public class MenuController {
         }
 
 
-        HashMap<Integer, Integer> missionInfo = UserManager.getInstance().getMissionInformation(username);
+        HashMap<Integer, Integer> missionInfo = UserManager.getInstance().getMissionInformation(parameter.getUsername());
         for (int i = 0; i < missionInfo.size(); i++) {
             setButton(levels[i], missionInfo.get(i + 1));
             levels[i].setVisible(true);
@@ -271,6 +258,8 @@ public class MenuController {
     }
 
     private void setAction(ActionEvent event, int level, boolean isLock) {
+        Parameter parameter = Parameter.getInstance();
+
         if (isLock) return;
         Stage stage = (Stage) (((Node) (event.getSource())).getScene().getWindow());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/game.fxml"));
@@ -279,10 +268,13 @@ public class MenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        homeMedia.stop();
-        homeMedia.seek(Duration.ZERO);
-        gameMedia.play();
-        ((GameController) (loader.getController())).initiate(username, level, homeMedia, gameMedia, winMedia, width, height);
+        parameter.getHomeMedia().stop();
+        parameter.getHomeMedia().seek(Duration.ZERO);
+        parameter.getGameMedia().play();
+
+        parameter.setLevel(level);
+
+        ((GameController) (loader.getController())).initiate();
     }
 
     private void setButton(Button button, int type) {

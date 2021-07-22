@@ -211,7 +211,7 @@ public class MissionManager {
         // ---------- Enter the Specifications -----------
         level = 1;
 
-        numberOfInitialCoins = 1000;
+        numberOfInitialCoins = 100;
 
         domesticAnimals.put("Chicken", 1);
         //domesticAnimals.put("Sheep", 1);
@@ -220,7 +220,7 @@ public class MissionManager {
 
         //collectorAnimals.put("Cat", 1);
 
-        //factoriesSet.add("Mill");
+        factoriesSet.add("Mill");
         /*factoriesSet.add("CookieBakery");
         factoriesSet.add("CakeBakery");
         factoriesSet.add("Spinnery");
@@ -233,12 +233,12 @@ public class MissionManager {
 
         //tasksMap.put("Egg", 20);
         tasksMap.put("Flour", 10);
-        tasksMap.put("Chicken", 10);
+        //tasksMap.put("Chicken", 10);
         //tasksMap.put("Egg", 10);
         //tasksMap.put("Buffalo", 3);
-        tasksMap.put("Coin", 5000);
+        tasksMap.put("Coin", 500);
 
-        maxPrizeTime = 30;
+        maxPrizeTime = 120;
         prize = 50;
         // -----------------------------------------------
 

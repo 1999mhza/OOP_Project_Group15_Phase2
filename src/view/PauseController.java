@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.Game;
+import model.Parameter;
 
 import java.io.IOException;
 
@@ -21,7 +22,9 @@ public class PauseController {
     public Button setting;
     public Button exit;
 
-    public void initiate(String username, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, double width, double height) {
+    public void initiate() {
+        Parameter parameter = Parameter.getInstance();
+
         continueE.setOnMousePressed(event -> continueE.setStyle("""
                 -fx-background-radius: 50;
                 -fx-background-color: lightgreen;
@@ -96,9 +99,9 @@ public class PauseController {
                 -fx-font-size: 19;
                 -fx-font-weight: bold"""));
         menu.setOnAction(event -> {
-            gameMedia.stop();
-            gameMedia.seek(Duration.ZERO);
-            homeMedia.play();
+            parameter.getGameMedia().stop();
+            parameter.getGameMedia().seek(Duration.ZERO);
+            parameter.getHomeMedia().play();
             ((Node) (event.getSource())).getScene().getWindow().hide();
             Stage stage = (Stage) (((Stage) (((Node) (event.getSource())).getScene().getWindow())).getOwner());
 
@@ -108,7 +111,7 @@ public class PauseController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((MenuController) (loader.getController())).initiate(username, homeMedia, gameMedia, winMedia, width, height);
+            ((MenuController) (loader.getController())).initiate();
         });
 
         home.setOnMousePressed(event -> home.setStyle("""
@@ -146,9 +149,9 @@ public class PauseController {
                 -fx-font-size: 19;
                 -fx-font-weight: bold"""));
         home.setOnAction(event -> {
-            gameMedia.stop();
-            gameMedia.seek(Duration.ZERO);
-            homeMedia.play();
+            parameter.getGameMedia().stop();
+            parameter.getGameMedia().seek(Duration.ZERO);
+            parameter.getHomeMedia().play();
             ((Node) (event.getSource())).getScene().getWindow().hide();
             Stage stage = (Stage) (((Stage) (((Node) (event.getSource())).getScene().getWindow())).getOwner());
 
@@ -158,7 +161,7 @@ public class PauseController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((HomeController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia, width, height);
+            ((HomeController) (loader.getController())).initiate();
         });
 
         setting.setOnMousePressed(event -> setting.setStyle("""
@@ -206,7 +209,7 @@ public class PauseController {
                 e.printStackTrace();
             }
             stage.initStyle(StageStyle.UNDECORATED);
-            ((OptionController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia);
+            ((OptionController) (loader.getController())).initiate();
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initOwner(((Node) (event.getSource())).getScene().getWindow());

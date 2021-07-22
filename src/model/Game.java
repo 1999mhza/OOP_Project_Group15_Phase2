@@ -41,8 +41,9 @@ public class Game {
         return gameInstance;
     }
 
-    public static void initiateGame(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
-        gameInstance = new Game(stageWidth, stageHeight, homeMedia, gameMedia, winMedia, level, username, width, height, root, parent, scale, oldX, oldY, newX, newY, result, coin, time, labels, labels1, imageViews, road);
+    public static void initiateGame(double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
+        Parameter parameter = Parameter.getInstance();
+        gameInstance = new Game(parameter.getWidth(), parameter.getHeight(), parameter.getHomeMedia(), parameter.getGameMedia(), parameter.getWinMedia(), parameter.getLevel(), parameter.getUsername(), width, height, root, parent, scale, oldX, oldY, newX, newY, result, coin, time, labels, labels1, imageViews, road);
     }
 
     public AnchorPane getRoot() {

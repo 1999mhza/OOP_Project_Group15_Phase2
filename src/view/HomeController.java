@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import model.Parameter;
 
 import java.io.IOException;
 
@@ -36,25 +37,27 @@ public class HomeController {
 
     private FadeTransition fadeTransition;
 
-    public void initiate(MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, double width, double height) {
+    public void initiate() {
 
-        double s = Math.min(height / image.getImage().getHeight(), width / image.getImage().getWidth());
+        Parameter parameter = Parameter.getInstance();
+
+        double s = Math.min(parameter.getHeight() / image.getImage().getHeight(), parameter.getWidth() / image.getImage().getWidth());
         image.setFitHeight(s * image.getImage().getHeight());
         image.setFitWidth(s * image.getImage().getWidth());
-        image.setX((width - image.getFitWidth()) / 2);
-        image.setY((height - image.getFitHeight()) / 2);
+        image.setX((parameter.getWidth() - image.getFitWidth()) / 2);
+        image.setY((parameter.getHeight() - image.getFitHeight()) / 2);
 
-        vbox.setLayoutX((width - vbox.getPrefWidth()) / 2);
-        vbox.setLayoutY((height - vbox.getPrefHeight()) / 2);
+        vbox.setLayoutX((parameter.getWidth() - vbox.getPrefWidth()) / 2);
+        vbox.setLayoutY((parameter.getHeight() - vbox.getPrefHeight()) / 2);
 
-        hbox.setLayoutX((width - image.getFitWidth()) / 2 + 5);
+        hbox.setLayoutX((parameter.getWidth() - image.getFitWidth()) / 2 + 5);
 
         UserManager userManager = UserManager.getInstance();
 
         result.setVisible(false);
         result.setPrefWidth(s * result.getPrefWidth());
         result.setPrefHeight(s * result.getPrefHeight());
-        result.setLayoutX(s * (result.getLayoutX() - image.getImage().getWidth() / 2) + width / 2);
+        result.setLayoutX(s * (result.getLayoutX() - image.getImage().getWidth() / 2) + parameter.getWidth() / 2);
         fadeTransition = new FadeTransition(Duration.seconds(1), result);
         fadeTransition.setFromValue(1.0);
         fadeTransition.setToValue(0.0);
@@ -125,6 +128,8 @@ public class HomeController {
             Logger.log("info", username + " entered the game menu.");
             result.setVisible(false);
 
+            parameter.setUsername(username);
+
             Stage stage = (Stage) (((Node) (event.getSource())).getScene().getWindow());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
             try {
@@ -132,7 +137,7 @@ public class HomeController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((MenuController) (loader.getController())).initiate(username, homeMedia, gameMedia, winMedia, width, height);
+            ((MenuController) (loader.getController())).initiate();
         });
 
         signup.setOnMousePressed(event -> signup.setStyle("""
@@ -374,7 +379,7 @@ public class HomeController {
                 e.printStackTrace();
             }
             stage.initStyle(StageStyle.UNDECORATED);
-            ((OptionController) (loader.getController())).initiate(homeMedia, gameMedia, winMedia);
+            ((OptionController) (loader.getController())).initiate();
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.initOwner(((Node) (event.getSource())).getScene().getWindow());

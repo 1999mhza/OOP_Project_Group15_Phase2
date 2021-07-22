@@ -9,6 +9,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
+import model.Parameter;
 
 import java.io.File;
 
@@ -18,7 +19,9 @@ public class OptionController {
     public Slider slider;
     public Button ok;
 
-    public void initiate(MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia) {
+    public void initiate() {
+        Parameter parameter = Parameter.getInstance();
+
         Image image = new Image(new File("src/resource/volume.png").toURI().toString());
         imageView.setImage(image);
         Rectangle2D[] cells = new Rectangle2D[4];
@@ -32,8 +35,8 @@ public class OptionController {
             }
         }
 
-        slider.setValue(homeMedia.getVolume() * 100);
-        int volume = (int) Math.round(homeMedia.getVolume() * 100);
+        slider.setValue(parameter.getHomeMedia().getVolume() * 100);
+        int volume = (int) Math.round(parameter.getHomeMedia().getVolume() * 100);
         label.setText(String.format("%% %d", volume));
 
         int num;
@@ -44,9 +47,9 @@ public class OptionController {
         imageView.setViewport(cells[num]);
 
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            homeMedia.setVolume(newValue.doubleValue() / 100);
-            gameMedia.setVolume(newValue.doubleValue() / 100);
-            winMedia.setVolume(newValue.doubleValue() / 100);
+            parameter.getHomeMedia().setVolume(newValue.doubleValue() / 100);
+            parameter.getGameMedia().setVolume(newValue.doubleValue() / 100);
+            parameter.getWinMedia().setVolume(newValue.doubleValue() / 100);
             int volume2 = newValue.intValue();
             label.setText(String.format("%% %d", volume2));
             int num2;

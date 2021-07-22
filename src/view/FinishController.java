@@ -67,7 +67,7 @@ public class FinishController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ((MenuController) (loader.getController())).initiate(username, homeMedia, gameMedia, winMedia, width, height);
+            ((MenuController) (loader.getController())).initiate();
         });
 
         coin.setText(String.valueOf(coinNumber));
