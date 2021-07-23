@@ -9,24 +9,27 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.*;
+import model.animal.AnimalImageView;
 import model.animal.collector.Collector;
 import model.animal.collector.CollectorList;
 import model.animal.domestic.Domestic;
 import model.animal.domestic.DomesticList;
 import model.animal.protective.Protective;
 import model.animal.protective.ProtectiveList;
-import model.animal.wild.WildList;
+import model.animal.wild.CageImageView;
+import model.animal.wild.Wild;
 import model.factory.Factory;
 import model.factory.FactoryList;
+import model.good.GoodImageView;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +38,9 @@ public class GameController {
 
     public ImageView image;
     public Button menu;
-    public AnchorPane parent;
+    public AnchorPane animalPane;
+    public AnchorPane goodPane;
+    public AnchorPane grassPane;
     public ImageView road;
     public Label result;
     public Label coin;
@@ -112,26 +117,14 @@ public class GameController {
         image.setX((parameter.getWidth() - image.getFitWidth()) / 2);
         image.setY((parameter.getHeight() - image.getFitHeight()) / 2);
 
-        parent.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getPickResult().getIntersectedNode() instanceof AnchorPane) {
-                plant(mouseEvent.getX(), mouseEvent.getY());
-            } else {
-                if (mouseEvent.getPickResult().getIntersectedNode() instanceof ImageView) {
-                    ImageView view = (ImageView) mouseEvent.getPickResult().getIntersectedNode();
-                    String url = view.getImage().getUrl();
-                    String[] split = url.split("/");
-                    String name = split[split.length - 2];
+        goodPane.setOnMouseClicked(this::setOnMouseClicked);
+        animalPane.setPickOnBounds(false);
+        grassPane.setPickOnBounds(false);
 
-                    if (!name.equals("Product") && !name.equals("Cage") && WildList.getWild(name) == null)
-                        plant(mouseEvent.getX(), mouseEvent.getY());
-                }
-            }
-        });
-
-        parent.setLayoutX(s * (parent.getLayoutX() - image.getImage().getWidth() / 2) + parameter.getWidth() / 2);
-        parent.setLayoutY(s * (parent.getLayoutY() - image.getImage().getHeight() / 2) + parameter.getHeight() / 2);
-        parent.setPrefWidth(s * parent.getPrefWidth());
-        parent.setPrefHeight(s * parent.getPrefHeight());
+        goodPane.setLayoutX(s * (goodPane.getLayoutX() - image.getImage().getWidth() / 2) + parameter.getWidth() / 2);
+        goodPane.setLayoutY(s * (goodPane.getLayoutY() - image.getImage().getHeight() / 2) + parameter.getHeight() / 2);
+        goodPane.setPrefWidth(s * goodPane.getPrefWidth());
+        goodPane.setPrefHeight(s * goodPane.getPrefHeight());
 
         VBox vBox = (VBox) coin.getParent();
         vBox.setLayoutX(s * (vBox.getLayoutX() - image.getImage().getWidth() / 2) + parameter.getWidth() / 2);
@@ -155,7 +148,7 @@ public class GameController {
         HBox hBox = (HBox) time.getParent();
         hBox.setLayoutX((parameter.getWidth() + image.getFitWidth()) / 2 - 5 - hBox.getPrefWidth());
 
-        Game.initiateGame(parent.getPrefWidth(), parent.getPrefHeight(), parent, (AnchorPane) (parent.getParent()), s, image.getImage().getWidth() / 2, image.getImage().getHeight() / 2, parameter.getWidth() / 2, parameter.getHeight() / 2, result, coin, time, labels, labels1, imageViews, road);
+        Game.initiateGame(goodPane.getPrefWidth(), goodPane.getPrefHeight(), animalPane, goodPane, grassPane, (AnchorPane) (goodPane.getParent()), s, image.getImage().getWidth() / 2, image.getImage().getHeight() / 2, parameter.getWidth() / 2, parameter.getHeight() / 2, result, coin, time, labels, labels1, imageViews, road);
         Game game = Game.getInstance();
         game.initiate();
 
@@ -376,10 +369,22 @@ public class GameController {
         ((TaskController) (loader.getController())).initiate();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
-        stage.initOwner(parent.getScene().
-
-                getWindow());
+        stage.initOwner(animalPane.getScene().getWindow());
         stage.show();
+    }
+
+    private void setOnMouseClicked(MouseEvent mouseEvent) {
+        if (mouseEvent.getPickResult().getIntersectedNode() instanceof GoodImageView) {
+            ((GoodImageView) mouseEvent.getPickResult().getIntersectedNode()).getGood().setOnMouseClicked();
+        } else if (mouseEvent.getPickResult().getIntersectedNode() instanceof AnimalImageView) {
+            if (((AnimalImageView) mouseEvent.getPickResult().getIntersectedNode()).getAnimal() instanceof Wild) {
+                ((Wild) ((AnimalImageView) mouseEvent.getPickResult().getIntersectedNode()).getAnimal()).setOnMouseClicked();
+            }
+        } else if (mouseEvent.getPickResult().getIntersectedNode() instanceof CageImageView) {
+            (((CageImageView) mouseEvent.getPickResult().getIntersectedNode()).getWild()).setOnMouseClicked();
+        } else  {
+            plant(mouseEvent.getX(), mouseEvent.getY());
+        }
     }
 
     private void setFactory(String name, Button button, Label price, ImageView imageView) {

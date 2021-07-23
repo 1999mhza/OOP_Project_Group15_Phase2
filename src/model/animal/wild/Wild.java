@@ -22,7 +22,7 @@ public abstract class Wild extends Animal {
     protected Image cagedWildImage;
     protected Rectangle2D[] cagedWildCells;
 
-    protected ImageView cageImageView;
+    protected CageImageView cageImageView;
     protected Image buildCageImage;
     protected Rectangle2D[] buildCageCells;
     protected Image breakCageImage;
@@ -52,7 +52,8 @@ public abstract class Wild extends Animal {
         currentAnimation = 1;
         preV = 0;
 
-        cageImageView = new ImageView();
+        cageImageView = new CageImageView(this);
+        cageImageView.setPickOnBounds(false);
 
         decreaseCageTime = cage.getCageTimeDecrease();
         buildCageImage = cage.getBuildImage();
@@ -63,102 +64,19 @@ public abstract class Wild extends Animal {
 
         moveCage();
         cageImageView.setVisible(false);
-        game.getRoot().getChildren().add(cageImageView);
+        game.getAnimalPane().getChildren().add(cageImageView);
 
         cageAnimation = new CageAnimation(this);
 
         breakAnimation = new BreakAnimation(this);
         breakAnimation.setOnFinished(event -> {
             game.getWildAnimals().remove(this);
-            game.getRoot().getChildren().remove(imageView);
-            game.getRoot().getChildren().remove(cageImageView);
+            game.getAnimalPane().getChildren().remove(imageView);
+            game.getAnimalPane().getChildren().remove(cageImageView);
         });
 
-        imageView.setOnMouseClicked(mouseEvent -> {
-            if (isCaged()) {
-                if (game.getWarehouse().addWild(this)) {
-                    pause();
-                    game.getRoot().getChildren().remove(imageView);
-                    game.getRoot().getChildren().remove(cageImageView);
-                    game.getWildAnimals().remove(this);
-                    game.updateTask(this.getClass().getSimpleName(), true);
-                } else {
-                    game.setResult("No Capacity!");
-                }
-            } else if (isFree()) {
-                decreaseCageTime = cage.getCageTimeDecrease();
-                buildCageImage = cage.getBuildImage();
-                buildCageCells = cage.getBuildCells();
-                breakCageImage = cage.getBreakImage();
-                breakCageCells = cage.getBreakCells();
-                numberOfCageImage = cage.getBuildCellsNumber();
-
-                cageImageView.setImage(buildCageImage);
-                cageRemaining = cageNeeded - decreaseCageTime;
-
-                cageRemaining--;
-                speed = defaultSpeed * cageRemaining / (cageNeeded - decreaseCageTime);
-                currentAnimation = 2;
-                cageImageView.setVisible(true);
-                cageAnimation.playFromStart();
-            } else {
-                cageRemaining--;
-                if (isCaged()) {
-                    animalAnimation.pause();
-                    cageAnimation.pause();
-                    currentAnimation = 3;
-
-                    imageView.setImage(cagedWildImage);
-                    cageImageView.setImage(breakCageImage);
-                    imageView.setLayoutX(cageImageView.getLayoutX() - (cagedWildCells[0].getWidth() - breakCageCells[0].getWidth()) / 2);
-                    imageView.setLayoutY(cageImageView.getLayoutY() - (cagedWildCells[0].getHeight() - breakCageCells[0].getHeight()) / 2);
-                    breakAnimation.play(fullLifetime + 2 * decreaseCageTime);
-                }
-            }
-        });
-
-        cageImageView.setOnMouseClicked(mouseEvent -> {
-            if (isCaged()) {
-                if (game.getWarehouse().addWild(this)) {
-                    pause();
-                    game.getRoot().getChildren().remove(imageView);
-                    game.getRoot().getChildren().remove(cageImageView);
-                    game.getWildAnimals().remove(this);
-                    game.updateTask(this.getClass().getSimpleName(), true);
-                } else {
-                    game.setResult("No Capacity!");
-                }
-            } else if (isFree()) {
-                decreaseCageTime = cage.getCageTimeDecrease();
-                buildCageImage = cage.getBuildImage();
-                buildCageCells = cage.getBuildCells();
-                breakCageImage = cage.getBreakImage();
-                breakCageCells = cage.getBreakCells();
-                numberOfCageImage = cage.getBuildCellsNumber();
-
-                cageImageView.setImage(buildCageImage);
-                cageRemaining = cageNeeded - decreaseCageTime;
-
-                cageRemaining--;
-                speed = defaultSpeed * cageRemaining / (cageNeeded - decreaseCageTime);
-                currentAnimation = 2;
-                cageImageView.setVisible(true);
-                cageAnimation.playFromStart();
-            } else {
-                cageRemaining--;
-                if (isCaged()) {
-                    animalAnimation.pause();
-                    cageAnimation.pause();
-                    currentAnimation = 3;
-
-                    imageView.setImage(cagedWildImage);
-                    cageImageView.setImage(breakCageImage);
-                    imageView.setLayoutX(cageImageView.getLayoutX() - (cagedWildCells[0].getWidth() - breakCageCells[0].getWidth()) / 2);
-                    imageView.setLayoutY(cageImageView.getLayoutY() - (cagedWildCells[0].getHeight() - breakCageCells[0].getHeight()) / 2);
-                    breakAnimation.play(fullLifetime + 2 * decreaseCageTime);
-                }
-            }
-        });
+        //imageView.setOnMouseClicked(mouseEvent -> setOnMouseClicked());
+        //cageImageView.setOnMouseClicked(mouseEvent -> setOnMouseClicked());
     }
 
     public boolean isFree() {
@@ -235,7 +153,7 @@ public abstract class Wild extends Animal {
             }
             for (Good good : removedGoods) {
                 good.pause();
-                game.getRoot().getChildren().remove(good.getImageView());
+                game.getGoodPane().getChildren().remove(good.getImageView());
                 game.getGoods().remove(good);
             }
 
@@ -247,8 +165,8 @@ public abstract class Wild extends Animal {
             }
             for (Domestic domestic : removedDomestics) {
                 domestic.pause();
-                game.getRoot().getChildren().remove(domestic.getImageView());
-                game.getRoot().getChildren().remove(domestic.getLifeBar());
+                game.getAnimalPane().getChildren().remove(domestic.getImageView());
+                game.getAnimalPane().getChildren().remove(domestic.getLifeBar());
                 game.getDomesticAnimals().remove(domestic);
             }
         }
@@ -283,6 +201,51 @@ public abstract class Wild extends Animal {
             case 3:
                 breakAnimation.pause();
                 break;
+        }
+    }
+
+    public void setOnMouseClicked() {
+        Game game = Game.getInstance();
+        Cage cage = game.getCage();
+        if (isCaged()) {
+            if (game.getWarehouse().addWild(this)) {
+                pause();
+                game.getAnimalPane().getChildren().remove(imageView);
+                game.getAnimalPane().getChildren().remove(cageImageView);
+                game.getWildAnimals().remove(this);
+                game.updateTask(this.getClass().getSimpleName(), true);
+            } else {
+                game.setResult("No Capacity!");
+            }
+        } else if (isFree()) {
+            decreaseCageTime = cage.getCageTimeDecrease();
+            buildCageImage = cage.getBuildImage();
+            buildCageCells = cage.getBuildCells();
+            breakCageImage = cage.getBreakImage();
+            breakCageCells = cage.getBreakCells();
+            numberOfCageImage = cage.getBuildCellsNumber();
+
+            cageImageView.setImage(buildCageImage);
+            cageRemaining = cageNeeded - decreaseCageTime;
+
+            cageRemaining--;
+            speed = defaultSpeed * cageRemaining / (cageNeeded - decreaseCageTime);
+            currentAnimation = 2;
+            cageImageView.setVisible(true);
+            cageAnimation.playFromStart();
+        } else {
+            cageRemaining--;
+            if (isCaged()) {
+                animalAnimation.pause();
+                cageAnimation.pause();
+                currentAnimation = 3;
+
+                imageView.setImage(cagedWildImage);
+                cageImageView.setImage(breakCageImage);
+                imageView.setLayoutX(cageImageView.getLayoutX() - (cagedWildCells[0].getWidth() - breakCageCells[0].getWidth()) / 2);
+                imageView.setLayoutY(cageImageView.getLayoutY() - (cagedWildCells[0].getHeight() - breakCageCells[0].getHeight()) / 2);
+                breakAnimation.play(fullLifetime + 2 * decreaseCageTime);
+            }
         }
     }
 }

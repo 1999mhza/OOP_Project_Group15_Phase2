@@ -14,7 +14,11 @@
         <Image url="@../resource/back.png" />
     </ImageView>
      <Button fx:id="menu" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 25; -fx-background-color: deepskyblue; -fx-border-color: darkblue; -fx-border-width: 5; -fx-border-radius: 25; -fx-font-size: 19; -fx-font-weight: bold;" text="MENU" AnchorPane.bottomAnchor="5.0" />
-    <AnchorPane fx:id="parent" layoutX="183.0" layoutY="179.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="410.0" />
+    <AnchorPane fx:id="goodPane" layoutX="183.0" layoutY="179.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="410.0">
+      <children>
+         <AnchorPane fx:id="grassPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.4" prefWidth="410.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         <AnchorPane fx:id="animalPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.4" prefWidth="410.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      </children></AnchorPane>
    <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 15; -fx-font-weight: bold;" textAlignment="CENTER" visible="false" AnchorPane.topAnchor="0.0">
       <graphic>
          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">

@@ -1932,3 +1932,88 @@
 22/07/2021 - 23:32:14, [INFO], User MHZ
 22/07/2021 - 23:32:15, [INFO], MHZ entered the game menu.
 22/07/2021 - 23:35:00, [INFO], The user closed the game.
+23/07/2021 - 12:07:41, [INFO], User MHZ
+23/07/2021 - 12:07:41, [INFO], MHZ entered the game menu.
+23/07/2021 - 12:08:07, [INFO], The user closed the game.
+23/07/2021 - 12:21:53, [INFO], User MHZ
+23/07/2021 - 12:21:53, [INFO], MHZ entered the game menu.
+23/07/2021 - 12:21:54, [INFO], The user went to home.
+23/07/2021 - 12:22:13, [INFO], The user closed the game.
+23/07/2021 - 12:33:33, [INFO], User MHZ
+23/07/2021 - 12:33:33, [INFO], MHZ entered the game menu.
+23/07/2021 - 12:33:49, [INFO], The user closed the game.
+23/07/2021 - 13:18:50, [INFO], User MHZ
+23/07/2021 - 13:18:50, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:19:10, [INFO], The user closed the game.
+23/07/2021 - 13:20:44, [INFO], User MHZ
+23/07/2021 - 13:20:45, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:21:11, [INFO], The user closed the game.
+23/07/2021 - 13:21:50, [ADMIN], The missions of the level 1 was changed!
+23/07/2021 - 13:21:50, [ADMIN], The users info was reset!
+23/07/2021 - 13:22:04, [INFO], User MHZ
+23/07/2021 - 13:22:04, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:22:24, [INFO], The user closed the game.
+23/07/2021 - 13:26:22, [INFO], User MHZ
+23/07/2021 - 13:26:23, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:27:24, [INFO], The user closed the game.
+23/07/2021 - 13:28:12, [INFO], User MHZ
+23/07/2021 - 13:28:12, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:29:07, [INFO], The user closed the game.
+23/07/2021 - 13:32:41, [INFO], User MHZ
+23/07/2021 - 13:32:41, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:32:58, [INFO], The user closed the game.
+23/07/2021 - 13:34:25, [INFO], User MHZ
+23/07/2021 - 13:34:25, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:34:52, [INFO], The user closed the game.
+23/07/2021 - 13:35:28, [INFO], User MHZ
+23/07/2021 - 13:35:28, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:38:05, [INFO], The user closed the game.
+23/07/2021 - 13:39:53, [INFO], User MHZ
+23/07/2021 - 13:39:53, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:42:34, [INFO], The user logged out.
+23/07/2021 - 13:42:35, [ERROR], The user entered an empty username.
+23/07/2021 - 13:42:37, [INFO], The user closed the game.
+23/07/2021 - 13:46:06, [INFO], User MHZ
+23/07/2021 - 13:46:06, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:46:14, [INFO], The user closed the game.
+23/07/2021 - 13:46:52, [INFO], User MHZ
+23/07/2021 - 13:46:53, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:47:17, [INFO], The user closed the game.
+23/07/2021 - 13:47:52, [INFO], User MHZ
+23/07/2021 - 13:47:52, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:48:51, [INFO], The user closed the game.
+23/07/2021 - 13:52:50, [INFO], User MHZ
+23/07/2021 - 13:52:50, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:54:29, [INFO], The user closed the game.
+23/07/2021 - 13:55:23, [INFO], User MHZ
+23/07/2021 - 13:55:23, [INFO], MHZ entered the game menu.
+23/07/2021 - 13:56:12, [INFO], The user closed the game.
+23/07/2021 - 13:59:16, [INFO], User MHZ
+23/07/2021 - 13:59:16, [INFO], MHZ entered the game menu.
+23/07/2021 - 14:00:03, [INFO], The user closed the game.
+23/07/2021 - 14:01:50, [INFO], User MHZ
+23/07/2021 - 14:01:50, [INFO], MHZ entered the game menu.
+23/07/2021 - 14:04:28, [INFO], The user closed the game.
+23/07/2021 - 14:06:37, [INFO], User MHZ
+23/07/2021 - 14:06:37, [INFO], MHZ entered the game menu.
+23/07/2021 - 14:07:45, [INFO], The user closed the game.
+23/07/2021 - 14:26:58, [INFO], User MHZ
+23/07/2021 - 14:26:58, [INFO], MHZ entered the game menu.
+23/07/2021 - 14:27:25, [INFO], The user closed the game.
+23/07/2021 - 14:29:35, [INFO], User MHZ
+23/07/2021 - 14:29:35, [INFO], MHZ entered the game menu.
+23/07/2021 - 14:31:10, [INFO], The user closed the game.
+23/07/2021 - 14:32:01, [INFO], User MHZ
+23/07/2021 - 14:32:01, [INFO], MHZ entered the game menu.
+23/07/2021 - 14:32:29, [INFO], The user closed the game.
+23/07/2021 - 14:35:07, [INFO], User MHZ
+23/07/2021 - 14:35:07, [INFO], MHZ entered the game menu.
+23/07/2021 - 14:35:27, [INFO], The user closed the game.
+23/07/2021 - 14:36:24, [INFO], User MHZ
+23/07/2021 - 14:36:24, [INFO], MHZ entered the game menu.
+23/07/2021 - 14:38:51, [INFO], The user closed the game.
+23/07/2021 - 14:43:08, [INFO], User mhz
+23/07/2021 - 14:43:08, [ERROR], The user entered an incorrect password.
+23/07/2021 - 14:43:19, [INFO], User MHZ
+23/07/2021 - 14:43:19, [INFO], MHZ entered the game menu.
+23/07/2021 - 14:44:05, [INFO], The user closed the game.

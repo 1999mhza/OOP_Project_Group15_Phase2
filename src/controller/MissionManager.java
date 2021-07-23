@@ -228,7 +228,7 @@ public class MissionManager {
         factoriesSet.add("SewingFactory");
         factoriesSet.add("Incubator");*/
 
-        //wildAnimalsTime.put("Lion", new ArrayList<>(Arrays.asList(2.0, 6.0)));
+        wildAnimalsTime.put("Lion", new ArrayList<>(Arrays.asList(2.0, 6.0)));
         //wildAnimalsTime.put("Bear", new ArrayList<>(Arrays.asList(20.0, 21.0)));
 
         //tasksMap.put("Egg", 20);

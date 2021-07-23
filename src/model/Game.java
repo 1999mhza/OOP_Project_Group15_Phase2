@@ -41,13 +41,21 @@ public class Game {
         return gameInstance;
     }
 
-    public static void initiateGame(double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
+    public static void initiateGame(double width, double height, AnchorPane animalPane, AnchorPane goodPane, AnchorPane grassPane, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
         Parameter parameter = Parameter.getInstance();
-        gameInstance = new Game(parameter.getWidth(), parameter.getHeight(), parameter.getHomeMedia(), parameter.getGameMedia(), parameter.getWinMedia(), parameter.getLevel(), parameter.getUsername(), width, height, root, parent, scale, oldX, oldY, newX, newY, result, coin, time, labels, labels1, imageViews, road);
+        gameInstance = new Game(parameter.getWidth(), parameter.getHeight(), parameter.getHomeMedia(), parameter.getGameMedia(), parameter.getWinMedia(), parameter.getLevel(), parameter.getUsername(), width, height, animalPane, goodPane, grassPane, parent, scale, oldX, oldY, newX, newY, result, coin, time, labels, labels1, imageViews, road);
     }
 
-    public AnchorPane getRoot() {
-        return root;
+    public AnchorPane getAnimalPane() {
+        return animalPane;
+    }
+
+    public AnchorPane getGoodPane() {
+        return goodPane;
+    }
+
+    public AnchorPane getGrassPane() {
+        return grassPane;
     }
 
     public double getTime() {
@@ -71,7 +79,7 @@ public class Game {
     private double stageWidth, stageHeight;
     private MediaPlayer homeMedia, gameMedia, winMedia;
 
-    private AnchorPane root;
+    private AnchorPane animalPane, goodPane, grassPane;
     private double width;
     private double height;
 
@@ -112,7 +120,7 @@ public class Game {
     private HashSet<Protective> protectiveAnimals;
     private HashSet<Collector> collectorAnimals;
 
-    private Game(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, int level, String username, double width, double height, AnchorPane root, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
+    private Game(double stageWidth, double stageHeight, MediaPlayer homeMedia, MediaPlayer gameMedia, MediaPlayer winMedia, int level, String username, double width, double height, AnchorPane animalPane, AnchorPane goodPane, AnchorPane grassPane, AnchorPane parent, double scale, double oldX, double oldY, double newX, double newY, Label result, Label coin, Label time, Label[] labels, Label[] labels1, ImageView[] imageViews, ImageView road) {
         this.stageWidth = stageWidth;
         this.stageHeight = stageHeight;
         this.homeMedia = homeMedia;
@@ -126,7 +134,9 @@ public class Game {
 
         this.width = width;
         this.height = height;
-        this.root = root;
+        this.animalPane = animalPane;
+        this.goodPane = goodPane;
+        this.grassPane = grassPane;
         this.coinL = coin;
         this.timeL = time;
 
@@ -413,15 +423,7 @@ public class Game {
         else if (y > getHeight() - 48)
             y = getHeight() - 48;
 
-        new Grass(x, y ,16);
-        new Grass(x, y + 24 ,12);
-        new Grass(x + 24, y ,12);
-        new Grass(x - 24, y ,12);
-        new Grass(x, y - 24 ,12);
-        new Grass(x - 16, y - 16 ,8);
-        new Grass(x + 16, y - 16 ,8);
-        new Grass(x - 16, y + 16 ,8);
-        new Grass(x + 16, y + 16 ,8);
+        new Grass(x, y);
     }
 
     public HashMap<String, Integer[]> getTasks() {
@@ -451,7 +453,6 @@ public class Game {
     public ArrayList<Grass> getGrasses() {
         return grasses;
     }
-
 
     public HashSet<Factory> getFactories() {
         return factories;
@@ -500,8 +501,8 @@ public class Game {
         for (Domestic domestic : domesticAnimals) {
             if (domestic.isAlive() && domestic.getClass().getSimpleName().equalsIgnoreCase(name)) {
                 domesticAnimals.remove(domestic);
-                root.getChildren().remove(domestic.getImageView());
-                root.getChildren().remove(domestic.getLifeBar());
+                animalPane.getChildren().remove(domestic.getImageView());
+                animalPane.getChildren().remove(domestic.getLifeBar());
                 updateTask(name, false);
                 return domestic;
             }
@@ -511,8 +512,8 @@ public class Game {
 
     public void addDomestic(Domestic domestic) {
         domesticAnimals.add(domestic);
-        root.getChildren().add(domestic.getImageView());
-        root.getChildren().add(domestic.getLifeBar());
+        animalPane.getChildren().add(domestic.getImageView());
+        animalPane.getChildren().add(domestic.getLifeBar());
         updateTask(domestic.getClass().getSimpleName(), true);
     }
 

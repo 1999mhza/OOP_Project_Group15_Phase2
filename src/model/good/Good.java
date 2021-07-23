@@ -5,9 +5,6 @@ import javafx.scene.image.ImageView;
 import model.Game;
 
 import java.io.File;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Random;
 
 public abstract class Good {
     protected int space;
@@ -15,7 +12,7 @@ public abstract class Good {
     protected double lifetime;
     protected double fullLifeTime;
 
-    protected ImageView imageView;
+    protected GoodImageView imageView;
     protected GoodAnimation goodAnimation;
 
     public Good(int space, double lifetime, int price) {
@@ -26,31 +23,24 @@ public abstract class Good {
     }
 
     public void setPosition(double x, double y) {
-        imageView = new ImageView(new Image(new File("src/resource/Product/" + getClass().getSimpleName() + ".png").toURI().toString()));
+        imageView = new GoodImageView(this);
+        imageView.setPickOnBounds(false);
+        imageView .setImage(new Image(new File("src/resource/Product/" + getClass().getSimpleName() + ".png").toURI().toString()));
         imageView.setLayoutX(x - imageView.getImage().getWidth() / 2);
         imageView.setLayoutY(y - imageView.getImage().getHeight() / 2);
 
         Game game = Game.getInstance();
         game.getGoods().add(this);
-        game.getRoot().getChildren().add(imageView);
-        imageView.toBack();
+        game.getGoodPane().getChildren().add(imageView);
+        //imageView.toBack();
 
-        imageView.setOnMouseClicked(mouseEvent -> {
-            if (game.getWarehouse().addGood(this)) {
-                goodAnimation.pause();
-                game.getRoot().getChildren().remove(imageView);
-                game.getGoods().remove(this);
-                game.updateTask(this.getClass().getSimpleName(), true);
-            } else {
-                game.setResult("No Capacity!");
-            }
-        });
+        //imageView.setOnMouseClicked(mouseEvent -> setOnMouseClicked());
 
         goodAnimation = new GoodAnimation(this);
         goodAnimation.play();
         goodAnimation.setOnFinished(event -> {
             game.getGoods().remove(this);
-            game.getRoot().getChildren().remove(imageView);
+            game.getGoodPane().getChildren().remove(imageView);
         });
     }
 
@@ -110,8 +100,15 @@ public abstract class Good {
         }
     }
 
-    @Override
-    public String toString() {
-        return (lifetime > 1 ? "" : "* ") + this.getClass().getSimpleName() + " " + lifetime + " [" + getX() + " " + getY() + "]";
+    public void setOnMouseClicked() {
+        Game game = Game.getInstance();
+        if (game.getWarehouse().addGood(this)) {
+            goodAnimation.pause();
+            game.getGoodPane().getChildren().remove(imageView);
+            game.getGoods().remove(this);
+            game.updateTask(this.getClass().getSimpleName(), true);
+        } else {
+            game.setResult("No Capacity!");
+        }
     }
 }

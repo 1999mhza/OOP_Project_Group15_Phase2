@@ -7,9 +7,9 @@ import javafx.util.Duration;
 public class GrassAnimation extends Transition {
     private Grass grass;
 
-    public GrassAnimation(Grass grass, double value) {
+    public GrassAnimation(Grass grass) {
         this.grass = grass;
-        setCycleDuration(Duration.millis(25 * value));
+        setCycleDuration(Duration.millis(500));
         setCycleCount(1);
         setInterpolator(Interpolator.LINEAR);
     }

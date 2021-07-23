@@ -9,14 +9,18 @@ import java.io.File;
 public class Grass {
     private double value;
 
-    protected ImageView imageView;
+    protected ImageView[] imageViews;
     protected GrassAnimation grassAnimation;
     protected Rectangle2D[] cells;
 
-    public Grass(double x, double y, double value) {
-        this.value = value;
+    public Grass(double x, double y) {
+        this.value = 16;
 
-        imageView = new ImageView();
+        imageViews = new ImageView[9];
+        for (int i = 0; i < 9; i++) {
+            imageViews[i] = new ImageView();
+            imageViews[i].setPickOnBounds(false);
+        }
 
         Image image = new Image(new File("src/resource/Grass/grass.png").toURI().toString());
         cells = new Rectangle2D[16];
@@ -32,31 +36,50 @@ public class Grass {
             }
         }
 
-        imageView.setImage(image);
-        imageView.setViewport(cells[0]);
+        for (int i = 0; i < 9; i++) {
+            imageViews[i].setImage(image);
+            imageViews[i].setViewport(cells[0]);
+        }
 
         x = x - cellWidth / 2;
         y = y - cellHeight / 2;
 
-        imageView.setLayoutX(x);
-        imageView.setLayoutY(y);
+        imageViews[0].setLayoutX(x - 16);
+        imageViews[0].setLayoutY(y - 16);
+        imageViews[1].setLayoutX(x + 16);
+        imageViews[1].setLayoutY(y - 16);
+        imageViews[2].setLayoutX(x - 16);
+        imageViews[2].setLayoutY(y + 16);
+        imageViews[3].setLayoutX(x + 16);
+        imageViews[3].setLayoutY(y + 16);
+
+        imageViews[4].setLayoutX(x);
+        imageViews[4].setLayoutY(y - 24);
+        imageViews[5].setLayoutX(x - 24);
+        imageViews[5].setLayoutY(y);
+        imageViews[6].setLayoutX(x + 24);
+        imageViews[6].setLayoutY(y);
+        imageViews[7].setLayoutX(x);
+        imageViews[7].setLayoutY(y + 24);
+
+        imageViews[8].setLayoutX(x);
+        imageViews[8].setLayoutY(y);
 
         Game game = Game.getInstance();
         game.getGrasses().add(this);
-        game.getRoot().getChildren().add(imageView);
-        imageView.toBack();
+        game.getGrassPane().getChildren().addAll(imageViews);
 
-        grassAnimation = new GrassAnimation(this, value);
+        grassAnimation = new GrassAnimation(this);
         grassAnimation.play();
     }
 
 
     public double getY() {
-        return imageView.getLayoutY() + cells[0].getHeight() / 2;
+        return imageViews[8].getLayoutY() + cells[0].getHeight() / 2;
     }
 
     public double getX() {
-        return imageView.getLayoutX() + cells[0].getWidth() / 2;
+        return imageViews[8].getLayoutX() + cells[0].getWidth() / 2;
     }
 
     public boolean isExist() {
@@ -64,20 +87,40 @@ public class Grass {
     }
 
     public void decreaseValue(double v) {
-        value -= 4 * v;
+        value -= 2.0 / 3.0 * v;
         if (value > 0) {
-            int num = (int) Math.ceil(value);
-            if (num >= 15) num = 15;
-            imageView.setViewport(cells[num]);
+            for (int i = 0; i < 4; i++) {
+                int num = (int) (value * 1 / 2);
+                if (num >= value * 1 / 2) num = (int) (value * 1 / 2 - 1);
+                imageViews[i].setViewport(cells[num]);
+            }
+            for (int i = 4; i < 8; i++) {
+                int num = (int) (value * 3 / 4);
+                if (num >= value * 3 / 4) num = (int) (value * 3 / 4 - 1);
+                imageViews[i].setViewport(cells[num]);
+            }
+            int num = (int) (value);
+            if (num >= value) num = (int) (value - 1);
+            imageViews[8].setViewport(cells[num]);
         } else {
-            Game.getInstance().getRoot().getChildren().remove(imageView);
+            Game.getInstance().getGrassPane().getChildren().removeAll(imageViews);
             Game.getInstance().getGrasses().remove(this);
         }
     }
 
     public void update(double v) {
-        int num = (int) (v * value);
-        if (num >= value) num = (int) Math.round(value - 1);
-        imageView.setViewport(cells[num]);
+        for (int i = 0; i < 4; i++) {
+            int num = (int) (v * 8);
+            if (num >= 8) num = 7;
+            imageViews[i].setViewport(cells[num]);
+        }
+        for (int i = 4; i < 8; i++) {
+            int num = (int) (v * 12);
+            if (num >= 12) num = 11;
+            imageViews[i].setViewport(cells[num]);
+        }
+        int num = (int) (v * 16);
+        if (num >= 16) num = 15;
+        imageViews[8].setViewport(cells[num]);
     }
 }

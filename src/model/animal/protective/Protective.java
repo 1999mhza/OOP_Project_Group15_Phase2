@@ -81,12 +81,12 @@ public abstract class Protective extends Animal {
                 if (wild.isFree()) {
                     wild.pause();
                     pause();
-                    game.getRoot().getChildren().remove(wild.getImageView());
+                    game.getAnimalPane().getChildren().remove(wild.getImageView());
                     game.getWildAnimals().remove(wild);
                     battleAnimation = new BattleAnimation(this);
                     battleAnimation.setOnFinished(event -> {
                         game.getProtectiveAnimals().remove(this);
-                        game.getRoot().getChildren().remove(imageView);
+                        game.getAnimalPane().getChildren().remove(imageView);
                     });
                     currentAnimation = 2;
 

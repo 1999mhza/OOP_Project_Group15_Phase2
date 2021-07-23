@@ -2,7 +2,6 @@ package model.animal.collector;
 
 import model.Game;
 import model.animal.Animal;
-import model.animal.wild.Wild;
 import model.good.Good;
 
 public abstract class Collector extends Animal {
@@ -55,7 +54,7 @@ public abstract class Collector extends Animal {
             if (Math.sqrt(Math.pow(good.getX() - getX(), 2) + Math.pow(good.getY() - getY(), 2)) < 50) {
                 if (game.getWarehouse().addGood(good)) {
                     good.pause();
-                    game.getRoot().getChildren().remove(good.getImageView());
+                    game.getGoodPane().getChildren().remove(good.getImageView());
                     game.getGoods().remove(good);
                     game.updateTask(good.getClass().getSimpleName(), true);
                     setAngle(0, 360);

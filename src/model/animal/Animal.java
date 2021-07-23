@@ -17,7 +17,7 @@ public abstract class Animal {
     protected double defaultSpeed;
     protected double angle;
 
-    protected ImageView imageView;
+    protected AnimalImageView imageView;
     protected AnimalAnimation animalAnimation;
     protected Image[] images;
     protected Rectangle2D[][] cells;
@@ -36,7 +36,8 @@ public abstract class Animal {
     public abstract void setAnimation();
 
     public void setAnimation(Image[] images, Rectangle2D[][] cells) {
-        imageView = new ImageView();
+        imageView = new AnimalImageView(this);
+        imageView.setPickOnBounds(false);
         this.cells = cells;
         this.images = images;
 
@@ -48,7 +49,7 @@ public abstract class Animal {
         imageView.setLayoutY(random.nextDouble() * (Game.getInstance().getHeight() - cells[direction][0].getHeight()));
 
         animalAnimation = new AnimalAnimation(this);
-        Game.getInstance().getRoot().getChildren().add(imageView);
+        Game.getInstance().getAnimalPane().getChildren().add(imageView);
     }
 
     public void setPosition(double x, double y) {
